@@ -21,6 +21,10 @@ const ServiceSchema = new Schema({
     type: [String],
     default: [],
   },
+  image: {
+    type: String,
+    default: '',
+  },
 }, { timestamps: true });
 
 const Service = models.Service || model('Service', ServiceSchema);

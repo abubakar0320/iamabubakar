@@ -85,7 +85,7 @@ export default function Home() {
               items={services.map(s => ({
                 title: s.title,
                 description: s.description.substring(0, 100) + "...",
-                image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1740&auto=format&fit=crop", // placeholder for service
+                image: s.image || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1740&auto=format&fit=crop",
                 link: `/services`,
                 cta: "Explore service"
               }))} 
