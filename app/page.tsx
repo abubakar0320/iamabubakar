@@ -6,8 +6,6 @@ import { MicrosoftQuickLinks } from "@/components/sections/MicrosoftQuickLinks";
 import { MicrosoftCardGrid } from "@/components/sections/MicrosoftCardGrid";
 import { MicrosoftBanner } from "@/components/sections/MicrosoftBanner";
 import { WhyChooseMe } from "@/components/sections/WhyChooseMe";
-import { Stats } from "@/components/sections/Stats";
-import { Testimonials } from "@/components/sections/Testimonials";
 import { Loader2, ShieldCheck, Globe, Zap } from "lucide-react";
 
 export default function Home() {
@@ -15,31 +13,6 @@ export default function Home() {
   const [projects, setProjects] = useState<any[]>([]);
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const portfolioStats = [
-    { label: "Projects Deployed", value: "50+" },
-    { label: "Lines of Code", value: "1.2M" },
-    { label: "Technical Uptime", value: "99.9%" },
-    { label: "Global Clients", value: "20+" }
-  ];
-
-  const clientTestimonials = [
-    {
-      name: "Ahmed Khan",
-      role: "Founder, TechLink",
-      content: "Abubakar's architectural precision is unmatched. He delivered a complex full-stack system ahead of schedule with zero technical debt."
-    },
-    {
-      name: "Sarah Miller",
-      role: "Project Manager, GlobalOps",
-      content: "The networking solutions implemented by Abubakar transformed our institutional scalability. A truly high-fidelity engineer."
-    },
-    {
-      name: "Usman Sheikh",
-      role: "Director, EduHub",
-      content: "Exceptional assistance with our final year project. The documentation and deployment were professional and authoritative."
-    }
-  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,10 +54,6 @@ export default function Home() {
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
         <MicrosoftQuickLinks />
         
-        <div className="mt-16 md:mt-24">
-          <Stats stats={portfolioStats} />
-        </div>
-
         {projects.length > 0 && (
           <div className="mt-16 md:mt-24">
             <MicrosoftCardGrid 
@@ -112,10 +81,6 @@ export default function Home() {
 
         <div className="mt-16">
           <WhyChooseMe />
-        </div>
-
-        <div className="mt-16">
-          <Testimonials testimonials={clientTestimonials} />
         </div>
         
         {services.length > 0 && (
