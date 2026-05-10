@@ -25,6 +25,11 @@ const ServiceSchema = new Schema({
     type: String,
     default: '',
   },
+  category: {
+    type: String,
+    required: true,
+    default: 'Web Development',
+  },
 }, { timestamps: true });
 
 const Service = models.Service || model('Service', ServiceSchema);

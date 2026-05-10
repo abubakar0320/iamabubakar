@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Plus, Minus, ChevronRight, Loader2, Zap, Briefcase, ShieldCheck } from "lucide-react";
+import { Check, Plus, Minus, ChevronRight, Loader2, Briefcase, ShieldCheck } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import { pricingPlans, faqs } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,17 @@ export default function ServicesPage() {
   const [settings, setSettings] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const categories = [
+    "WEB DEVELOPMENT SERVICES",
+    "DEPLOYMENT & HOSTING SERVICES",
+    "SEO & ANALYTICS SERVICES",
+    "EMAIL & CONTACT SERVICES",
+    "AI SERVICES",
+    "NETWORKING SERVICES",
+    "GRAPHICS & VIDEO SERVICES",
+    "STUDENT/FYP SERVICES"
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,47 +72,69 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 mt-8 md:mt-12">
-        {/* Section Header */}
-        <div className="flex items-center justify-center md:justify-start gap-2 text-[0.6rem] md:text-[0.7rem] font-black uppercase text-gray-400 tracking-widest mb-8 md:mb-12 border-b md:border-none pb-4 md:pb-0">
-          <Briefcase size={14} className="text-blue-600" /> Professional Capability Modules
-        </div>
+      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 mt-12 md:mt-16">
+        {categories.map((category) => {
+          const categoryServices = services.filter(s => s.category === category);
+          if (categoryServices.length === 0) return null;
 
-        {/* Services Grid - Microsoft Style Optimized for Mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 md:mb-24">
-          {services.map((service, index) => {
-            const IconComponent = (LucideIcons as any)[service.icon || "Globe"] || LucideIcons.Globe;
-            
-            return (
-              <motion.div
-                key={service._id}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex flex-col group bg-white dark:bg-[#1a1a1a] shadow-[0_2px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_16px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-[#333] h-full transition-all p-6 md:p-8"
-              >
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0067b8] text-white rounded-lg flex items-center justify-center mb-5 md:mb-6 shadow-lg shadow-blue-500/10">
-                  <IconComponent size={20} />
-                </div>
-                <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-[#242424] dark:text-white leading-snug group-hover:text-[#0067b8] transition-colors uppercase tracking-tight">{service.title}</h3>
-                <p className="text-xs md:text-sm text-[#505050] dark:text-gray-300 mb-6 md:mb-8 leading-relaxed italic">
-                  {service.description}
-                </p>
-                
-                <div className="space-y-3 mt-auto pt-6 border-t border-gray-50 dark:border-gray-800/50">
-                  <h4 className="text-[0.55rem] font-black uppercase tracking-widest text-gray-400 mb-3">Included Nodes</h4>
-                  {service.features.slice(0, 3).map((feature: string) => (
-                    <div key={feature} className="flex items-center text-[0.65rem] md:text-[0.7rem] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-tight gap-2.5">
-                      <Check size={10} className="text-[#0067b8]" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+          return (
+            <div key={category} className="mb-20 md:mb-28">
+              <div className="flex items-center gap-4 mb-10 md:mb-12 border-b border-gray-100 dark:border-gray-800 pb-6">
+                <div className="w-2 h-8 bg-[#0067b8]"></div>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter uppercase text-[#242424] dark:text-white">{category}</h2>
+                <div className="flex-grow"></div>
+                <span className="text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-widest hidden md:block">{categoryServices.length} Modules Online</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                {categoryServices.map((service, index) => {
+                  const IconComponent = (LucideIcons as any)[service.icon || "Globe"] || LucideIcons.Globe;
+                  
+                  return (
+                    <motion.div
+                      key={service._id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="flex flex-col group bg-white dark:bg-[#1a1a1a] shadow-[0_2px_4_rgba(0,0,0,0.06)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-[#333] h-full transition-all overflow-hidden"
+                    >
+                      <div className="relative h-40 md:h-48 overflow-hidden">
+                        <img 
+                          src={service.image} 
+                          alt={service.title} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-60"></div>
+                        <div className="absolute bottom-4 left-6">
+                           <div className="w-10 h-10 bg-[#0067b8] text-white flex items-center justify-center shadow-2xl">
+                              <IconComponent size={20} />
+                           </div>
+                        </div>
+                      </div>
+
+                      <div className="p-6 md:p-8 flex flex-col flex-grow">
+                        <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-[#242424] dark:text-white leading-snug group-hover:text-[#0067b8] transition-colors uppercase tracking-tight">{service.title}</h3>
+                        <p className="text-xs md:text-sm text-[#505050] dark:text-gray-300 mb-6 md:mb-8 leading-relaxed font-medium">
+                          {service.description}
+                        </p>
+                        
+                        <div className="space-y-3 mt-auto pt-6 border-t border-gray-50 dark:border-gray-800/50">
+                          {service.features.map((feature: string) => (
+                            <div key={feature} className="flex items-center text-[0.65rem] md:text-[0.7rem] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest gap-2.5">
+                              <div className="w-1.5 h-1.5 bg-[#0067b8] rounded-full shrink-0"></div>
+                              <span>{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
 
         {/* Pricing/Investment Section - Microsoft Business Style Optimized for Mobile */}
         <section className="mt-20 md:mt-32">
