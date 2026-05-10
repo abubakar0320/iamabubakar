@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, GraduationCap, History, Globe, Zap, MapPin, ShieldCheck, Cpu, Loader2, Target } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Skill {
   name: string;
@@ -100,9 +101,11 @@ export default function AboutPage() {
              <div className="pt-8 border-t border-gray-100 dark:border-gray-800 text-center md:text-left">
                <h3 className="text-[11px] md:text-sm font-black uppercase tracking-[0.2em] mb-6 md:mb-8 text-gray-400">Digital Credentials</h3>
                <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4">
-                  {/* CV Download hidden temporarily */}
                   <Link href="/contact" className="w-full sm:w-auto">
-                    <button className="w-full sm:w-auto text-[#0067b8] font-bold uppercase text-[11px] md:text-sm py-4 md:py-3 px-8 hover:underline flex items-center justify-center gap-2 group border border-[#0067b8]">
+                    <button 
+                      className="w-full sm:w-auto text-[#0067b8] font-bold uppercase text-[11px] md:text-sm py-4 md:py-3 px-8 hover:underline flex items-center justify-center gap-2 group border border-[#0067b8]"
+                      aria-label="Establish connection with Abubakar"
+                    >
                       Establish Connection <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </button>
                   </Link>
@@ -112,12 +115,15 @@ export default function AboutPage() {
           
           <div className="lg:col-span-4 space-y-8 md:space-y-12 order-1 lg:order-2">
              <div className="relative aspect-[4/5] overflow-hidden shadow-xl md:shadow-2xl dark:shadow-none border-b-4 md:border-b-8 border-r-4 md:border-r-8 border-[#0067b8] max-w-sm mx-auto lg:max-w-none">
-                <img
+                <Image
                   src={settings.about.profileImage}
                   alt="Abubakar Portfolio"
-                  className="w-full h-full object-cover"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md border-t border-gray-100 dark:border-gray-800">
+                <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 z-10">
                    <p className="text-lg md:text-xl font-black uppercase tracking-tighter">Abubakar <span className="text-blue-600">.</span></p>
                    <p className="text-[0.55rem] md:text-[0.6rem] font-black uppercase text-gray-400 tracking-widest mt-1">Lead System Architect</p>
                 </div>

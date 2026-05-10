@@ -61,6 +61,8 @@ export function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-[#242424] dark:text-white p-2"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>

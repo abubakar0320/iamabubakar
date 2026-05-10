@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Filter, FileCode, Loader2, ChevronRight, Globe, Zap, Search } from "lucide-react";
-import { Github } from "@/components/Icons";
-import { Button } from "@/components/ui/Button";
+import { FileCode, Loader2, ChevronRight, Zap, Search } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -97,7 +96,13 @@ export default function ProjectsPage() {
               >
                 <div className="w-full aspect-video overflow-hidden relative">
                   {project.image ? (
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <Image 
+                      src={project.image} 
+                      alt={project.title} 
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
                   ) : (
                     <div className="w-full h-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-300">
                        <FileCode size={40} />
