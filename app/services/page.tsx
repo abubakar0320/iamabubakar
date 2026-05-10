@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Plus, Minus, ChevronRight, Loader2, Briefcase, ShieldCheck } from "lucide-react";
 import * as LucideIcons from "lucide-react";
+import Image from "next/image";
 import { pricingPlans, faqs } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -100,14 +101,16 @@ export default function ServicesPage() {
                       className="flex flex-col group bg-white dark:bg-[#1a1a1a] shadow-[0_2px_4_rgba(0,0,0,0.06)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-[#333] h-full transition-all overflow-hidden"
                     >
                       <div className="relative h-40 md:h-48 overflow-hidden">
-                        <img 
+                        <Image 
                           src={service.image} 
                           alt={service.title} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" 
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" 
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-60"></div>
                         <div className="absolute bottom-4 left-6">
-                           <div className="w-10 h-10 bg-[#0067b8] text-white flex items-center justify-center shadow-2xl">
+                           <div className="w-10 h-10 bg-[#0067b8] text-white flex items-center justify-center shadow-2xl relative z-10">
                               <IconComponent size={20} />
                            </div>
                         </div>
@@ -190,12 +193,15 @@ export default function ServicesPage() {
                 </div>
 
                 <Link href={`/checkout?plan=${encodeURIComponent(plan.name)}&price=${encodeURIComponent(plan.price)}`} className="w-full mt-auto">
-                  <button className={cn(
-                    "w-full h-12 md:h-14 font-black uppercase text-[0.65rem] md:text-[0.7rem] tracking-[0.15em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2",
-                    plan.recommended 
-                      ? "bg-white text-[#0067b8] hover:bg-gray-100" 
-                      : "bg-[#0067b8] text-white hover:bg-[#005da6]"
-                  )}>
+                  <button 
+                    className={cn(
+                      "w-full h-12 md:h-14 font-black uppercase text-[0.65rem] md:text-[0.7rem] tracking-[0.15em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2",
+                      plan.recommended 
+                        ? "bg-white text-[#0067b8] hover:bg-gray-100" 
+                        : "bg-[#0067b8] text-white hover:bg-[#005da6]"
+                    )}
+                    aria-label={`Choose ${plan.name} investment plan`}
+                  >
                     {plan.cta} <ChevronRight size={14} />
                   </button>
                 </Link>
@@ -218,7 +224,7 @@ export default function ServicesPage() {
                 >
                   <span className="text-[14px] md:text-lg font-semibold text-[#242424] dark:text-gray-200 group-hover:text-[#0067b8] transition-colors leading-snug pr-4">{faq.question}</span>
                   <div className="w-7 h-7 md:w-8 md:h-8 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#242424] dark:text-white transition-transform duration-300 shrink-0">
-                    {openFaq === index ? <Minus size={14} /> : <Plus size={14} />}
+                    {openFaq === index ? <Plus size={14} className="rotate-45" /> : <Plus size={14} />}
                   </div>
                 </button>
                 <AnimatePresence>
