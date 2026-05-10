@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       try {
         await resend.emails.send({
           from: 'Portfolio <hello@iamabubakar.site>',
-          to: 'abubakar@iamabubakar.site',
+          to: 'abubakr.bgnu@gmail.com',
           subject: `New Message from ${body.name}`,
           html: `
             <h3>New Contact Form Submission</h3>
