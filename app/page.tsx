@@ -5,13 +5,41 @@ import { MicrosoftHero } from "@/components/sections/MicrosoftHero";
 import { MicrosoftQuickLinks } from "@/components/sections/MicrosoftQuickLinks";
 import { MicrosoftCardGrid } from "@/components/sections/MicrosoftCardGrid";
 import { MicrosoftBanner } from "@/components/sections/MicrosoftBanner";
-import { Loader2 } from "lucide-react";
+import { WhyChooseMe } from "@/components/sections/WhyChooseMe";
+import { Stats } from "@/components/sections/Stats";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Loader2, ShieldCheck, Globe, Zap } from "lucide-react";
 
 export default function Home() {
   const [settings, setSettings] = useState<any>(null);
   const [projects, setProjects] = useState<any[]>([]);
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const portfolioStats = [
+    { label: "Projects Deployed", value: "50+" },
+    { label: "Lines of Code", value: "1.2M" },
+    { label: "Technical Uptime", value: "99.9%" },
+    { label: "Global Clients", value: "20+" }
+  ];
+
+  const clientTestimonials = [
+    {
+      name: "Ahmed Khan",
+      role: "Founder, TechLink",
+      content: "Abubakar's architectural precision is unmatched. He delivered a complex full-stack system ahead of schedule with zero technical debt."
+    },
+    {
+      name: "Sarah Miller",
+      role: "Project Manager, GlobalOps",
+      content: "The networking solutions implemented by Abubakar transformed our institutional scalability. A truly high-fidelity engineer."
+    },
+    {
+      name: "Usman Sheikh",
+      role: "Director, EduHub",
+      content: "Exceptional assistance with our final year project. The documentation and deployment were professional and authoritative."
+    }
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,19 +68,23 @@ export default function Home() {
 
   if (loading || !settings) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#111]">
         <Loader2 className="animate-spin h-12 w-12 text-[#0067b8]" />
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-[#121212] min-h-screen text-[#242424] dark:text-white pb-20 font-sans">
+    <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white pb-20 font-sans">
       <MicrosoftHero data={settings?.home} cvUrl={settings?.contact?.cvUrl} />
       
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
         <MicrosoftQuickLinks />
         
+        <div className="mt-16 md:mt-24">
+          <Stats stats={portfolioStats} />
+        </div>
+
         {projects.length > 0 && (
           <div className="mt-16 md:mt-24">
             <MicrosoftCardGrid 
@@ -68,7 +100,7 @@ export default function Home() {
           </div>
         )}
         
-        <div className="mt-16 md:mt-24">
+        <div className="mt-16 md:mt-32">
           <MicrosoftBanner 
             title="Unlock Your Business Potential"
             description="Empowering your digital transformation with scalable architecture and premium design. Get in touch to discuss your next big idea."
@@ -76,6 +108,14 @@ export default function Home() {
             cta="Hire Me Today"
             link="/contact"
           />
+        </div>
+
+        <div className="mt-16">
+          <WhyChooseMe />
+        </div>
+
+        <div className="mt-16">
+          <Testimonials testimonials={clientTestimonials} />
         </div>
         
         {services.length > 0 && (
@@ -92,6 +132,28 @@ export default function Home() {
             />
           </div>
         )}
+
+        {/* Global Trust Section */}
+        <section className="mt-32 py-16 bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 rounded-sm">
+           <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter uppercase">Global <span className="text-[#0067b8]">Trust Network</span></h2>
+              <p className="text-sm md:text-lg text-[#505050] dark:text-gray-400 font-medium">
+                From Lahore to the world, I provide mission-critical technical support and high-performance digital architecture. 
+                Join a network of successful clients and academic achievers.
+              </p>
+              <div className="flex flex-wrap justify-center gap-12 pt-8">
+                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <ShieldCheck className="text-[#0067b8]" size={20} /> Verified Expert
+                 </div>
+                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <Globe className="text-[#0067b8]" size={20} /> International Reach
+                 </div>
+                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
+                    <Zap className="text-[#0067b8]" size={20} /> Instant Sync
+                 </div>
+              </div>
+           </div>
+        </section>
       </div>
     </div>
   );

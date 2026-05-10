@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, User } from "lucide-react";
 
 interface Testimonial {
   name: string;
@@ -18,16 +18,15 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
   if (!testimonials || testimonials.length === 0) return null;
 
   return (
-    <section className="py-24 bg-blue-600 dark:bg-blue-900 text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="absolute top-0 right-0 opacity-10">
-          <Quote size={200} />
-        </div>
-        
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 italic">Client Success Stories</h2>
-          <p className="text-blue-100 max-w-2xl mx-auto">
-            Trusted by founders and companies worldwide to deliver high-quality digital products.
+    <section className="py-24 bg-white dark:bg-[#121212]">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
+        <div className="flex flex-col items-center text-center mb-16 space-y-4">
+          <div className="w-10 h-10 bg-[#0067b8]/10 text-[#0067b8] rounded-full flex items-center justify-center">
+            <Quote size={20} />
+          </div>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">Client <span className="text-[#0067b8]">Synthesis</span></h2>
+          <p className="text-sm md:text-base text-[#505050] dark:text-gray-400 max-w-2xl font-medium italic">
+            &ldquo;Engineering trust through consistent technical excellence and reliable deployment modules.&rdquo;
           </p>
         </div>
 
@@ -35,23 +34,22 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all"
+              className="bg-[#f2f2f2] dark:bg-[#1a1a1a] p-8 md:p-10 border border-gray-200 dark:border-gray-800 flex flex-col h-full hover:border-[#0067b8]/50 transition-all"
             >
-              <Quote className="text-blue-300 mb-6" size={32} />
-              <p className="text-lg mb-8 leading-relaxed italic">
-                &quot;{testimonial.content}&quot;
+              <p className="text-base md:text-lg text-[#242424] dark:text-gray-200 leading-relaxed font-medium mb-10 flex-grow">
+                &ldquo;{testimonial.content}&rdquo;
               </p>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-full bg-blue-400 flex items-center justify-center font-bold text-lg">
-                  {testimonial.name[0]}
+              <div className="flex items-center gap-4 pt-6 border-t border-gray-200 dark:border-gray-800">
+                <div className="w-12 h-12 rounded-sm bg-[#0067b8] flex items-center justify-center text-white shrink-0">
+                  <User size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold">{testimonial.name}</h4>
-                  <p className="text-sm text-blue-200">{testimonial.role}</p>
+                  <h4 className="font-bold text-sm uppercase tracking-tight text-[#242424] dark:text-white">{testimonial.name}</h4>
+                  <p className="text-[10px] font-black uppercase text-[#0067b8] tracking-widest mt-0.5">{testimonial.role}</p>
                 </div>
               </div>
             </motion.div>
