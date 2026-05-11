@@ -13,6 +13,7 @@ const navLinks = [
   { name: "Services", href: "/services" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
+  { name: "Resume", href: "/resume.pdf", isExternal: true },
 ];
 
 export function Navbar() {
@@ -38,6 +39,8 @@ export function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  target={link.isExternal ? "_blank" : undefined}
+                  rel={link.isExternal ? "noopener noreferrer" : undefined}
                   className={cn(
                     "text-[13px] px-3 py-2 rounded-sm transition-colors",
                     pathname === link.href
@@ -83,6 +86,8 @@ export function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
+              target={link.isExternal ? "_blank" : undefined}
+              rel={link.isExternal ? "noopener noreferrer" : undefined}
               className="text-sm text-[#242424] dark:text-gray-300 py-4 border-b border-gray-200 dark:border-gray-800 hover:bg-gray-200 dark:hover:bg-gray-800 px-2"
             >
               {link.name}
