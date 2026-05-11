@@ -46,7 +46,7 @@ export async function GET() {
         phone: "+92 3XX XXXXXXX",
         location: "Lahore, Pakistan",
         socialLinks: {
-          github: "#",
+          github: "https://github.com/abubakar0320",
           linkedin: "#",
           twitter: "#",
           whatsapp: "#"
