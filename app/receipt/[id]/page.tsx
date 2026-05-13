@@ -137,9 +137,16 @@ export default function ReceiptPage() {
                      <p className="text-[9px] font-bold text-[#0067b8] uppercase tracking-[0.3em]">Full Stack Developer</p>
                   </div>
                </div>
-               <div className="text-right">
-                  <h1 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-widest">OFFICIAL RECEIPT</h1>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Hash ID: {order._id.slice(-12).toUpperCase()}</p>
+               <div className="text-right flex flex-col items-end">
+                  <h1 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none">OFFICIAL RECEIPT</h1>
+                  <div className={cn(
+                    "mt-2 px-3 py-0.5 text-[9px] font-black uppercase tracking-[0.1em] rounded-sm flex items-center gap-1.5",
+                    isPaid ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" : "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+                  )}>
+                     {isPaid ? <CheckCircle size={10} /> : <Clock size={10} />}
+                     {isPaid ? "Successful" : "Verification Pending"}
+                  </div>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">Hash ID: {order._id.slice(-12).toUpperCase()}</p>
                </div>
             </div>
 
