@@ -61,195 +61,225 @@ export default function ReceiptPage() {
   const isPaid = order.status === "verified";
 
   return (
-    <div className="py-20 min-h-screen bg-[#f2f2f2] dark:bg-[#121212] font-sans">
+    <div className="py-20 min-h-screen bg-slate-50 dark:bg-[#0c0c0c] font-sans">
       <style jsx global>{`
         @media print {
-          @page { size: A4; margin: 10mm; }
+          @page { size: A4; margin: 0; }
           body { background: white !important; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           nav, footer, .print\\:hidden, button { display: none !important; }
-          #microsoft-receipt { position: absolute; top: 0; left: 0; width: 100%; border: none !important; box-shadow: none !important; background: white !important; color: black !important; }
-          .receipt-accent { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+          #enterprise-receipt { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            border: none !important; 
+            box-shadow: none !important; 
+            background: white !important; 
+            color: black !important; 
+            padding: 20mm !important;
+          }
+          .dark { background: white !important; color: black !important; }
+          .receipt-accent { background-color: #0067b8 !important; color: white !important; }
+          .text-blue-600 { color: #0067b8 !important; }
+          .bg-slate-50 { background-color: #f8fafc !important; }
         }
       `}</style>
 
-      <div className="max-w-5xl mx-auto px-4 md:px-12 xl:px-20">
-        <div className="flex justify-between items-center mb-12 print:hidden">
-           <div>
-              <h1 className="text-3xl font-semibold text-[#242424] dark:text-white">Order Confirmation</h1>
-              <p className="text-sm text-gray-500 mt-1 uppercase tracking-widest font-bold">Transaction Hash: {order._id.toUpperCase()}</p>
-           </div>
-           <div className="flex gap-4">
-              <Link href="/services">
-                <button className="text-sm font-semibold text-[#0067b8] hover:underline flex items-center gap-1">
-                   <ArrowLeft size={16} /> Services
-                </button>
-              </Link>
-              <button 
-                onClick={handlePrint}
-                className="bg-[#0067b8] text-white font-semibold py-2 px-6 hover:bg-[#005da6] transition-all flex items-center gap-2 text-sm shadow-lg shadow-blue-500/10"
-              >
-                <Printer size={16} /> Print Receipt
+      <div className="max-w-4xl mx-auto px-4 md:px-0">
+        <div className="flex justify-between items-center mb-8 print:hidden">
+           <Link href="/services">
+              <button className="text-sm font-bold text-slate-500 hover:text-[#0067b8] flex items-center gap-2 transition-colors uppercase tracking-widest">
+                 <ArrowLeft size={16} /> Exit to Services
               </button>
-           </div>
+           </Link>
+           <button 
+             onClick={handlePrint}
+             className="bg-[#0067b8] text-white font-bold py-3 px-8 hover:bg-[#005da6] transition-all flex items-center gap-2 text-xs uppercase tracking-[0.2em] shadow-xl shadow-blue-500/20"
+           >
+             <Printer size={16} /> Generate Document
+           </button>
         </div>
 
-        {/* Microsoft Style Receipt Container */}
+        {/* Enterprise Receipt Container */}
         <div 
-          id="microsoft-receipt"
+          id="enterprise-receipt"
           ref={receiptRef}
-          className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden"
+          className="bg-white dark:bg-[#151515] border border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden min-h-[1100px] flex flex-col"
         >
-          {/* Top Status Bar */}
-          <div className={cn(
-            "py-4 px-8 text-white flex items-center justify-between receipt-accent",
-            isPaid ? "bg-emerald-600" : "bg-[#ffb900] text-black"
-          )}>
-            <div className="flex items-center gap-3">
-              {isPaid ? <CheckCircle size={20} /> : <Clock size={20} />}
-              <span className="text-sm font-black uppercase tracking-widest">
-                {isPaid ? "Payment Verified & Asset Authorized" : "Verification in progress"}
-              </span>
-            </div>
-            <span className="text-[10px] font-black opacity-80 uppercase tracking-[0.2em]">Official Document</span>
-          </div>
+          {/* Header Accent Line */}
+          <div className="h-2 bg-[#0067b8] w-full"></div>
 
-          <div className="p-8 md:p-16">
-            {/* Brand Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-16 border-b pb-12 border-gray-100 dark:border-gray-800">
-               <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="grid grid-cols-2 gap-0.5">
-                      <div className="w-2.5 h-2.5 bg-[#f25022]"></div>
-                      <div className="w-2.5 h-2.5 bg-[#7fba00]"></div>
-                      <div className="w-2.5 h-2.5 bg-[#00a4ef]"></div>
-                      <div className="w-2.5 h-2.5 bg-[#ffb900]"></div>
+          <div className="p-12 md:p-16 flex-grow">
+            {/* Top Section: Branding & Document Info */}
+            <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+               <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-[#0067b8] flex items-center justify-center text-white rounded-sm shadow-lg">
+                       <ShieldCheck size={28} />
                     </div>
-                    <h2 className="text-2xl font-black tracking-tighter text-[#242424] dark:text-white uppercase">Abubakar</h2>
+                    <div>
+                       <h2 className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">Abubakar Siddique</h2>
+                       <p className="text-[10px] font-bold text-[#0067b8] uppercase tracking-[0.3em]">Technical Architect & Engineer</p>
+                    </div>
                   </div>
-                  <div className="text-[11px] text-gray-400 font-bold uppercase tracking-widest leading-relaxed">
-                    <p className="flex items-center gap-2"><MapPin size={10} className="text-blue-600" /> Lahore, PK</p>
-                    <p className="flex items-center gap-2"><Globe size={10} className="text-blue-600" /> www.iamabubakar.com</p>
+                  <div className="space-y-2 text-[11px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest leading-relaxed">
+                    <p className="flex items-center gap-3"><MapPin size={12} className="text-[#0067b8]" /> Lahore, Pakistan | Digital Operations</p>
+                    <p className="flex items-center gap-3"><Mail size={12} className="text-[#0067b8]" /> hello@iamabubakar.com</p>
+                    <p className="flex items-center gap-3"><Globe size={12} className="text-[#0067b8]" /> www.iamabubakar.com</p>
                   </div>
                </div>
-               <div className="text-left md:text-right">
-                  <h3 className="text-4xl font-black text-[#242424] dark:text-white tabular-nums tracking-tighter">#{order._id.slice(-6).toUpperCase()}</h3>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em] mt-2">Internal Order Token</p>
-                  <p className="text-xs font-bold text-[#0067b8] mt-4 uppercase tracking-widest">Date: {new Date(order.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+
+               <div className="text-left md:text-right space-y-2">
+                  <h1 className="text-5xl md:text-6xl font-black text-slate-900/10 dark:text-white/5 uppercase tracking-tighter absolute top-12 right-12 select-none pointer-events-none">RECEIPT</h1>
+                  <h3 className="text-3xl font-black text-slate-900 dark:text-white tabular-nums tracking-tighter pt-4">#{order._id.slice(-8).toUpperCase()}</h3>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full">
+                     <div className={cn("w-2 h-2 rounded-full", isPaid ? "bg-emerald-500" : "bg-amber-500")}></div>
+                     <span className="text-[9px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-300">
+                        Status: {isPaid ? "Payment Verified" : "Awaiting Authorization"}
+                     </span>
+                  </div>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest pt-4">Issued: {new Date(order.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
                </div>
             </div>
 
-            {/* Content Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+            {/* Entity Details Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mb-20">
                <div className="space-y-8">
-                  <div>
-                    <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                       <User size={14} className="text-blue-600" /> Bill To
-                    </h4>
-                    <p className="text-xl font-black text-[#242424] dark:text-white uppercase">{order.customerName}</p>
-                    <div className="mt-3 space-y-1 text-sm text-gray-500 font-medium">
-                       <p>{order.customerEmail}</p>
-                       <p>{order.customerPhone}</p>
-                    </div>
-                  </div>
-                  <div className="pt-8 border-t border-gray-100 dark:border-gray-800">
-                    <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                       <CreditCard size={14} className="text-blue-600" /> Payment Info
-                    </h4>
-                    <div className="space-y-2">
-                       <p className="text-sm font-bold"><span className="text-gray-400 uppercase text-[10px] mr-2">Method:</span> {order.paymentMethod.toUpperCase()}</p>
-                       <p className="text-sm font-bold"><span className="text-gray-400 uppercase text-[10px] mr-2">Status:</span> <span className={isPaid ? "text-emerald-600" : "text-amber-500"}>{isPaid ? "SUCCESSFUL" : "PENDING VERIFICATION"}</span></p>
+                  <div className="relative">
+                    <h4 className="text-[11px] font-black text-[#0067b8] uppercase tracking-[0.2em] mb-6 border-b border-slate-100 dark:border-slate-800 pb-2">Client Information</h4>
+                    <p className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">{order.customerName}</p>
+                    <div className="mt-4 space-y-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                       <p className="flex items-center gap-2 italic"><Mail size={12} /> {order.customerEmail}</p>
+                       <p className="flex items-center gap-2 italic"><Phone size={12} /> {order.customerPhone}</p>
                     </div>
                   </div>
                </div>
 
                <div className="space-y-8">
                   <div>
-                    <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                       <Hash size={14} className="text-blue-600" /> Auth Details
-                    </h4>
-                    <div className="bg-gray-50 dark:bg-[#242424] p-6 border-l-4 border-[#0067b8]">
-                       <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Transaction ID / Reference</p>
-                       <code className="text-sm font-black text-[#0067b8] break-all tracking-tighter">{order.transactionId}</code>
-                    </div>
-                  </div>
-               </div>
-            </div>
-
-            {/* Order Table */}
-            <div className="mb-16 overflow-hidden border border-gray-100 dark:border-gray-800">
-               <table className="w-full text-left">
-                  <thead>
-                    <tr className="bg-gray-50 dark:bg-[#242424] text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
-                       <th className="px-6 py-4">Subscription Plan</th>
-                       <th className="px-6 py-4 text-right">Amount Paid</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                    <tr>
-                       <td className="px-6 py-8">
-                          <p className="text-lg font-black text-[#242424] dark:text-white uppercase tracking-tighter">{order.planName} Deployment</p>
-                          <p className="text-xs text-gray-500 mt-2 italic leading-relaxed max-w-md">
-                             {selectedPlan?.description || "High-performance project architecture and dedicated engineering resource."}
-                          </p>
-                          <div className="mt-6 flex flex-wrap gap-2">
-                             {selectedPlan?.features.slice(0, 4).map(f => (
-                               <span key={f} className="text-[9px] font-black uppercase tracking-tighter px-2 py-0.5 bg-blue-50 dark:bg-blue-900/20 text-[#0067b8] rounded-sm">
-                                  {f}
-                               </span>
-                             ))}
+                    <h4 className="text-[11px] font-black text-[#0067b8] uppercase tracking-[0.2em] mb-6 border-b border-slate-100 dark:border-slate-800 pb-2">Payment Verification</h4>
+                    <div className="bg-slate-50 dark:bg-slate-900/50 p-6 border-l-4 border-[#0067b8] rounded-r-sm">
+                       <div className="grid grid-cols-2 gap-4">
+                          <div>
+                             <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Gateway</p>
+                             <p className="text-sm font-black text-slate-900 dark:text-white uppercase">{order.paymentMethod}</p>
                           </div>
-                       </td>
-                       <td className="px-6 py-8 text-right align-top">
-                          <p className="text-2xl font-black text-[#242424] dark:text-white tabular-nums tracking-tighter">{order.planPrice}</p>
-                       </td>
-                    </tr>
-                  </tbody>
-               </table>
-            </div>
-
-            {/* Total Area */}
-            <div className="flex justify-end">
-               <div className="w-full md:w-72 space-y-4">
-                  <div className="flex justify-between items-center text-[11px] font-black text-gray-400 uppercase tracking-widest">
-                     <span>Subtotal</span>
-                     <span className="text-[#242424] dark:text-white">{order.planPrice}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-[11px] font-black text-gray-400 uppercase tracking-widest">
-                     <span>Estimated Tax</span>
-                     <span className="text-[#242424] dark:text-white">$0.00</span>
-                  </div>
-                  <div className="pt-4 border-t-4 border-black dark:border-white flex justify-between items-center">
-                     <span className="text-lg font-black uppercase tracking-tighter">Total Paid</span>
-                     <span className="text-4xl font-black text-[#0067b8] dark:text-[#4da3ff] tabular-nums tracking-tighter">{order.planPrice}</span>
+                          <div>
+                             <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Authorization</p>
+                             <p className="text-sm font-black text-emerald-600 uppercase">{isPaid ? "Verified" : "Pending"}</p>
+                          </div>
+                          <div className="col-span-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+                             <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Transaction Hash (TID)</p>
+                             <code className="text-[11px] font-black text-[#0067b8] break-all tracking-normal font-mono">{order.transactionId}</code>
+                          </div>
+                       </div>
+                    </div>
                   </div>
                </div>
             </div>
 
-            {/* Signature Area */}
-            <div className="mt-20 flex flex-col md:flex-row justify-between items-end gap-10">
-               <div className="text-center md:text-left">
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2">Authorized Signature</p>
-                  <p className="font-serif italic text-2xl text-[#242424] dark:text-white border-b-2 border-gray-200 dark:border-gray-800 pb-2 px-4">Abubakar .</p>
-                  <p className="text-[10px] font-bold text-gray-500 mt-2 uppercase tracking-[0.2em]">Chief Executive Officer</p>
+            {/* Line Items Table */}
+            <div className="mb-20">
+               <div className="overflow-x-auto">
+                 <table className="w-full text-left">
+                    <thead>
+                      <tr className="border-b-2 border-slate-900 dark:border-white text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">
+                         <th className="py-6 px-4">Technical Module & Description</th>
+                         <th className="py-6 px-4 text-right">Service Fee</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                      <tr>
+                         <td className="py-10 px-4">
+                            <div className="flex items-start gap-4">
+                               <div className="mt-1 w-2 h-2 bg-[#0067b8] rotate-45 shrink-0"></div>
+                               <div>
+                                  <p className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">{order.planName} Deployment</p>
+                                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed max-w-xl font-medium italic">
+                                     {selectedPlan?.description || "High-performance project architecture and dedicated engineering resource provided as per official service protocols."}
+                                  </p>
+                                  <div className="mt-6 flex flex-wrap gap-2">
+                                     {selectedPlan?.features.slice(0, 6).map(f => (
+                                       <span key={f} className="text-[8px] font-black uppercase tracking-widest px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-sm">
+                                          {f}
+                                       </span>
+                                     ))}
+                                  </div>
+                               </div>
+                            </div>
+                         </td>
+                         <td className="py-10 px-4 text-right align-top">
+                            <p className="text-3xl font-black text-slate-900 dark:text-white tabular-nums tracking-tighter">{order.planPrice}</p>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase mt-2">One-time Investment</p>
+                         </td>
+                      </tr>
+                    </tbody>
+                 </table>
                </div>
-               <div className="text-center md:text-right max-w-xs">
-                  <p className="text-[10px] text-gray-400 font-medium leading-relaxed italic">
-                     This receipt is generated through secure cloud infrastructure. Thank you for your partnership with Abubakar Digital Architecture.
+            </div>
+
+            {/* Financial Summary */}
+            <div className="flex justify-end mb-24">
+               <div className="w-full md:w-80 space-y-4">
+                  <div className="flex justify-between items-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                     <span>Net Service Amount</span>
+                     <span className="text-slate-900 dark:text-white">{order.planPrice}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                     <span>Authorization Fee</span>
+                     <span className="text-slate-900 dark:text-white">$0.00</span>
+                  </div>
+                  <div className="pt-6 border-t-2 border-slate-900 dark:border-white flex justify-between items-end">
+                     <div>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] block mb-1">Grand Total</span>
+                        <span className="text-lg font-black uppercase tracking-tight text-slate-900 dark:text-white">Amount Settled</span>
+                     </div>
+                     <span className="text-5xl font-black text-[#0067b8] tabular-nums tracking-tighter">{order.planPrice}</span>
+                  </div>
+               </div>
+            </div>
+
+            {/* Certification Area */}
+            <div className="mt-auto pt-20 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-12">
+               <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 border-2 border-slate-200 dark:border-slate-800 rounded-full flex items-center justify-center text-slate-300 dark:text-slate-700">
+                     <ShieldCheck size={32} />
+                  </div>
+                  <div>
+                     <p className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest mb-1">Authorized Digital Signature</p>
+                     <p className="font-serif italic text-3xl text-slate-900 dark:text-white opacity-80">Abubakar Siddique</p>
+                     <p className="text-[9px] font-bold text-[#0067b8] uppercase tracking-[0.2em] mt-1">Enterprise Solutions Architect</p>
+                  </div>
+               </div>
+               <div className="text-center md:text-right max-w-xs space-y-2">
+                  <p className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Official Certification</p>
+                  <p className="text-[10px] text-slate-400 font-medium leading-relaxed italic">
+                     This document serves as formal evidence of transaction and project initiation. All digital assets are protected under global technical protocols.
                   </p>
                </div>
             </div>
           </div>
 
-          {/* Footer Branding */}
-          <div className="bg-[#f2f2f2] dark:bg-[#1a1a1a] py-6 px-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 receipt-accent">
-             <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest italic">Powering Digital Transformation © {new Date().getFullYear()}</p>
-             <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-[#0067b8]">
-                <a href="#" className="hover:underline">Legal</a>
-                <a href="#" className="hover:underline">Privacy</a>
-                <a href="#" className="hover:underline">Support</a>
+          {/* Footer Bar */}
+          <div className="bg-slate-900 text-white py-8 px-12 flex flex-col md:flex-row justify-between items-center gap-6 receipt-accent">
+             <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-white/10 flex items-center justify-center rounded-sm">
+                   <Package size={16} />
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em]">Engineering Digital Excellence © {new Date().getFullYear()}</p>
+             </div>
+             <div className="flex items-center gap-8 text-[9px] font-black uppercase tracking-[0.3em] text-white/60">
+                <a href="#" className="hover:text-white transition-colors">Security</a>
+                <a href="#" className="hover:text-white transition-colors">Protocol</a>
+                <a href="#" className="hover:text-white transition-colors">Governance</a>
              </div>
           </div>
         </div>
+        
+        <p className="text-center mt-12 text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] print:hidden">
+           End of Official Document Node
+        </p>
       </div>
     </div>
   );
