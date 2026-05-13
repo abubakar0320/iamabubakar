@@ -243,11 +243,15 @@ function CheckoutProcess() {
                   </div>
                   <div>
                     <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Account Holder</span>
-                    <span className="font-bold text-sm">Abubakar</span>
+                    <span className="font-bold text-sm">Abubakar Siddique</span>
                   </div>
                   <div className="md:col-span-2">
                     <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">IBAN / Account Node</span>
-                    <span className="font-mono font-black text-blue-600 text-lg">PK40 MEZN 0001 2345 6789</span>
+                    <span className="font-mono font-black text-blue-600 text-lg">PK87MEZN0098690114217768</span>
+                  </div>
+                  <div className="md:col-span-2">
+                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Account Number</span>
+                    <span className="font-mono font-black text-blue-600 text-lg">9869011421768</span>
                   </div>
                 </div>
               )}
@@ -259,11 +263,13 @@ function CheckoutProcess() {
                   </div>
                   <div>
                     <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Registered Name</span>
-                    <span className="font-bold text-sm">Abubakar</span>
+                    <span className="font-bold text-sm">Abubakar Siddique</span>
                   </div>
                   <div className="md:col-span-2">
                     <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Terminal Number</span>
-                    <span className="font-mono font-black text-blue-600 text-lg">0300 1234567</span>
+                    <span className="font-mono font-black text-blue-600 text-lg">
+                      {formData.paymentMethod === "jazzcash" ? "0325 4060120" : "0316 7169757"}
+                    </span>
                   </div>
                 </div>
               )}
