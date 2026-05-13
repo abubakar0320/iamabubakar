@@ -251,7 +251,7 @@ function CheckoutProcess() {
                   </div>
                   <div className="md:col-span-2">
                     <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Account Number</span>
-                    <span className="font-mono font-black text-blue-600 text-lg">9869011421768</span>
+                    <span className="font-mono font-black text-blue-600 text-lg">98690114217768</span>
                   </div>
                 </div>
               )}
