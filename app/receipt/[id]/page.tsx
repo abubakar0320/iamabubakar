@@ -66,7 +66,7 @@ export default function ReceiptPage() {
         @media print {
           @page { 
             size: A4; 
-            margin: 0; 
+            margin: 5mm; 
           }
           body { 
             background: white !important; 
@@ -74,37 +74,46 @@ export default function ReceiptPage() {
             padding: 0; 
             -webkit-print-color-adjust: exact !important; 
             print-color-adjust: exact !important;
-            font-size: 10pt !important;
+            font-size: 8pt !important;
+            line-height: 1.2 !important;
           }
           nav, footer, .print\\:hidden, button, .no-print { 
             display: none !important; 
           }
           #enterprise-receipt { 
-            position: absolute !important; 
-            top: 0 !important; 
-            left: 0 !important; 
-            width: 210mm !important; 
-            height: 297mm !important;
+            position: relative !important; 
+            width: 100% !important; 
+            height: auto !important;
             border: none !important; 
             box-shadow: none !important; 
             background: white !important; 
             color: black !important; 
-            padding: 10mm !important;
+            padding: 0 !important;
             margin: 0 !important;
-            min-height: 297mm !important;
-            display: flex !important;
-            flex-direction: column !important;
+            min-height: 0 !important;
+            display: block !important;
           }
           #enterprise-receipt .p-12, #enterprise-receipt .md\\:p-16 {
-            padding: 5mm !important;
+            padding: 4mm !important;
           }
-          #enterprise-receipt .mb-20, #enterprise-receipt .mb-12 { margin-bottom: 5mm !important; }
-          #enterprise-receipt .mb-24 { margin-bottom: 8mm !important; }
-          #enterprise-receipt .py-10 { padding-top: 5mm !important; padding-bottom: 5mm !important; }
-          #enterprise-receipt .text-5xl, #enterprise-receipt .text-6xl { font-size: 2.5rem !important; }
-          #enterprise-receipt .text-3xl { font-size: 1.25rem !important; }
-          #enterprise-receipt .text-2xl { font-size: 1.1rem !important; }
-          #enterprise-receipt .text-xl { font-size: 1rem !important; }
+          #enterprise-receipt .mb-10, #enterprise-receipt .mb-12, #enterprise-receipt .mb-20 { 
+            margin-bottom: 3mm !important; 
+          }
+          #enterprise-receipt .mt-20, #enterprise-receipt .mt-32 {
+            margin-top: 5mm !important;
+          }
+          #enterprise-receipt .py-10, #enterprise-receipt .py-8 { 
+            padding-top: 2mm !important; 
+            padding-bottom: 2mm !important; 
+          }
+          #enterprise-receipt .text-5xl, #enterprise-receipt .text-6xl { font-size: 2rem !important; }
+          #enterprise-receipt .text-4xl { font-size: 1.5rem !important; }
+          #enterprise-receipt .text-3xl { font-size: 1.1rem !important; }
+          #enterprise-receipt .text-2xl { font-size: 1rem !important; }
+          #enterprise-receipt .text-xl { font-size: 0.9rem !important; }
+          #enterprise-receipt .text-lg { font-size: 0.85rem !important; }
+          #enterprise-receipt .h-12, #enterprise-receipt .w-12 { width: 32px !important; height: 32px !important; }
+          #enterprise-receipt .w-16, #enterprise-receipt .h-16 { width: 40px !important; height: 40px !important; }
           .dark { background: white !important; color: black !important; }
           .receipt-accent { background-color: #0067b8 !important; color: white !important; }
           .text-blue-600, .text-[#0067b8] { color: #0067b8 !important; }
