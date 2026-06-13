@@ -6,6 +6,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ConditionalNavbar, ConditionalFooter } from "../components/ConditionalLayout";
 import { CookieConsent } from "@/components/CookieConsent";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LayoutContent>{children}</LayoutContent>
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
