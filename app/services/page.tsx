@@ -2,40 +2,76 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, Plus, Minus, ChevronRight, Loader2, Briefcase, ShieldCheck } from "lucide-react";
-import * as LucideIcons from "lucide-react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Check, ChevronRight, Loader2, ShieldCheck,
+  Globe, Code2, Zap, Clock, MessageSquare,
+  Monitor, Server, Search, Mail, Brain,
+  Network, Palette, GraduationCap, Star, Plus, Minus
+} from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { pricingPlans, faqs } from "@/lib/data";
 import { cn } from "@/lib/utils";
+
+// ─── Static "Why Me" cards ──────────────────────────────────────────────────
+const whyCards = [
+  { icon: Clock,         title: "On-Time Delivery",     desc: "Every project delivered before deadline, always." },
+  { icon: ShieldCheck,   title: "Quality Guaranteed",   desc: "Clean, scalable code with thorough QA testing." },
+  { icon: MessageSquare, title: "24/7 Communication",   desc: "Quick responses and transparent progress updates." },
+  { icon: Zap,           title: "Fast Performance",     desc: "Optimized builds with sub-second load times." },
+  { icon: Globe,         title: "Global Reach",         desc: "Serving clients in Pakistan and internationally." },
+  { icon: Star,          title: "5-Star Rated",         desc: "Consistent top ratings on freelance platforms." },
+];
+
+// ─── Service category icon map ───────────────────────────────────────────────
+const categoryMeta: Record<string, { icon: React.ElementType; color: string }> = {
+  "WEB DEVELOPMENT SERVICES":   { icon: Code2,         color: "#0067b8" },
+  "DEPLOYMENT & HOSTING SERVICES": { icon: Server,     color: "#107c10" },
+  "SEO & ANALYTICS SERVICES":   { icon: Search,        color: "#d83b01" },
+  "EMAIL & CONTACT SERVICES":   { icon: Mail,          color: "#5c2d91" },
+  "AI SERVICES":                { icon: Brain,         color: "#0078d4" },
+  "NETWORKING SERVICES":        { icon: Network,       color: "#004b50" },
+  "GRAPHICS & VIDEO SERVICES":  { icon: Palette,       color: "#881798" },
+  "STUDENT/FYP SERVICES":       { icon: GraduationCap, color: "#c19c00" },
+};
+
+const allCategories = [
+  "WEB DEVELOPMENT SERVICES",
+  "DEPLOYMENT & HOSTING SERVICES",
+  "SEO & ANALYTICS SERVICES",
+  "EMAIL & CONTACT SERVICES",
+  "AI SERVICES",
+  "NETWORKING SERVICES",
+  "GRAPHICS & VIDEO SERVICES",
+  "STUDENT/FYP SERVICES",
+];
+
+// ─── Process steps ────────────────────────────────────────────────────────────
+const processSteps = [
+  { step: "01", title: "Discovery",   desc: "Understand your requirements, goals, and timeline in a free consultation call." },
+  { step: "02", title: "Proposal",    desc: "Receive a detailed project plan, timeline, and transparent pricing within 24 hours." },
+  { step: "03", title: "Development", desc: "Regular milestone updates as your project is built with clean, scalable code." },
+  { step: "04", title: "Delivery",    desc: "Final delivery with full documentation, testing, and post-launch support." },
+];
 
 export default function ServicesPage() {
   const [services, setServices] = useState<any[]>([]);
   const [settings, setSettings] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const categories = [
-    "WEB DEVELOPMENT SERVICES",
-    "DEPLOYMENT & HOSTING SERVICES",
-    "SEO & ANALYTICS SERVICES",
-    "EMAIL & CONTACT SERVICES",
-    "AI SERVICES",
-    "NETWORKING SERVICES",
-    "GRAPHICS & VIDEO SERVICES",
-    "STUDENT/FYP SERVICES"
-  ];
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [servicesRes, settingsRes] = await Promise.all([
           fetch("/api/services"),
-          fetch("/api/settings")
+          fetch("/api/settings"),
         ]);
         const servicesData = await servicesRes.json();
         const settingsData = await settingsRes.json();
-        setServices(servicesData);
+        setServices(Array.isArray(servicesData) ? servicesData : []);
         setSettings(settingsData);
       } catch (err) {
         console.error(err);
@@ -48,110 +84,331 @@ export default function ServicesPage() {
 
   if (loading || !settings) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#111]">
         <Loader2 className="animate-spin h-12 w-12 text-[#0067b8]" />
       </div>
     );
   }
 
+  const activeCategories = allCategories.filter(
+    (cat) => services.filter((s) => s.category === cat).length > 0
+  );
+
+  const filteredCategories = activeCategory
+    ? activeCategories.filter((c) => c === activeCategory)
+    : activeCategories;
+
   return (
-    <div className="bg-white dark:bg-[#121212] min-h-screen text-[#242424] dark:text-white font-sans pb-20 text-[13px] md:text-base">
-      {/* Microsoft Style Banner - Optimized for Mobile */}
-      <section className="bg-[#f2f2f2] dark:bg-[#1a1a1a] py-10 md:py-20 px-4 md:px-12 xl:px-20 border-b border-gray-200 dark:border-gray-800 text-center md:text-left">
-        <div className="max-w-[1600px] mx-auto">
+    <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
+
+      {/* ══════════════════════════════════════════
+          1. HERO BANNER
+          ══════════════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] py-20 md:py-32 px-4 md:px-12 xl:px-20">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero-bg.jpg"
+            alt="Services Background"
+            fill
+            className="object-cover opacity-25"
+            sizes="100vw"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d0d] via-[#0d0d0d]/80 to-transparent z-10" />
+        <div className="relative z-20 max-w-[1600px] mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl"
           >
-            <h1 className="text-3xl md:text-5xl font-semibold mb-4 md:mb-6 tracking-tight">Service <span className="text-[#0067b8] dark:text-[#4da3ff]">Engine</span></h1>
-            <p className="text-sm md:text-lg text-[#505050] dark:text-gray-300 mb-0 leading-relaxed max-w-2xl">
-              Scale your business with architectural precision. My service modules are engineered to provide maximum impact, 
-              reliability, and digital transformation.
+            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest mb-4">What I Offer</div>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6 leading-tight">
+              Services &amp; <span className="text-[#0067b8]">Solutions</span>
+            </h1>
+            <p className="text-sm md:text-lg text-gray-300 leading-relaxed mb-8 max-w-xl">
+              Full-stack web development, AI integration, networking, SEO, and FYP assistance —
+              all delivered with precision and professionalism.
             </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-[#0067b8] text-white font-bold px-6 py-3 hover:bg-[#005da6] transition-colors text-sm uppercase tracking-widest"
+              >
+                Get a Free Quote <ChevronRight size={16} />
+              </Link>
+              <a
+                href="#services"
+                className="inline-flex items-center gap-2 border border-white/30 text-white font-bold px-6 py-3 hover:border-[#0067b8] hover:text-[#0067b8] transition-colors text-sm uppercase tracking-widest"
+              >
+                Browse Services
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 mt-12 md:mt-16">
-        {categories.map((category) => {
-          const categoryServices = services.filter(s => s.category === category);
-          if (categoryServices.length === 0) return null;
+      {/* ══════════════════════════════════════════
+          2. STATS BAR
+          ══════════════════════════════════════════ */}
+      <section className="bg-[#0067b8] py-6 px-4 md:px-12 xl:px-20">
+        <div className="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-white">
+          {[
+            { label: "Service Categories", value: `${activeCategories.length}+` },
+            { label: "Technologies", value: "15+" },
+            { label: "Clients Served", value: "30+" },
+            { label: "Satisfaction Rate", value: "99%" },
+          ].map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08 }}
+              className="text-center md:text-left"
+            >
+              <div className="text-2xl md:text-4xl font-black tracking-tighter">{s.value}</div>
+              <div className="text-[10px] font-bold uppercase tracking-widest text-blue-100">{s.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-          return (
-            <div key={category} className="mb-20 md:mb-28">
-              <div className="flex items-center gap-4 mb-10 md:mb-12 border-b border-gray-100 dark:border-gray-800 pb-6">
-                <div className="w-2 h-8 bg-[#0067b8]"></div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter uppercase text-[#242424] dark:text-white">{category}</h2>
-                <div className="flex-grow"></div>
-                <span className="text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-widest hidden md:block">{categoryServices.length} Modules Online</span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                {categoryServices.map((service, index) => {
-                  const IconComponent = (LucideIcons as any)[service.icon || "Globe"] || LucideIcons.Globe;
-                  
-                  return (
-                    <motion.div
-                      key={service._id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.05 }}
-                      className="flex flex-col group bg-white dark:bg-[#1a1a1a] shadow-[0_2px_4_rgba(0,0,0,0.06)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-[#333] h-full transition-all overflow-hidden"
-                    >
-                      <div className="relative h-40 md:h-48 overflow-hidden">
-                        <Image 
-                          src={service.image} 
-                          alt={service.title} 
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" 
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-60"></div>
-                        <div className="absolute bottom-4 left-6">
-                           <div className="w-10 h-10 bg-[#0067b8] text-white flex items-center justify-center shadow-2xl relative z-10">
-                              <IconComponent size={20} />
-                           </div>
-                        </div>
-                      </div>
-
-                      <div className="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-[#242424] dark:text-white leading-snug group-hover:text-[#0067b8] transition-colors uppercase tracking-tight">{service.title}</h3>
-                        <p className="text-xs md:text-sm text-[#505050] dark:text-gray-300 mb-6 md:mb-8 leading-relaxed font-medium">
-                          {service.description}
-                        </p>
-                        
-                        <div className="space-y-3 mt-auto pt-6 border-t border-gray-50 dark:border-gray-800/50">
-                          {service.features.map((feature: string) => (
-                            <div key={feature} className="flex items-center text-[0.65rem] md:text-[0.7rem] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest gap-2.5">
-                              <div className="w-1.5 h-1.5 bg-[#0067b8] rounded-full shrink-0"></div>
-                              <span>{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-
-        {/* Pricing/Investment Section - Microsoft Business Style Optimized for Mobile */}
-        <section className="mt-20 md:mt-32">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 md:mb-12 text-center md:text-left">
-            <div>
-              <h2 className="text-2xl md:text-4xl font-semibold text-[#242424] dark:text-white tracking-tight">Investment Plans</h2>
-              <p className="text-xs md:text-base text-[#505050] dark:text-gray-400 mt-2">Transparent architecture deployment tiers for your organization.</p>
-            </div>
-            <div className="flex items-center justify-center md:justify-start gap-2 text-[0.6rem] md:text-[0.7rem] font-black uppercase text-gray-400 tracking-widest bg-gray-50 dark:bg-gray-800/20 py-2 px-4 rounded-full md:bg-transparent md:p-0">
-              <ShieldCheck size={14} className="text-emerald-500" /> SECURE TRANSFERS
-            </div>
+      {/* ══════════════════════════════════════════
+          3. CATEGORY FILTER TABS
+          ══════════════════════════════════════════ */}
+      {activeCategories.length > 0 && (
+        <div id="services" className="sticky top-0 z-40 bg-white/95 dark:bg-[#111]/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 px-4 md:px-12 xl:px-20 py-3">
+          <div className="max-w-[1600px] mx-auto flex items-center gap-2 overflow-x-auto scrollbar-hide">
+            <button
+              onClick={() => setActiveCategory(null)}
+              className={cn(
+                "flex-shrink-0 px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all border",
+                !activeCategory
+                  ? "bg-[#0067b8] text-white border-[#0067b8]"
+                  : "border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8]"
+              )}
+            >
+              All
+            </button>
+            {activeCategories.map((cat) => {
+              const meta = categoryMeta[cat];
+              const Icon = meta?.icon || Globe;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat === activeCategory ? null : cat)}
+                  className={cn(
+                    "flex-shrink-0 flex items-center gap-1.5 px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all border",
+                    activeCategory === cat
+                      ? "text-white border-[#0067b8]"
+                      : "border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8]"
+                  )}
+                  style={activeCategory === cat ? { backgroundColor: meta?.color || "#0067b8", borderColor: meta?.color || "#0067b8" } : {}}
+                >
+                  <Icon size={11} />
+                  {cat.replace(" SERVICES", "").replace(" & ", " & ")}
+                </button>
+              );
+            })}
           </div>
+        </div>
+      )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20 md:mb-32">
+      {/* ══════════════════════════════════════════
+          4. SERVICE CATEGORIES + CARDS
+          ══════════════════════════════════════════ */}
+      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 py-16 md:py-24 space-y-24">
+        <AnimatePresence mode="wait">
+          {filteredCategories.map((category) => {
+            const categoryServices = services.filter((s) => s.category === category);
+            if (categoryServices.length === 0) return null;
+            const meta = categoryMeta[category];
+            const CatIcon = meta?.icon || Globe;
+
+            return (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                {/* Category Header */}
+                <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-100 dark:border-gray-800">
+                  <div
+                    className="w-10 h-10 flex items-center justify-center text-white shrink-0"
+                    style={{ backgroundColor: meta?.color || "#0067b8" }}
+                  >
+                    <CatIcon size={20} />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-xl md:text-2xl font-black tracking-tight uppercase text-[#242424] dark:text-white">
+                      {category}
+                    </h2>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">
+                      {categoryServices.length} Service{categoryServices.length > 1 ? "s" : ""} Available
+                    </div>
+                  </div>
+                </div>
+
+                {/* Service Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {categoryServices.map((service, index) => {
+                    const IconComponent = (LucideIcons as any)[service.icon || "Globe"] || LucideIcons.Globe;
+                    return (
+                      <motion.div
+                        key={service._id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.06 }}
+                        className="flex flex-col group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-all overflow-hidden"
+                      >
+                        {/* Image */}
+                        <div className="relative h-44 overflow-hidden">
+                          <Image
+                            src={service.image}
+                            alt={service.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                          <div className="absolute bottom-4 left-4">
+                            <div
+                              className="w-10 h-10 flex items-center justify-center text-white group-hover:scale-110 transition-transform"
+                              style={{ backgroundColor: meta?.color || "#0067b8" }}
+                            >
+                              <IconComponent size={20} />
+                            </div>
+                          </div>
+                          {/* Top accent line */}
+                          <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: meta?.color || "#0067b8" }} />
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6 flex flex-col flex-1">
+                          <h3 className="text-base font-bold mb-2 text-[#242424] dark:text-white leading-snug group-hover:text-[#0067b8] transition-colors uppercase tracking-tight">
+                            {service.title}
+                          </h3>
+                          <p className="text-xs text-[#505050] dark:text-gray-400 mb-5 leading-relaxed font-medium flex-1">
+                            {service.description}
+                          </p>
+                          <div className="space-y-2 pt-4 border-t border-gray-100 dark:border-gray-800">
+                            {service.features?.slice(0, 3).map((feature: string) => (
+                              <div key={feature} className="flex items-center gap-2 text-[10px] font-black text-[#505050] dark:text-gray-400 uppercase tracking-widest">
+                                <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: meta?.color || "#0067b8" }} />
+                                {feature}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
+      {/* ══════════════════════════════════════════
+          5. PROCESS — How It Works
+          ══════════════════════════════════════════ */}
+      <section className="py-20 md:py-24 px-4 md:px-12 xl:px-20 bg-[#f2f2f2] dark:bg-[#0d0d0d] border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="mb-14 space-y-3">
+            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Workflow</div>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
+              How It <span className="text-[#0067b8]">Works</span>
+            </h2>
+            <p className="text-sm text-[#505050] dark:text-gray-400 max-w-xl font-medium">
+              A structured, transparent process from first contact to final delivery.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {processSteps.map((step, i) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-8 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group"
+              >
+                <div className="absolute top-4 right-5 text-6xl font-black text-gray-100 dark:text-gray-800 select-none leading-none">
+                  {step.step}
+                </div>
+                <div className="w-10 h-10 mb-5 bg-[#0067b8] flex items-center justify-center text-white text-sm font-black">
+                  {step.step}
+                </div>
+                <h3 className="text-base font-black uppercase tracking-tight text-[#242424] dark:text-white mb-2 group-hover:text-[#0067b8] transition-colors">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
+                  {step.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          6. WHY CHOOSE ME
+          ══════════════════════════════════════════ */}
+      <section className="py-20 md:py-24 px-4 md:px-12 xl:px-20 bg-white dark:bg-[#111] border-t border-gray-100 dark:border-gray-800">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="mb-14 space-y-3">
+            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Advantages</div>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
+              Why Choose <span className="text-[#0067b8]">Me?</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyCards.map((card, i) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                className="flex items-start gap-5 p-6 bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group"
+              >
+                <div className="w-11 h-11 shrink-0 bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#0067b8] group-hover:bg-[#0067b8] group-hover:text-white transition-colors">
+                  <card.icon size={20} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1 group-hover:text-[#0067b8] transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
+                    {card.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          7. PRICING PLANS
+          ══════════════════════════════════════════ */}
+      <section className="py-20 md:py-24 px-4 md:px-12 xl:px-20 bg-[#f2f2f2] dark:bg-[#0d0d0d] border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="mb-14 space-y-3">
+            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Transparent Pricing</div>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
+              Investment <span className="text-[#0067b8]">Plans</span>
+            </h2>
+            <p className="text-sm text-[#505050] dark:text-gray-400 max-w-xl font-medium">
+              Clear, upfront pricing with no hidden costs. All plans include free consultation.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {pricingPlans.map((plan, index) => (
               <motion.div
                 key={plan.name}
@@ -160,92 +417,148 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className={cn(
-                  "p-8 md:p-10 border flex flex-col relative overflow-hidden transition-all",
+                  "relative flex flex-col border overflow-hidden transition-all",
                   plan.recommended
-                    ? "bg-[#0067b8] text-white border-[#0067b8] shadow-xl md:shadow-2xl shadow-blue-500/20"
-                    : "bg-white dark:bg-[#1a1a1a] border-gray-100 dark:border-[#333]"
+                    ? "bg-[#0067b8] text-white border-[#0067b8] shadow-2xl shadow-blue-500/20 scale-[1.02]"
+                    : "bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8]"
                 )}
               >
                 {plan.recommended && (
-                  <div className="absolute top-0 right-0">
-                     <div className="bg-[#ffb900] text-black text-[9px] font-black uppercase tracking-widest px-8 py-1 rotate-45 translate-x-6 translate-y-3">
-                        Popular
-                     </div>
+                  <div className="bg-[#ffb900] text-black text-[9px] font-black uppercase tracking-widest text-center py-1.5">
+                    ★ Most Popular
                   </div>
                 )}
-                <h3 className="text-lg md:text-xl font-bold mb-2 uppercase tracking-tighter">{plan.name}</h3>
-                <div className="flex items-baseline gap-1 mb-6 md:mb-8 border-b pb-6 md:pb-8 border-white/10 dark:border-white/5">
-                  <span className="text-4xl md:text-5xl font-black">{plan.price}</span>
-                  <span className={cn("text-[0.55rem] md:text-[0.6rem] font-black uppercase tracking-widest", plan.recommended ? "text-blue-100" : "text-gray-400")}>/ Deployment</span>
-                </div>
-                
-                <p className={cn("mb-8 md:mb-10 text-xs md:text-sm font-medium leading-relaxed", plan.recommended ? "text-blue-50" : "text-gray-500")}>
-                  {plan.description}
-                </p>
-
-                <div className="space-y-4 mb-10 md:mb-12 flex-grow">
-                  {plan.features.map((f) => (
-                    <div key={f} className="flex items-center text-[0.65rem] md:text-[0.7rem] font-bold uppercase tracking-tight">
-                      <Check size={12} className={cn("mr-3 shrink-0", plan.recommended ? "text-white" : "text-[#0067b8]")} />
-                      <span>{f}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link href={`/checkout?plan=${encodeURIComponent(plan.name)}&price=${encodeURIComponent(plan.price)}`} className="w-full mt-auto">
-                  <button 
+                <div className="p-8 md:p-10 flex flex-col flex-1">
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-1">{plan.name}</h3>
+                  <div className="flex items-baseline gap-1 mt-4 mb-6 pb-6 border-b border-current/10">
+                    <span className="text-5xl font-black">{plan.price}</span>
+                    <span className={cn("text-[10px] font-black uppercase tracking-widest", plan.recommended ? "text-blue-100" : "text-gray-400")}>
+                      / project
+                    </span>
+                  </div>
+                  <p className={cn("text-sm font-medium leading-relaxed mb-8", plan.recommended ? "text-blue-50" : "text-[#505050] dark:text-gray-400")}>
+                    {plan.description}
+                  </p>
+                  <div className="space-y-3 mb-10 flex-1">
+                    {plan.features.map((f) => (
+                      <div key={f} className="flex items-center gap-3 text-xs font-bold uppercase tracking-tight">
+                        <Check size={13} className={plan.recommended ? "text-white shrink-0" : "text-[#0067b8] shrink-0"} />
+                        {f}
+                      </div>
+                    ))}
+                  </div>
+                  <Link
+                    href={`/checkout?plan=${encodeURIComponent(plan.name)}&price=${encodeURIComponent(plan.price)}`}
                     className={cn(
-                      "w-full h-12 md:h-14 font-black uppercase text-[0.65rem] md:text-[0.7rem] tracking-[0.15em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2",
-                      plan.recommended 
-                        ? "bg-white text-[#0067b8] hover:bg-gray-100" 
+                      "w-full mt-auto flex items-center justify-center gap-2 py-3.5 font-black uppercase tracking-widest text-xs transition-colors",
+                      plan.recommended
+                        ? "bg-white text-[#0067b8] hover:bg-gray-100"
                         : "bg-[#0067b8] text-white hover:bg-[#005da6]"
                     )}
-                    aria-label={`Choose ${plan.name} investment plan`}
                   >
                     {plan.cta} <ChevronRight size={14} />
-                  </button>
-                </Link>
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* FAQ - Minimalist Microsoft Accordion Optimized for Mobile */}
-        <section className="max-w-4xl mx-auto mb-16 md:mb-20">
-          <div className="mb-10 md:mb-16 border-b border-gray-100 dark:border-gray-800 pb-6 md:pb-8 text-center md:text-left">
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#242424] dark:text-white tracking-tight text-nowrap">Frequently Asked Questions</h2>
-          </div>
-          <div className="divide-y divide-gray-100 dark:divide-gray-800">
-            {faqs.map((faq, index) => (
-              <div key={index} className="py-1 md:py-2">
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full py-5 md:py-6 flex items-center justify-between text-left group"
+      {/* ══════════════════════════════════════════
+          8. FAQ ACCORDION
+          ══════════════════════════════════════════ */}
+      <section className="py-20 md:py-24 px-4 md:px-12 xl:px-20 bg-white dark:bg-[#111] border-t border-gray-100 dark:border-gray-800">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+            {/* Left sticky */}
+            <div className="lg:w-[360px] shrink-0">
+              <div className="lg:sticky lg:top-28 space-y-5">
+                <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">FAQ</div>
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
+                  Common <span className="text-[#0067b8]">Questions</span>
+                </h2>
+                <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
+                  Everything you need to know before getting started. Still have questions?
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0067b8] hover:underline underline-offset-4"
                 >
-                  <span className="text-[14px] md:text-lg font-semibold text-[#242424] dark:text-gray-200 group-hover:text-[#0067b8] transition-colors leading-snug pr-4">{faq.question}</span>
-                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#242424] dark:text-white transition-transform duration-300 shrink-0">
-                    {openFaq === index ? <Plus size={14} className="rotate-45" /> : <Plus size={14} />}
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {openFaq === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pb-6 md:pb-8 text-[13px] md:text-base text-[#505050] dark:text-gray-400 leading-relaxed max-w-3xl pr-2 md:pr-0">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                  Ask directly →
+                </Link>
               </div>
-            ))}
+            </div>
+            {/* Accordion */}
+            <div className="flex-1 divide-y divide-gray-100 dark:divide-gray-800">
+              {faqs.map((faq, index) => (
+                <div key={index}>
+                  <button
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    className="w-full flex items-center justify-between gap-4 py-5 text-left group"
+                  >
+                    <span className={cn(
+                      "text-sm font-semibold transition-colors",
+                      openFaq === index ? "text-[#0067b8]" : "text-[#242424] dark:text-white group-hover:text-[#0067b8]"
+                    )}>
+                      {faq.question}
+                    </span>
+                    <span className="shrink-0 w-7 h-7 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#505050] dark:text-gray-400 group-hover:border-[#0067b8] group-hover:text-[#0067b8] transition-colors">
+                      {openFaq === index ? <Minus size={13} /> : <Plus size={13} />}
+                    </span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openFaq === index && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium pb-5 pr-10">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          9. CONTACT CTA BANNER
+          ══════════════════════════════════════════ */}
+      <section className="py-20 px-4 md:px-12 xl:px-20 bg-[#0067b8]">
+        <div className="max-w-[1600px] mx-auto text-center text-white space-y-6">
+          <h2 className="text-3xl md:text-4xl font-semibold uppercase tracking-tight">
+            Ready to Get Started?
+          </h2>
+          <p className="text-sm md:text-base text-blue-100 max-w-xl mx-auto font-medium">
+            Tell me about your project and get a free, no-obligation quote within 24 hours.
+            Student discounts available for FYP projects.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-white text-[#0067b8] font-black px-8 py-3.5 hover:bg-[#f2f2f2] transition-colors uppercase tracking-widest text-sm"
+            >
+              Contact Me Now <ChevronRight size={16} />
+            </Link>
+            <a
+              href="mailto:abubakr.bgnu@gmail.com"
+              className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-6 py-3.5 hover:border-white transition-colors text-sm uppercase tracking-widest"
+            >
+              abubakr.bgnu@gmail.com
+            </a>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
