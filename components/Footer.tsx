@@ -75,6 +75,7 @@ export function Footer() {
                <a href={settings.contact.socialLinks.github} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] hover:bg-[#0067b8]/5 transition-all"><Github size={16} /></a>
                <a href={settings.contact.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] hover:bg-[#0067b8]/5 transition-all"><Linkedin size={16} /></a>
                <a href={settings.contact.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] hover:bg-[#0067b8]/5 transition-all"><Twitter size={16} /></a>
+               <a href={settings.contact.socialLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#107c10] hover:text-[#107c10] hover:bg-[#107c10]/5 transition-all"><MessageSquare size={16} /></a>
             </div>
           </div>
 
