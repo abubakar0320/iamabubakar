@@ -62,14 +62,29 @@ export const AbubakarLogo = ({ size = 32, className }: { size?: number, classNam
   <svg 
     width={size} 
     height={size} 
-    viewBox="0 0 40 40" 
+    viewBox="0 0 100 100" 
     fill="none" 
     xmlns="http://www.w3.org/2000/svg"
     className={className}
   >
-    <rect width="40" height="40" rx="10" fill="#0067b8" />
-    <path d="M20 8L10 32H15L20 18L25 32H30L20 8Z" fill="white" />
-    <path d="M17 24H23" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-    <circle cx="20" cy="20" r="18" stroke="white" strokeOpacity="0.1" strokeWidth="2" />
+    {/* Outer Tech Hexagon */}
+    <path 
+      d="M50 5 L88.97 27.5 V72.5 L50 95 L11.03 72.5 V27.5 L50 5Z" 
+      stroke="currentColor" 
+      strokeWidth="6" 
+      strokeLinejoin="miter" 
+    />
+    
+    {/* Abstract Sharp 'A' */}
+    <path 
+      d="M50 25 L75 75 H58 L50 55 L42 75 H25 L50 25Z" 
+      fill="currentColor" 
+    />
+    
+    {/* Small inner diamond / dot for the crossbar of A */}
+    <path 
+      d="M50 78 L54 70 H46 L50 78Z" 
+      fill="currentColor" 
+    />
   </svg>
 );
