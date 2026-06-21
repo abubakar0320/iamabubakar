@@ -4,9 +4,23 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FileCode, Loader2, ChevronRight, Zap, Search,
-  Github, ExternalLink, Star, GitFork, Globe, Code2,
-  Cpu, Layout, Database, Terminal
+  ExternalLink, Star, GitFork, Globe, Code2,
+  Cpu, LayoutGrid, Terminal, GitBranch
 } from "lucide-react";
+
+// GitHub brand SVG icon (not in lucide-react)
+const GithubIcon = ({ size = 16, className = "" }: { size?: number; className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+  </svg>
+);
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -92,7 +106,7 @@ const githubProjects = [
 
 const categoryIcons: Record<string, React.ElementType> = {
   "Full Stack": Cpu,
-  "Frontend": Layout,
+  "Frontend": LayoutGrid,
   "PHP": Terminal,
   "React": Code2,
 };
@@ -198,7 +212,7 @@ export default function ProjectsPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#0067b8] text-white font-bold px-6 py-3 hover:bg-[#005da6] transition-colors text-sm uppercase tracking-widest"
             >
-              <Github size={16} /> View GitHub Profile
+              <GithubIcon size={16} /> View GitHub Profile
             </a>
           </motion.div>
         </div>
@@ -245,7 +259,7 @@ export default function ProjectsPage() {
               rel="noopener noreferrer"
               className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#0067b8] hover:underline"
             >
-              <Github size={14} /> All Repos
+              <GithubIcon size={14} /> All Repos
             </a>
           </div>
 
@@ -318,7 +332,7 @@ export default function ProjectsPage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#0067b8] dark:hover:text-[#4da3ff]"
                     >
-                      <Github size={12} /> Source Code
+                      <GithubIcon size={12} /> Source Code
                     </a>
                     {p.stars > 0 && (
                       <span className="ml-auto inline-flex items-center gap-1 text-xs font-bold text-yellow-500">
@@ -460,7 +474,7 @@ export default function ProjectsPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#0067b8] ml-auto"
                       >
-                        <Github size={11} /> Code
+                        <GithubIcon size={11} /> Code
                       </a>
                     </div>
                   </div>
@@ -515,7 +529,7 @@ export default function ProjectsPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#242424] dark:bg-white text-white dark:text-[#242424] font-black px-8 py-4 hover:bg-[#0067b8] dark:hover:bg-[#0067b8] dark:hover:text-white transition-colors uppercase tracking-widest text-sm shrink-0"
             >
-              <Github size={18} /> github.com/abubakar0320
+              <GithubIcon size={18} /> github.com/abubakar0320
             </a>
           </div>
         </div>
