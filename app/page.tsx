@@ -4,13 +4,10 @@ import React, { useEffect, useState } from "react";
 import { MicrosoftHero } from "@/components/sections/MicrosoftHero";
 import { MicrosoftQuickLinks } from "@/components/sections/MicrosoftQuickLinks";
 import { MicrosoftCardGrid } from "@/components/sections/MicrosoftCardGrid";
-import { MicrosoftBanner } from "@/components/sections/MicrosoftBanner";
-import { WhyChooseMe } from "@/components/sections/WhyChooseMe";
 import { TechStack } from "@/components/sections/TechStack";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { HowIWork } from "@/components/sections/HowIWork";
 import { Timeline } from "@/components/sections/Timeline";
-import { FAQSection } from "@/components/sections/FAQSection";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { FYPSection } from "@/components/sections/FYPSection";
 import { LanguagesSection } from "@/components/sections/LanguagesSection";
@@ -57,32 +54,19 @@ export default function Home() {
   return (
     <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
 
-      {/* ════════════════════════════════════════════════
-          1. HERO — Pehli nazar: Kaun hoon, kya karta hoon
-          ════════════════════════════════════════════════ */}
+      {/* 1. HERO */}
       <MicrosoftHero data={settings?.home} cvUrl={settings?.contact?.cvUrl} />
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
-
-        {/* ════════════════════════════════════════════════
-            2. QUICK LINKS — Navigation helper right after hero
-            ════════════════════════════════════════════════ */}
+        {/* 2. QUICK LINKS */}
         <MicrosoftQuickLinks />
-
       </div>
 
-      {/* ════════════════════════════════════════════════
-          3. SKILLS & ARSENAL — Kya kar sakta hoon
-          Visitor ko foran pata chale capabilities kya hain
-          ════════════════════════════════════════════════ */}
+      {/* 3. SKILLS & ARSENAL */}
       <TechStack />
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
-
-        {/* ════════════════════════════════════════════════
-            4. FEATURED PROJECTS — Kya banaya hai
-            Skills ke baad portfolio dikhao
-            ════════════════════════════════════════════════ */}
+        {/* 4. FEATURED PROJECTS */}
         {projects.length > 0 && (
           <div className="mt-16 md:mt-24">
             <MicrosoftCardGrid
@@ -97,33 +81,19 @@ export default function Home() {
             />
           </div>
         )}
-
       </div>
 
-      {/* ════════════════════════════════════════════════
-          5. FYP SHOWCASE — Biggest current achievement
-          University ka sabse bada project highlight karo
-          ════════════════════════════════════════════════ */}
+      {/* 5. FYP SHOWCASE */}
       <FYPSection />
 
-      {/* ════════════════════════════════════════════════
-          6. EDUCATION & EXPERIENCE TIMELINE — Credibility
-          Kaahan parha, kya kiya — visitors ka trust banta hai
-          ════════════════════════════════════════════════ */}
+      {/* 6. EDUCATION & EXPERIENCE TIMELINE */}
       <Timeline />
 
-      {/* ════════════════════════════════════════════════
-          7. CERTIFICATIONS — Official credentials
-          Timeline ke baad certifications naturally aate hain
-          ════════════════════════════════════════════════ */}
+      {/* 7. CERTIFICATIONS */}
       <CertificationsSection />
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
-
-        {/* ════════════════════════════════════════════════
-            8. SERVICES — Business offerings
-            Background establish hone ke baad services dikhao
-            ════════════════════════════════════════════════ */}
+        {/* 8. SERVICES */}
         {services.length > 0 && (
           <div className="mt-16 md:mt-24">
             <MicrosoftCardGrid
@@ -138,59 +108,22 @@ export default function Home() {
             />
           </div>
         )}
-
-        {/* ════════════════════════════════════════════════
-            9. MID-PAGE HIRE ME BANNER — Strong CTA
-            Services ke baad direct call to action
-            ════════════════════════════════════════════════ */}
-        <div className="mt-16 md:mt-24">
-          <MicrosoftBanner
-            title="Unlock Your Business Potential"
-            description="MERN Stack Developer available for FYP projects, business websites, and enterprise-grade web applications. Based in Pakistan, serving globally."
-            image="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop"
-            cta="Hire Me Today"
-            link="/contact"
-          />
-        </div>
-
       </div>
 
-      {/* ════════════════════════════════════════════════
-          10. WHY CHOOSE ME — Value proposition
-          Ab visitor convince ho raha hai, explain karo kyun
-          ════════════════════════════════════════════════ */}
-      <WhyChooseMe />
-
-      {/* ════════════════════════════════════════════════
-          11. HOW I WORK — Process & transparency
-          Value prop ke baad workflow dikhao
-          ════════════════════════════════════════════════ */}
+      {/* 9. HOW I WORK */}
       <HowIWork />
 
-      {/* ════════════════════════════════════════════════
-          12. TESTIMONIALS — Social proof
-          Process samajhne ke baad clients ki feedback
-          ════════════════════════════════════════════════ */}
+      {/* 10. TESTIMONIALS */}
       <TestimonialsSection />
 
-      {/* ════════════════════════════════════════════════
-          13. LANGUAGE SKILLS — Extra credential
-          Testimonials ke baad supporting details
-          ════════════════════════════════════════════════ */}
+      {/* 11. LANGUAGE SKILLS */}
       <LanguagesSection />
 
-      {/* ════════════════════════════════════════════════
-          14. RECOMMENDATIONS — Academic references
-          Faculty ka endorsement — high credibility signal
-          ════════════════════════════════════════════════ */}
+      {/* 12. RECOMMENDATIONS */}
       <RecommendationsSection />
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
-
-        {/* ════════════════════════════════════════════════
-            15. GLOBAL TRUST SECTION — Final trust signals
-            All credentials dikhane ke baad brief trust block
-            ════════════════════════════════════════════════ */}
+      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 pb-24">
+        {/* 13. GLOBAL TRUST */}
         <section className="mt-24 py-16 bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
           <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter uppercase">
@@ -213,27 +146,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-      </div>
-
-      {/* ════════════════════════════════════════════════
-          16. FAQ — Answer final doubts
-          Visitor ab almost ready hai, last objections clear karo
-          ════════════════════════════════════════════════ */}
-      <FAQSection />
-
-      {/* ════════════════════════════════════════════════
-          17. FINAL CTA BANNER — Last push to contact
-          Page ka last cheez — yahan se contact page jao
-          ════════════════════════════════════════════════ */}
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 pb-24">
-        <MicrosoftBanner
-          title="Ready to Build Something Great?"
-          description="Whether it's an FYP, a business website, a network setup, or an AI-powered platform — let's collaborate and turn your vision into a reality."
-          image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
-          cta="Start a Project"
-          link="/contact"
-        />
       </div>
 
     </div>
