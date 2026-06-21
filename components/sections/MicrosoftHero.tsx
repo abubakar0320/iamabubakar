@@ -9,17 +9,17 @@ export function MicrosoftHero({ data }: any) {
       {/* Background Image Optimized */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
-          alt="Technical Background"
+          src="/hero-bg.jpg"
+          alt="Full-Stack Developer Workspace"
           fill
           priority
           className="object-cover"
           sizes="100vw"
         />
       </div>
-      
+
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/5 dark:bg-black/40 z-10"></div>
+      <div className="absolute inset-0 bg-black/30 dark:bg-black/55 z-10"></div>
       
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 w-full relative z-20 flex justify-center md:justify-start">
         <div className="bg-white/95 dark:bg-[#242424]/95 p-6 md:p-12 shadow-sm max-w-lg w-full md:w-auto">
