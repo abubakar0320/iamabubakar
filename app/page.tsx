@@ -11,6 +11,10 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { HowIWork } from "@/components/sections/HowIWork";
 import { Timeline } from "@/components/sections/Timeline";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { CertificationsSection } from "@/components/sections/CertificationsSection";
+import { FYPSection } from "@/components/sections/FYPSection";
+import { LanguagesSection } from "@/components/sections/LanguagesSection";
+import { RecommendationsSection } from "@/components/sections/RecommendationsSection";
 import { Loader2, ShieldCheck, Globe, Zap } from "lucide-react";
 
 export default function Home() {
@@ -27,11 +31,9 @@ export default function Home() {
           fetch("/api/projects"),
           fetch("/api/services")
         ]);
-        
         const settingsData = await settingsRes.json();
         const projectsData = await projectsRes.json();
         const servicesData = await servicesRes.json();
-        
         setSettings(settingsData);
         setProjects(Array.isArray(projectsData) ? projectsData.slice(0, 4) : []);
         setServices(Array.isArray(servicesData) ? servicesData.slice(0, 4) : []);
@@ -54,32 +56,34 @@ export default function Home() {
 
   return (
     <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
-      {/* Hero */}
+
+      {/* ─── HERO ─── */}
       <MicrosoftHero data={settings?.home} cvUrl={settings?.contact?.cvUrl} />
-      
+
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
-        {/* Quick Links */}
+
+        {/* ─── QUICK LINKS ─── */}
         <MicrosoftQuickLinks />
-        
-        {/* Featured Projects */}
+
+        {/* ─── FEATURED PROJECTS ─── */}
         {projects.length > 0 && (
           <div className="mt-16 md:mt-24">
-            <MicrosoftCardGrid 
-              title="Featured Projects" 
+            <MicrosoftCardGrid
+              title="Featured Projects"
               items={projects.map(p => ({
                 title: p.title,
                 description: p.description.substring(0, 100) + "...",
                 image: p.image || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1472&auto=format&fit=crop",
                 link: `/projects`,
                 cta: "View details"
-              }))} 
+              }))}
             />
           </div>
         )}
-        
-        {/* Hire Me Banner */}
+
+        {/* ─── HIRE ME BANNER ─── */}
         <div className="mt-16 md:mt-32">
-          <MicrosoftBanner 
+          <MicrosoftBanner
             title="Unlock Your Business Potential"
             description="Empowering your digital transformation with scalable architecture and premium design. Get in touch to discuss your next big idea."
             image="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop"
@@ -88,66 +92,80 @@ export default function Home() {
           />
         </div>
 
-        {/* Why Choose Me */}
+        {/* ─── WHY CHOOSE ME ─── */}
         <div className="mt-16">
           <WhyChooseMe />
         </div>
-        
-        {/* Services */}
+
+        {/* ─── SERVICES ─── */}
         {services.length > 0 && (
           <div className="mt-16 md:mt-24">
-            <MicrosoftCardGrid 
-              title="For Business" 
+            <MicrosoftCardGrid
+              title="For Business"
               items={services.map(s => ({
                 title: s.title,
                 description: s.description.substring(0, 100) + "...",
                 image: s.image || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1740&auto=format&fit=crop",
                 link: `/services`,
                 cta: "Explore service"
-              }))} 
+              }))}
             />
           </div>
         )}
 
-        {/* Global Trust Section */}
+        {/* ─── GLOBAL TRUST ─── */}
         <section className="mt-32 py-16 bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 rounded-sm">
-           <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter uppercase">Global <span className="text-[#0067b8]">Trust Network</span></h2>
-              <p className="text-sm md:text-lg text-[#505050] dark:text-gray-400 font-medium">
-                From Lahore to the world, I provide mission-critical technical support and high-performance digital architecture. 
-                Join a network of successful clients and academic achievers.
-              </p>
-              <div className="flex flex-wrap justify-center gap-12 pt-8">
-                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                    <ShieldCheck className="text-[#0067b8]" size={20} /> Verified Expert
-                 </div>
-                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                    <Globe className="text-[#0067b8]" size={20} /> International Reach
-                 </div>
-                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                    <Zap className="text-[#0067b8]" size={20} /> Instant Sync
-                 </div>
+          <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter uppercase">
+              Global <span className="text-[#0067b8]">Trust Network</span>
+            </h2>
+            <p className="text-sm md:text-lg text-[#505050] dark:text-gray-400 font-medium">
+              From Mananwala, Sheikhupura to the world — mission-critical technical support and high-performance digital architecture
+              for students, businesses, and institutions across Pakistan and beyond.
+            </p>
+            <div className="flex flex-wrap justify-center gap-12 pt-8">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <ShieldCheck className="text-[#0067b8]" size={20} /> Verified Expert
               </div>
-           </div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <Globe className="text-[#0067b8]" size={20} /> International Reach
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <Zap className="text-[#0067b8]" size={20} /> CGPA 3.42 / 4.00
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
-      {/* Tech Stack — full width bg */}
+      {/* ─── SKILLS & ARSENAL (full width) ─── */}
       <TechStack />
 
-      {/* How I Work */}
-      <HowIWork />
+      {/* ─── FYP SHOWCASE ─── */}
+      <FYPSection />
 
-      {/* Education & Experience Timeline */}
+      {/* ─── EDUCATION & EXPERIENCE TIMELINE ─── */}
       <Timeline />
 
-      {/* Testimonials */}
+      {/* ─── CERTIFICATIONS ─── */}
+      <CertificationsSection />
+
+      {/* ─── HOW I WORK ─── */}
+      <HowIWork />
+
+      {/* ─── TESTIMONIALS ─── */}
       <TestimonialsSection />
 
-      {/* FAQ */}
+      {/* ─── LANGUAGE SKILLS ─── */}
+      <LanguagesSection />
+
+      {/* ─── RECOMMENDATIONS ─── */}
+      <RecommendationsSection />
+
+      {/* ─── FAQ ─── */}
       <FAQSection />
 
-      {/* Final CTA Banner */}
+      {/* ─── FINAL CTA BANNER ─── */}
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 pb-24">
         <MicrosoftBanner
           title="Ready to Build Something Great?"

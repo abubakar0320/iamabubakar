@@ -2,70 +2,86 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, Award } from "lucide-react";
+import { GraduationCap, Briefcase, Code2 } from "lucide-react";
 
 const timeline = [
   {
-    year: "2024 – Present",
-    type: "education",
-    icon: GraduationCap,
-    title: "BS Computer Science",
-    org: "University of Engineering & Technology (UET), Lahore",
+    year: "Jun 2026 – Dec 2026",
+    type: "work",
+    icon: Code2,
+    title: "Team Lead — AI-Powered Smart Recruitment & Employee Management System",
+    org: "Final Year Project · Baba Guru Nanak University",
     description:
-      "Pursuing a degree with a focus on software engineering, computer networks, and artificial intelligence. Active in final year project development.",
-    badge: "Current",
-    badgeColor: "#107c10",
+      "Leading a team of 3 to build an AI-powered HR platform for smart recruitment and employee management. Responsible for project architecture, task delegation, and full-stack MERN development.",
+    badge: "FYP",
+    badgeColor: "#d83b01",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "AI/ML"],
   },
   {
-    year: "2023 – Present",
+    year: "Mar 2026 – May 2026",
     type: "work",
     icon: Briefcase,
-    title: "Freelance Full-Stack Developer",
-    org: "Self-Employed · Remote",
+    title: "Front-End Web Developer",
+    org: "Jamia Share Rabbani · jamiashererabbani.com",
     description:
-      "Building enterprise-grade web applications, FYP systems, and network solutions for clients across Pakistan and internationally. 50+ successful deliveries.",
+      "Developed and deployed an institutional website using React.js. Created responsive and user-friendly interfaces. Improved website accessibility and navigation.",
+    badge: "Contract",
+    badgeColor: "#5c2d91",
+    tech: ["React.js", "JavaScript", "HTML5", "CSS3"],
+  },
+  {
+    year: "2025 – Present",
+    type: "work",
+    icon: Briefcase,
+    title: "Full-Stack Web Developer",
+    org: "Personal Portfolio · iamabubakar.site",
+    description:
+      "Developed and deployed a personal portfolio website using the MERN stack. Showcased projects, skills, certifications, and contact information. Implemented responsive design and SEO optimization.",
     badge: "Active",
     badgeColor: "#0067b8",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
   },
   {
-    year: "2023",
-    type: "award",
-    icon: Award,
-    title: "Top-Rated Freelancer",
-    org: "Fiverr & Upwork",
-    description:
-      "Achieved top-rated status with consistent 5-star reviews for delivering complex web and networking projects on time.",
-    badge: "Achievement",
-    badgeColor: "#d83b01",
-  },
-  {
-    year: "2022 – 2023",
-    type: "work",
-    icon: Briefcase,
-    title: "Junior Web Developer",
-    org: "Local IT Agency, Lahore",
-    description:
-      "Developed and maintained PHP-based web portals, MySQL databases, and client-facing dashboards for small businesses.",
-    badge: "Experience",
-    badgeColor: "#5c2d91",
-  },
-  {
-    year: "2020 – 2022",
+    year: "Jan 2024 – Present",
     type: "education",
     icon: GraduationCap,
-    title: "FSC Pre-Engineering",
-    org: "Lahore Board",
+    title: "Bachelor of Science in Information Technology (BSIT)",
+    org: "Baba Guru Nanak University, Nankana Sahib",
     description:
-      "Completed intermediate studies with distinction, laying a strong foundation in mathematics, physics, and computing.",
+      "CGPA: 3.42 / 4.00 — Pursuing BSIT with a focus on full-stack web development, software engineering, and AI-driven systems. Active team lead in Final Year Project.",
+    badge: "Current",
+    badgeColor: "#107c10",
+    tech: [],
+  },
+  {
+    year: "Oct 2021 – Dec 2023",
+    type: "education",
+    icon: GraduationCap,
+    title: "Intermediate — FSc Pre-Medical",
+    org: "Superior Group of Colleges, Shahkot",
+    description:
+      "Completed intermediate with Natural Sciences, Mathematics & Statistics. Built a strong analytical foundation that transitioned into software development.",
     badge: "Completed",
     badgeColor: "#505050",
+    tech: [],
+  },
+  {
+    year: "May 2018 – Oct 2020",
+    type: "education",
+    icon: GraduationCap,
+    title: "Matriculation (SSC)",
+    org: "Govt. Abu-Ul-Khair Boys High School, Shahkot, Nankana Sahib",
+    description:
+      "Completed secondary school education with a strong academic record, laying the groundwork for future technical studies.",
+    badge: "Completed",
+    badgeColor: "#505050",
+    tech: [],
   },
 ];
 
 const typeColor: Record<string, string> = {
   education: "#0067b8",
   work: "#107c10",
-  award: "#d83b01",
 };
 
 export function Timeline() {
@@ -80,7 +96,7 @@ export function Timeline() {
               Education &amp; <span className="text-[#0067b8]">Experience</span>
             </h2>
             <p className="text-sm md:text-base text-[#505050] dark:text-gray-400 max-w-xl font-medium">
-              A journey built on academic excellence, hands-on development, and a passion for solving real-world problems.
+              A journey built on academic excellence at Baba Guru Nanak University and real-world full-stack development experience.
             </p>
           </div>
           <div className="hidden md:block h-[2px] flex-grow mx-12 bg-gray-200 dark:bg-gray-800 mb-4" />
@@ -97,24 +113,20 @@ export function Timeline() {
               const isLeft = i % 2 === 0;
               return (
                 <motion.div
-                  key={item.title}
+                  key={item.title + i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
                   className={`relative flex flex-col sm:flex-row items-start gap-6 ${
                     isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
                   }`}
                 >
                   {/* Card */}
                   <div
-                    className={`flex-1 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group ${
-                      isLeft ? "sm:text-right sm:items-end" : ""
-                    }`}
+                    className={`flex-1 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group`}
                   >
-                    <div
-                      className={`flex items-center gap-3 mb-3 ${isLeft ? "sm:flex-row-reverse" : ""}`}
-                    >
+                    <div className={`flex items-center gap-3 mb-3 flex-wrap ${isLeft ? "sm:flex-row-reverse sm:justify-end" : ""}`}>
                       <span
                         className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1"
                         style={{ backgroundColor: item.badgeColor + "18", color: item.badgeColor }}
@@ -125,13 +137,27 @@ export function Timeline() {
                         {item.year}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#0067b8] transition-colors">
+                    <h3 className={`text-base font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#0067b8] transition-colors ${isLeft ? "sm:text-right" : ""}`}>
                       {item.title}
                     </h3>
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#0067b8] mb-3">{item.org}</div>
-                    <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
+                    <div className={`text-xs font-bold uppercase tracking-wider text-[#0067b8] mb-3 ${isLeft ? "sm:text-right" : ""}`}>
+                      {item.org}
+                    </div>
+                    <p className={`text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium ${isLeft ? "sm:text-right" : ""}`}>
                       {item.description}
                     </p>
+                    {item.tech.length > 0 && (
+                      <div className={`flex flex-wrap gap-2 mt-4 ${isLeft ? "sm:justify-end" : ""}`}>
+                        {item.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Center Icon */}
@@ -142,7 +168,7 @@ export function Timeline() {
                     <item.icon size={18} style={{ color: typeColor[item.type] }} />
                   </div>
 
-                  {/* Empty spacer on other side */}
+                  {/* Spacer */}
                   <div className="flex-1 hidden sm:block" />
                 </motion.div>
               );

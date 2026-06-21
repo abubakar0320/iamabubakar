@@ -5,61 +5,68 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const categories = [
   {
-    id: "frontend",
-    label: "Frontend",
+    id: "top",
+    label: "Top Skills",
     color: "#0067b8",
     skills: [
-      { name: "React.js", level: 95 },
-      { name: "Next.js", level: 92 },
-      { name: "TypeScript", level: 88 },
-      { name: "Tailwind CSS", level: 90 },
+      { name: "React.js", level: 92 },
+      { name: "Node.js", level: 88 },
+      { name: "Express.js", level: 87 },
+      { name: "MongoDB", level: 85 },
+      { name: "JavaScript", level: 93 },
       { name: "HTML5 / CSS3", level: 97 },
-      { name: "Framer Motion", level: 80 },
     ],
   },
   {
     id: "backend",
-    label: "Backend",
+    label: "Backend & DB",
     color: "#107c10",
     skills: [
-      { name: "Node.js", level: 88 },
-      { name: "Express.js", level: 85 },
-      { name: "PHP", level: 80 },
-      { name: "Python", level: 75 },
-      { name: "REST APIs", level: 92 },
-      { name: "GraphQL", level: 70 },
+      { name: "REST API Design", level: 90 },
+      { name: "MySQL", level: 82 },
+      { name: "PHP", level: 78 },
+      { name: "Laravel", level: 72 },
+      { name: "Java", level: 70 },
+      { name: "Python", level: 68 },
     ],
   },
   {
-    id: "database",
-    label: "Database",
+    id: "tools",
+    label: "Tools & Platforms",
     color: "#d83b01",
     skills: [
-      { name: "MongoDB", level: 88 },
-      { name: "MySQL", level: 85 },
-      { name: "PostgreSQL", level: 78 },
-      { name: "Firebase", level: 82 },
-      { name: "Redis", level: 65 },
-      { name: "Supabase", level: 72 },
+      { name: "GitHub", level: 93 },
+      { name: "C++", level: 75 },
+      { name: "MS Word / Excel / PPT", level: 90 },
+      { name: "Figma (UI/UX)", level: 72 },
+      { name: "Cybersecurity Basics", level: 78 },
+      { name: "Digital Content Creation", level: 80 },
     ],
   },
   {
-    id: "networking",
-    label: "Networking & DevOps",
+    id: "soft",
+    label: "Soft Skills",
     color: "#5c2d91",
     skills: [
-      { name: "Cisco Packet Tracer", level: 90 },
-      { name: "Wireshark", level: 85 },
-      { name: "Docker", level: 72 },
-      { name: "Linux / Bash", level: 80 },
-      { name: "AWS Basics", level: 65 },
-      { name: "Git / GitHub", level: 93 },
+      { name: "Problem Solving", level: 95 },
+      { name: "Leadership", level: 90 },
+      { name: "Critical Thinking", level: 92 },
+      { name: "Teamwork", level: 93 },
+      { name: "Time Management", level: 88 },
+      { name: "Communication", level: 85 },
     ],
   },
 ];
 
+const allTags = [
+  "React.js", "Node.js", "Express.js", "MongoDB", "JavaScript",
+  "HTML5", "CSS3", "REST API", "MySQL", "GitHub",
+  "PHP", "Java", "Laravel", "C++", "Python",
+  "Responsive Design", "UI/UX", "Cybersecurity", "MS Office", "Figma",
+];
+
 export function TechStack() {
-  const [active, setActive] = useState("frontend");
+  const [active, setActive] = useState("top");
   const current = categories.find((c) => c.id === active)!;
 
   return (
@@ -71,17 +78,17 @@ export function TechStack() {
           <div className="space-y-3">
             <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Expertise</div>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">
-              Tech <span className="text-[#0067b8]">Arsenal</span>
+              Skills &amp; <span className="text-[#0067b8]">Arsenal</span>
             </h2>
             <p className="text-sm md:text-base text-[#505050] dark:text-gray-400 max-w-xl font-medium">
-              A modern, battle-tested toolkit spanning full-stack development, networking, databases, and cloud infrastructure.
+              Full-stack MERN developer with strong command over modern web technologies, tools, and soft skills.
             </p>
           </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* Tab Selector */}
-          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible lg:min-w-[200px] pb-2 lg:pb-0">
+          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible lg:min-w-[220px] pb-2 lg:pb-0">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -129,13 +136,12 @@ export function TechStack() {
                         {skill.level}%
                       </span>
                     </div>
-                    {/* Progress Bar */}
-                    <div className="h-1.5 w-full bg-gray-200 dark:bg-gray-700 rounded-none overflow-hidden">
+                    <div className="h-1.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.level}%` }}
                         transition={{ duration: 0.8, delay: i * 0.06, ease: "easeOut" }}
-                        className="h-full rounded-none"
+                        className="h-full"
                         style={{ backgroundColor: current.color }}
                       />
                     </div>
@@ -146,9 +152,9 @@ export function TechStack() {
           </div>
         </div>
 
-        {/* Bottom Badge Row */}
+        {/* Tag Cloud */}
         <div className="mt-16 flex flex-wrap gap-3">
-          {["React", "Next.js", "Node.js", "TypeScript", "MongoDB", "MySQL", "PHP", "Python", "Docker", "AWS", "Git", "Cisco", "Linux", "Figma", "Vercel", "Firebase"].map((tag) => (
+          {allTags.map((tag) => (
             <span
               key={tag}
               className="px-3 py-1.5 text-xs font-bold uppercase tracking-widest border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] dark:hover:border-[#0067b8] dark:hover:text-[#4da3ff] transition-colors cursor-default"
