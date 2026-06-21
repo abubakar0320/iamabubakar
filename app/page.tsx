@@ -7,9 +7,10 @@ import { MicrosoftCardGrid } from "@/components/sections/MicrosoftCardGrid";
 import { MicrosoftBanner } from "@/components/sections/MicrosoftBanner";
 import { WhyChooseMe } from "@/components/sections/WhyChooseMe";
 import { TechStack } from "@/components/sections/TechStack";
-import { StatsSection } from "@/components/sections/StatsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { HowIWork } from "@/components/sections/HowIWork";
+import { Timeline } from "@/components/sections/Timeline";
+import { FAQSection } from "@/components/sections/FAQSection";
 import { Loader2, ShieldCheck, Globe, Zap } from "lucide-react";
 
 export default function Home() {
@@ -52,12 +53,15 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white pb-20 font-sans">
+    <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
+      {/* Hero */}
       <MicrosoftHero data={settings?.home} cvUrl={settings?.contact?.cvUrl} />
       
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
+        {/* Quick Links */}
         <MicrosoftQuickLinks />
         
+        {/* Featured Projects */}
         {projects.length > 0 && (
           <div className="mt-16 md:mt-24">
             <MicrosoftCardGrid 
@@ -73,6 +77,7 @@ export default function Home() {
           </div>
         )}
         
+        {/* Hire Me Banner */}
         <div className="mt-16 md:mt-32">
           <MicrosoftBanner 
             title="Unlock Your Business Potential"
@@ -83,10 +88,12 @@ export default function Home() {
           />
         </div>
 
+        {/* Why Choose Me */}
         <div className="mt-16">
           <WhyChooseMe />
         </div>
         
+        {/* Services */}
         {services.length > 0 && (
           <div className="mt-16 md:mt-24">
             <MicrosoftCardGrid 
@@ -125,37 +132,30 @@ export default function Home() {
         </section>
       </div>
 
-      {/* Stats Section - full width */}
-      <div className="mt-16">
-        <StatsSection />
-      </div>
-
-      {/* Tech Stack */}
-      <div className="mt-0">
-        <TechStack />
-      </div>
+      {/* Tech Stack — full width bg */}
+      <TechStack />
 
       {/* How I Work */}
-      <div className="mt-0">
-        <HowIWork />
-      </div>
+      <HowIWork />
+
+      {/* Education & Experience Timeline */}
+      <Timeline />
 
       {/* Testimonials */}
-      <div className="mt-0">
-        <TestimonialsSection />
-      </div>
+      <TestimonialsSection />
+
+      {/* FAQ */}
+      <FAQSection />
 
       {/* Final CTA Banner */}
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 mt-0 pb-20">
-        <div className="mt-16">
-          <MicrosoftBanner
-            title="Ready to Build Something Great?"
-            description="Whether it's an FYP, a business website, a network setup, or an AI-powered platform — let's collaborate and turn your vision into reality."
-            image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
-            cta="Start a Project"
-            link="/contact"
-          />
-        </div>
+      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 pb-24">
+        <MicrosoftBanner
+          title="Ready to Build Something Great?"
+          description="Whether it's an FYP, a business website, a network setup, or an AI-powered platform — let's collaborate and turn your vision into reality."
+          image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
+          cta="Start a Project"
+          link="/contact"
+        />
       </div>
     </div>
   );
