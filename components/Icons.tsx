@@ -67,24 +67,36 @@ export const AbubakarLogo = ({ size = 32, className }: { size?: number, classNam
     xmlns="http://www.w3.org/2000/svg"
     className={className}
   >
-    {/* Outer Tech Hexagon */}
+    {/* Signature 'A' */}
     <path 
-      d="M50 5 L88.97 27.5 V72.5 L50 95 L11.03 72.5 V27.5 L50 5Z" 
+      d="M15 65 C20 20 40 10 45 35 C50 60 25 65 25 50 C25 35 45 40 55 65" 
       stroke="currentColor" 
-      strokeWidth="6" 
-      strokeLinejoin="miter" 
+      strokeWidth="5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
     />
-    
-    {/* Abstract Sharp 'A' */}
+    {/* Signature 'b' */}
     <path 
-      d="M50 25 L75 75 H58 L50 55 L42 75 H25 L50 25Z" 
-      fill="currentColor" 
+      d="M55 65 C65 90 80 20 75 20 C70 20 60 40 70 60 C80 80 85 50 85 50" 
+      stroke="currentColor" 
+      strokeWidth="5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
     />
-    
-    {/* Small inner diamond / dot for the crossbar of A */}
+    {/* Signature 'u' */}
     <path 
-      d="M50 78 L54 70 H46 L50 78Z" 
-      fill="currentColor" 
+      d="M85 50 C85 65 95 65 95 50" 
+      stroke="currentColor" 
+      strokeWidth="5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    {/* Elegant underline swoosh */}
+    <path 
+      d="M10 85 Q 50 95 90 80" 
+      stroke="currentColor" 
+      strokeWidth="3" 
+      strokeLinecap="round" 
     />
   </svg>
 );
