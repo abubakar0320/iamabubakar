@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { MicrosoftHero } from "@/components/sections/MicrosoftHero";
 import { MicrosoftQuickLinks } from "@/components/sections/MicrosoftQuickLinks";
-import { MicrosoftCardGrid } from "@/components/sections/MicrosoftCardGrid";
 import { TechStack } from "@/components/sections/TechStack";
 import { Timeline } from "@/components/sections/Timeline";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
@@ -63,24 +62,6 @@ export default function Home() {
       {/* 3. SKILLS & ARSENAL */}
       <TechStack />
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
-        {/* 4. FEATURED PROJECTS */}
-        {projects.length > 0 && (
-          <div className="mt-16 md:mt-24">
-            <MicrosoftCardGrid
-              title="Featured Projects"
-              items={projects.map(p => ({
-                title: p.title,
-                description: p.description.substring(0, 100) + "...",
-                image: p.image || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1472&auto=format&fit=crop",
-                link: `/projects`,
-                cta: "View details"
-              }))}
-            />
-          </div>
-        )}
-      </div>
-
       {/* 5. FYP SHOWCASE */}
       <FYPSection />
 
@@ -90,23 +71,7 @@ export default function Home() {
       {/* 7. CERTIFICATIONS */}
       <CertificationsSection />
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
-        {/* 8. SERVICES */}
-        {services.length > 0 && (
-          <div className="mt-16 md:mt-24">
-            <MicrosoftCardGrid
-              title="Services I Offer"
-              items={services.map(s => ({
-                title: s.title,
-                description: s.description.substring(0, 100) + "...",
-                image: s.image || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1740&auto=format&fit=crop",
-                link: `/services`,
-                cta: "Explore service"
-              }))}
-            />
-          </div>
-        )}
-      </div>
+
 
       {/* 11. LANGUAGE SKILLS */}
       <LanguagesSection />
