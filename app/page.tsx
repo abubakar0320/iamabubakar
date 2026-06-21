@@ -6,6 +6,10 @@ import { MicrosoftQuickLinks } from "@/components/sections/MicrosoftQuickLinks";
 import { MicrosoftCardGrid } from "@/components/sections/MicrosoftCardGrid";
 import { MicrosoftBanner } from "@/components/sections/MicrosoftBanner";
 import { WhyChooseMe } from "@/components/sections/WhyChooseMe";
+import { TechStack } from "@/components/sections/TechStack";
+import { StatsSection } from "@/components/sections/StatsSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { HowIWork } from "@/components/sections/HowIWork";
 import { Loader2, ShieldCheck, Globe, Zap } from "lucide-react";
 
 export default function Home() {
@@ -119,6 +123,39 @@ export default function Home() {
               </div>
            </div>
         </section>
+      </div>
+
+      {/* Stats Section - full width */}
+      <div className="mt-16">
+        <StatsSection />
+      </div>
+
+      {/* Tech Stack */}
+      <div className="mt-0">
+        <TechStack />
+      </div>
+
+      {/* How I Work */}
+      <div className="mt-0">
+        <HowIWork />
+      </div>
+
+      {/* Testimonials */}
+      <div className="mt-0">
+        <TestimonialsSection />
+      </div>
+
+      {/* Final CTA Banner */}
+      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 mt-0 pb-20">
+        <div className="mt-16">
+          <MicrosoftBanner
+            title="Ready to Build Something Great?"
+            description="Whether it's an FYP, a business website, a network setup, or an AI-powered platform — let's collaborate and turn your vision into reality."
+            image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
+            cta="Start a Project"
+            link="/contact"
+          />
+        </div>
       </div>
     </div>
   );
