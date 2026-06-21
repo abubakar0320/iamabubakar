@@ -5,8 +5,6 @@ import { MicrosoftHero } from "@/components/sections/MicrosoftHero";
 import { MicrosoftQuickLinks } from "@/components/sections/MicrosoftQuickLinks";
 import { MicrosoftCardGrid } from "@/components/sections/MicrosoftCardGrid";
 import { TechStack } from "@/components/sections/TechStack";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { HowIWork } from "@/components/sections/HowIWork";
 import { Timeline } from "@/components/sections/Timeline";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { FYPSection } from "@/components/sections/FYPSection";
@@ -109,12 +107,6 @@ export default function Home() {
           </div>
         )}
       </div>
-
-      {/* 9. HOW I WORK */}
-      <HowIWork />
-
-      {/* 10. TESTIMONIALS */}
-      <TestimonialsSection />
 
       {/* 11. LANGUAGE SKILLS */}
       <LanguagesSection />
