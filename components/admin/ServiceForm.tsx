@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/Button";
-import { ArrowLeft, Loader2, Check, Plus, Trash2, Briefcase, Zap, Info, Sparkles, Layout, Globe, Server, Database, Shield, Smartphone, TrendingUp, CheckCircle, ChevronRight, Save } from "lucide-react";
+import { ArrowLeft, Loader2, Plus, Trash2, Briefcase, Zap, Info, Sparkles, TrendingUp, Save, Layers } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 interface ServiceFormData {
   title: string;
@@ -81,106 +79,134 @@ export function ServiceForm({ initialData, isEdit }: ServiceFormProps) {
   };
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8 font-sans">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-        <div className="flex items-center gap-6">
-          <Link href="/admin/services">
-            <button className="w-10 h-10 flex items-center justify-center border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <ArrowLeft size={18} className="text-gray-600 dark:text-gray-400" />
-            </button>
-          </Link>
-          <div>
-            <h1 className="text-3xl font-semibold text-[#242424] dark:text-white tracking-tight uppercase">
-               {isEdit ? "Configure Module" : "Initialize Service"}
-            </h1>
-            <p className="text-sm text-gray-500 mt-1">Management nodes for technical capability deployment.</p>
+    <div className="max-w-7xl mx-auto space-y-10 font-sans pb-10">
+      
+      {/* ── Page Header (Vibrant Gradient) ── */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-gradient-to-r from-[#5c2d91] via-[#00d4ff] to-[#00d15e] text-white p-8 relative overflow-hidden shadow-[0_0_40px_rgba(92,45,145,0.3)]">
+        <div className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="relative z-10">
+          <div className="text-[10px] font-black uppercase tracking-widest text-[#d8b4fe] mb-2 flex items-center gap-2">
+            <Layers size={12} /> Service Architecture
           </div>
+          <h1 className="text-4xl font-bold tracking-tight mb-2">
+             {isEdit ? "Configure Module" : "Initialize Service"}
+          </h1>
+          <p className="text-sm text-purple-100 font-medium max-w-xl">
+            Management node for technical capabilities and deployment modules.
+          </p>
+        </div>
+        <div className="relative z-10 flex gap-3">
+          <Link
+            href="/admin/services"
+            className="inline-flex items-center gap-2 border border-purple-300 text-white font-bold px-6 py-3 hover:bg-white/10 transition-colors text-xs uppercase tracking-widest"
+          >
+            <ArrowLeft size={15} /> Engine Dashboard
+          </Link>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-8 space-y-6">
+        <div className="lg:col-span-8 space-y-8">
+          
           {/* Identity Tile */}
-          <div className="bg-white dark:bg-[#1a1a1a] p-8 border border-gray-200 dark:border-gray-800 shadow-sm">
-            <h3 className="text-lg font-semibold text-[#242424] dark:text-white mb-8 flex items-center gap-3">
-              <Briefcase className="text-[#0067b8]" size={20} /> Module Identity
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-2">
-                <label className="text-[13px] font-semibold text-[#242424] dark:text-gray-200">Service Label</label>
-                <input
-                  type="text"
-                  name="title"
-                  required
-                  value={formData.title}
-                  onChange={handleChange}
-                  placeholder="e.g. Cloud Infrastructure"
-                  className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#0067b8] outline-none transition-all text-sm font-bold"
-                />
+          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#5c2d91]/30 transition-colors duration-300">
+            <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#5c2d91] dark:text-[#d8b4fe] mb-1">Module 1</div>
+                <h2 className="text-base font-bold text-[#242424] dark:text-white flex items-center gap-2">
+                  Module Identity
+                </h2>
               </div>
-              <div className="space-y-2">
-                <label className="text-[13px] font-semibold text-[#242424] dark:text-gray-200">Interface Icon</label>
-                <div className="relative">
-                  <select
-                    name="icon"
-                    value={formData.icon}
+              <Briefcase size={16} className="text-[#5c2d91] dark:text-[#d8b4fe]" />
+            </div>
+
+            <div className="p-6 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Service Label</label>
+                  <input
+                    type="text"
+                    name="title"
+                    required
+                    value={formData.title}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#0067b8] outline-none transition-all appearance-none text-sm font-bold cursor-pointer"
-                  >
-                    <option value="Globe">Globe (Network)</option>
-                    <option value="Layout">Layout (Frontend)</option>
-                    <option value="Server">Server (Backend)</option>
-                    <option value="Database">Database (Data)</option>
-                    <option value="Shield">Shield (Security)</option>
-                    <option value="Smartphone">Smartphone (Mobile)</option>
-                  </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-20">
-                     <Zap size={16} />
+                    placeholder="e.g. Cloud Infrastructure"
+                    className="w-full px-5 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#5c2d91] dark:focus:border-[#d8b4fe] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-bold"
+                  />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Interface Icon</label>
+                  <div className="relative">
+                    <select
+                      name="icon"
+                      value={formData.icon}
+                      onChange={handleChange}
+                      className="w-full px-5 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#5c2d91] dark:focus:border-[#d8b4fe] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all appearance-none text-sm font-bold cursor-pointer"
+                    >
+                      <option value="Globe">Globe (Network)</option>
+                      <option value="Layout">Layout (Frontend)</option>
+                      <option value="Server">Server (Backend)</option>
+                      <option value="Database">Database (Data)</option>
+                      <option value="Shield">Shield (Security)</option>
+                      <option value="Smartphone">Smartphone (Mobile)</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#5c2d91] dark:text-[#d8b4fe]">
+                       <Zap size={14} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-8 space-y-2">
-              <label className="text-[13px] font-semibold text-[#242424] dark:text-gray-200">Capability Description</label>
-              <textarea
-                name="description"
-                required
-                rows={4}
-                value={formData.description}
-                onChange={handleChange}
-                placeholder="Detail the scope and impact of this service module..."
-                className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#0067b8] outline-none transition-all text-sm font-medium resize-none leading-relaxed"
-              />
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Capability Description</label>
+                <textarea
+                  name="description"
+                  required
+                  rows={5}
+                  value={formData.description}
+                  onChange={handleChange}
+                  placeholder="Detail the scope and impact of this service module..."
+                  className="w-full px-5 py-4 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#5c2d91] dark:focus:border-[#d8b4fe] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-[13px] font-medium leading-relaxed resize-none"
+                />
+              </div>
             </div>
           </div>
 
           {/* Arrays Hub */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
             {/* Features Array */}
-            <div className="bg-white dark:bg-[#1a1a1a] p-8 border border-gray-200 dark:border-gray-800 shadow-sm">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                   <Sparkles className="text-[#0067b8]" size={14} /> Features
-                </h3>
-                <button type="button" onClick={() => addArrayItem("features")} className="text-[#0067b8] font-bold text-[10px] uppercase tracking-widest hover:underline">
-                  Add node
+            <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#00d4ff]/30 transition-colors duration-300">
+              <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-widest text-[#00d4ff] flex items-center gap-2">
+                     <Sparkles size={14} /> Feature Nodes
+                  </h3>
+                </div>
+                <button type="button" onClick={() => addArrayItem("features")} className="text-[#00d4ff] border border-[#00d4ff]/30 px-3 py-1.5 font-black text-[9px] uppercase tracking-widest hover:bg-[#00d4ff] hover:text-black hover:shadow-[0_0_10px_rgba(0,212,255,0.4)] transition-all">
+                  Add Node
                 </button>
               </div>
-              <div className="space-y-3">
+              <div className="p-6 space-y-4">
                 <AnimatePresence>
                   {formData.features.map((feature, index) => (
-                    <motion.div key={index} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="relative group">
+                    <motion.div key={index} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="relative group/input">
                       <input
                         type="text"
                         value={feature}
                         onChange={(e) => handleArrayChange(index, e.target.value, "features")}
-                        className="w-full pl-4 pr-10 py-2.5 bg-gray-50 dark:bg-[#242424] border border-transparent focus:border-[#0067b8] outline-none text-xs font-bold transition-all"
+                        className="w-full pl-5 pr-12 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#00d4ff] outline-none text-xs font-bold transition-all"
+                        placeholder={`Feature node ${index + 1}`}
                       />
                       {formData.features.length > 1 && (
-                        <button type="button" onClick={() => removeArrayItem(index, "features")} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all">
-                          <Trash2 size={14} />
+                        <button type="button" onClick={() => removeArrayItem(index, "features")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 opacity-0 group-hover/input:opacity-100 transition-all hover:drop-shadow-[0_0_5px_rgba(239,68,68,0.8)]">
+                          <Trash2 size={16} />
                         </button>
                       )}
                     </motion.div>
@@ -190,28 +216,31 @@ export function ServiceForm({ initialData, isEdit }: ServiceFormProps) {
             </div>
 
             {/* Benefits Array */}
-            <div className="bg-white dark:bg-[#1a1a1a] p-8 border border-gray-200 dark:border-gray-800 shadow-sm">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                   <TrendingUp className="text-emerald-500" size={14} /> Benefits
-                </h3>
-                <button type="button" onClick={() => addArrayItem("benefits")} className="text-[#0067b8] font-bold text-[10px] uppercase tracking-widest hover:underline">
-                  Add value
+            <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#00d15e]/30 transition-colors duration-300">
+              <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-widest text-[#00d15e] flex items-center gap-2">
+                     <TrendingUp size={14} /> Value Output
+                  </h3>
+                </div>
+                <button type="button" onClick={() => addArrayItem("benefits")} className="text-[#00d15e] border border-[#00d15e]/30 px-3 py-1.5 font-black text-[9px] uppercase tracking-widest hover:bg-[#00d15e] hover:text-black hover:shadow-[0_0_10px_rgba(0,209,94,0.4)] transition-all">
+                  Add Value
                 </button>
               </div>
-              <div className="space-y-3">
+              <div className="p-6 space-y-4">
                 <AnimatePresence>
                   {formData.benefits.map((benefit, index) => (
-                    <motion.div key={index} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="relative group">
+                    <motion.div key={index} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="relative group/input">
                       <input
                         type="text"
                         value={benefit}
                         onChange={(e) => handleArrayChange(index, e.target.value, "benefits")}
-                        className="w-full pl-4 pr-10 py-2.5 bg-gray-50 dark:bg-[#242424] border border-transparent focus:border-[#0067b8] outline-none text-xs font-bold transition-all"
+                        className="w-full pl-5 pr-12 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#00d15e] outline-none text-xs font-bold transition-all"
+                        placeholder={`Value output ${index + 1}`}
                       />
                       {formData.benefits.length > 1 && (
-                        <button type="button" onClick={() => removeArrayItem(index, "benefits")} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all">
-                          <Trash2 size={14} />
+                        <button type="button" onClick={() => removeArrayItem(index, "benefits")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 opacity-0 group-hover/input:opacity-100 transition-all hover:drop-shadow-[0_0_5px_rgba(239,68,68,0.8)]">
+                          <Trash2 size={16} />
                         </button>
                       )}
                     </motion.div>
@@ -219,45 +248,39 @@ export function ServiceForm({ initialData, isEdit }: ServiceFormProps) {
                 </AnimatePresence>
               </div>
             </div>
+
           </div>
         </div>
 
         {/* Sidebar Controls */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-8 shadow-sm">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2">
-              <Zap size={16} className="text-[#0067b8]" /> Control Console
-            </h3>
+          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800">
+            <div className="p-6 bg-[#f8fafc] dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-gray-800">
+              <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                <Zap size={14} className="text-[#5c2d91] dark:text-[#d8b4fe]" /> Control Console
+              </h3>
+            </div>
             
-            <div className="space-y-6">
+            <div className="p-6 space-y-6">
               <button 
                 type="submit" 
                 disabled={loading}
-                className="w-full bg-[#0067b8] text-white font-semibold py-4 px-8 hover:bg-[#005da6] transition-all flex items-center justify-center gap-3 disabled:bg-gray-300 shadow-lg shadow-blue-500/10 uppercase text-xs tracking-widest"
+                className="w-full bg-[#5c2d91] text-white font-black py-4 px-8 hover:bg-[#462270] transition-all flex items-center justify-center gap-3 disabled:bg-gray-400 disabled:shadow-none shadow-[0_0_15px_rgba(92,45,145,0.4)] hover:shadow-[0_0_25px_rgba(92,45,145,0.6)] uppercase text-[11px] tracking-[0.2em]"
               >
-                {loading ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
+                {loading ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
                 {loading ? "Initializing..." : isEdit ? "Update Module" : "Deploy Module"}
               </button>
 
-              <div className="p-6 bg-gray-50 dark:bg-[#242424] border-l-4 border-[#0067b8] space-y-3">
-                 <div className="flex items-center gap-2 text-[#0067b8]">
+              <div className="p-5 bg-purple-500/10 border border-purple-500/20 space-y-3">
+                 <div className="flex items-center gap-2 text-[#d8b4fe]">
                     <Info size={14} />
-                    <span className="text-[10px] font-black uppercase tracking-widest">Protocol Node</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest">Protocol Node</span>
                  </div>
-                 <p className="text-[11px] text-gray-500 font-medium italic leading-relaxed">
+                 <p className="text-[11px] text-purple-200/80 font-medium leading-relaxed">
                     Deployment of this module will propagate to the public solutions hub instantly. Verify all technical nodes.
                  </p>
               </div>
             </div>
-          </div>
-
-          <div className="bg-[#0067b8] p-8 text-white relative overflow-hidden shadow-xl">
-             <div className="absolute top-0 right-0 p-4 opacity-10"><Briefcase size={100} /></div>
-             <h3 className="text-lg font-black uppercase tracking-tighter mb-4 relative z-10 italic">Module Hub</h3>
-             <p className="text-blue-100 text-xs font-medium mb-8 relative z-10">Define the architectural scope and commercial benefits of your professional service.</p>
-             <Link href="/services" target="_blank" className="inline-flex items-center justify-center w-full py-3 bg-white text-[#0067b8] font-black uppercase text-[0.7rem] tracking-[0.2em] hover:bg-gray-100 transition-all relative z-10">
-                View Live Hub <ChevronRight size={14} className="ml-1" />
-             </Link>
           </div>
         </div>
       </form>
