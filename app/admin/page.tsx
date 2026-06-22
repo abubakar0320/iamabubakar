@@ -5,7 +5,6 @@ import {
   FileCode,
   Briefcase,
   MessageSquare,
-  ShoppingBag,
   Clock,
   DollarSign,
   ChevronRight,
@@ -15,10 +14,63 @@ import {
   Mail,
   CheckCircle2,
   AlertCircle,
+  Activity,
+  BarChart3,
+  PieChart as PieChartIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip as RechartsTooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+} from "recharts";
+
+// Mock Data for Charts
+const revenueData = [
+  { month: "Jan", revenue: 1250, orders: 12 },
+  { month: "Feb", revenue: 1800, orders: 18 },
+  { month: "Mar", revenue: 2400, orders: 25 },
+  { month: "Apr", revenue: 2100, orders: 20 },
+  { month: "May", revenue: 3200, orders: 35 },
+  { month: "Jun", revenue: 4500, orders: 42 },
+];
+
+const trafficData = [
+  { day: "Mon", visitors: 120, views: 300 },
+  { day: "Tue", visitors: 180, views: 420 },
+  { day: "Wed", visitors: 150, views: 380 },
+  { day: "Thu", visitors: 220, views: 510 },
+  { day: "Fri", visitors: 280, views: 650 },
+  { day: "Sat", visitors: 320, views: 780 },
+  { day: "Sun", visitors: 290, views: 710 },
+];
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-3 shadow-sm rounded-none">
+        <p className="text-[12px] font-bold text-[#242424] dark:text-white mb-2">{label}</p>
+        {payload.map((entry: any, index: number) => (
+          <p key={index} className="text-[11px] font-medium uppercase tracking-wider" style={{ color: entry.color || entry.payload.fill }}>
+            {entry.name}: <span className="font-bold">{entry.name === "revenue" ? `$${entry.value}` : entry.value}</span>
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -99,6 +151,14 @@ export default function AdminDashboard() {
     { label: "Site Settings",     href: "/admin/settings",      icon: Settings,     color: "#5c2d91" },
   ];
 
+  const verifiedOrders = stats.totalOrders > 0 ? stats.totalOrders - stats.pendingOrders : 15;
+  const pendingOrdersVal = stats.totalOrders > 0 ? stats.pendingOrders : 4;
+
+  const orderStatusData = [
+    { name: "Paid", value: verifiedOrders, color: "#107c10" },
+    { name: "Pending", value: pendingOrdersVal, color: "#d83b01" },
+  ];
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[50vh]">
@@ -108,7 +168,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="space-y-8 font-sans">
+    <div className="space-y-8 font-sans pb-10">
 
       {/* ── Page Header ── */}
       <div className="flex items-start justify-between">
@@ -120,7 +180,7 @@ export default function AdminDashboard() {
             Dashboard
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">
-            Welcome back, Abu Bakar. Here&apos;s what&apos;s happening.
+            Welcome back, Abu Bakar. Here's what's happening.
           </p>
         </div>
         <Link
@@ -141,7 +201,7 @@ export default function AdminDashboard() {
             transition={{ delay: i * 0.07 }}
           >
             <Link href={card.href}>
-              <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group cursor-pointer">
+              <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group cursor-pointer h-full">
                 <div className="flex items-start justify-between mb-4">
                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
                     {card.label}
@@ -168,7 +228,97 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      {/* ── Main Grid ── */}
+      {/* ── Charts Grid (Row 1) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Revenue Chart */}
+        <div className="lg:col-span-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
+          <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+            <div>
+              <div className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] mb-1">Analytics</div>
+              <h2 className="text-base font-semibold text-[#242424] dark:text-white">Revenue & Orders</h2>
+            </div>
+            <Activity size={16} className="text-gray-400" />
+          </div>
+          <div className="p-6 h-[320px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={revenueData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#0067b8" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#0067b8" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" opacity={0.2} />
+                <XAxis 
+                  dataKey="month" 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fontSize: 11, fill: '#888' }} 
+                  dy={10}
+                />
+                <YAxis 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fontSize: 11, fill: '#888' }}
+                />
+                <RechartsTooltip content={<CustomTooltip />} />
+                <Area 
+                  type="monotone" 
+                  dataKey="revenue" 
+                  stroke="#0067b8" 
+                  strokeWidth={2}
+                  fillOpacity={1} 
+                  fill="url(#colorRevenue)" 
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Order Status Pie Chart */}
+        <div className="lg:col-span-4 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
+          <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+            <div>
+              <div className="text-[10px] font-black uppercase tracking-widest text-[#107c10] mb-1">Distribution</div>
+              <h2 className="text-base font-semibold text-[#242424] dark:text-white">Order Status</h2>
+            </div>
+            <PieChartIcon size={16} className="text-gray-400" />
+          </div>
+          <div className="p-6 h-[320px] flex flex-col justify-center items-center">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={orderStatusData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={70}
+                  outerRadius={90}
+                  paddingAngle={2}
+                  dataKey="value"
+                  stroke="none"
+                >
+                  {orderStatusData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <RechartsTooltip content={<CustomTooltip />} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex gap-6 mt-4">
+              {orderStatusData.map((entry) => (
+                <div key={entry.name} className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-none" style={{ backgroundColor: entry.color }} />
+                  <span className="text-[11px] font-bold text-[#242424] dark:text-gray-300 uppercase tracking-widest">
+                    {entry.name} ({entry.value})
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Main Grid (Row 2) ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
         {/* Recent Orders Table */}
@@ -249,8 +399,41 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className="lg:col-span-4 space-y-4">
+        {/* Right Column (Traffic & Actions) */}
+        <div className="lg:col-span-4 space-y-6">
+
+          {/* Traffic Chart */}
+          <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
+            <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#5c2d91] mb-1">Visitors</div>
+                <h3 className="text-base font-semibold text-[#242424] dark:text-white">Weekly Traffic</h3>
+              </div>
+              <BarChart3 size={16} className="text-gray-400" />
+            </div>
+            <div className="p-6 h-[200px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={trafficData} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" opacity={0.2} />
+                  <XAxis 
+                    dataKey="day" 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fontSize: 10, fill: '#888' }} 
+                    dy={5}
+                  />
+                  <YAxis 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fontSize: 10, fill: '#888' }}
+                  />
+                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'transparent' }} />
+                  <Bar dataKey="views" fill="#5c2d91" radius={[0, 0, 0, 0]} barSize={12} />
+                  <Bar dataKey="visitors" fill="#0067b8" radius={[0, 0, 0, 0]} barSize={12} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
 
           {/* Quick Actions */}
           <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
@@ -280,29 +463,6 @@ export default function AdminDashboard() {
                   </div>
                 </Link>
               ))}
-            </div>
-          </div>
-
-          {/* System Status */}
-          <div className="bg-[#0067b8] p-6 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5"
-              style={{
-                backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-              }}
-            />
-            <div className="relative z-10">
-              <div className="text-[10px] font-black uppercase tracking-widest text-blue-200 mb-3">System</div>
-              <h3 className="text-xl font-semibold text-white mb-2 tracking-tight">All Systems Online</h3>
-              <p className="text-blue-100 text-xs font-medium mb-6 leading-relaxed">
-                Your portfolio site is live and running smoothly on all nodes.
-              </p>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-blue-100">
-                  Operational
-                </span>
-              </div>
             </div>
           </div>
 
