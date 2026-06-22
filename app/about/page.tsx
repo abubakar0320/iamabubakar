@@ -330,9 +330,46 @@ export default function AboutPage() {
               <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest">Technical Stack</div>
               <h3 className="text-xl font-semibold text-[#242424] dark:text-white uppercase tracking-tight">Core Skills</h3>
             </div>
-            {["Frontend", "Backend", "Other"].map((cat) => {
-              const catSkills = settings?.about?.skills?.filter((s: any) => s.category === cat) ?? [];
-              if (catSkills.length === 0) return null;
+            {[
+              {
+                category: "Frontend",
+                skills: [
+                  { name: "React.js", level: 95 },
+                  { name: "Next.js", level: 90 },
+                  { name: "JavaScript", level: 95 },
+                  { name: "HTML5 & CSS3", level: 98 },
+                  { name: "Tailwind CSS", level: 92 },
+                ]
+              },
+              {
+                category: "Backend",
+                skills: [
+                  { name: "Node.js", level: 90 },
+                  { name: "Express.js", level: 88 },
+                  { name: "PHP", level: 80 },
+                  { name: "REST APIs", level: 92 },
+                ]
+              },
+              {
+                category: "Database & Tools",
+                skills: [
+                  { name: "MongoDB", level: 88 },
+                  { name: "MySQL", level: 85 },
+                  { name: "Git & GitHub", level: 95 },
+                  { name: "Vercel & VS Code", level: 92 },
+                ]
+              },
+              {
+                category: "SEO & Design",
+                skills: [
+                  { name: "Technical SEO", level: 88 },
+                  { name: "Google Analytics / Console", level: 85 },
+                  { name: "Canva & Photoshop", level: 85 },
+                ]
+              }
+            ].map((catData) => {
+              const cat = catData.category;
+              const catSkills = catData.skills;
               return (
                 <div key={cat} className="space-y-5">
                   <div className="text-[10px] font-black uppercase tracking-widest text-[#00d4ff] flex items-center gap-2">
