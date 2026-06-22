@@ -146,6 +146,46 @@ export default function AdminAboutPage() {
     setSettings({ ...settings, about: { ...settings.about, experience: newList } });
   };
 
+  const addEducation = () => {
+    setSettings({ ...settings, about: { ...settings.about, education: [...(settings.about.education || []), { year: "2024", degree: "Degree", institution: "Institution", description: "Details" }] } });
+  };
+
+  const updateEducation = (index: number, field: string, value: any) => {
+    const newList = [...settings.about.education];
+    newList[index] = { ...newList[index], [field]: value };
+    setSettings({ ...settings, about: { ...settings.about, education: newList } });
+  };
+
+  const addCertification = () => {
+    setSettings({ ...settings, about: { ...settings.about, certifications: [...(settings.about.certifications || []), { title: "Title", issuer: "Issuer", date: "Date", badge: "Badge", skills: [] }] } });
+  };
+
+  const updateCertification = (index: number, field: string, value: any) => {
+    const newList = [...(settings.about.certifications || [])];
+    newList[index] = { ...newList[index], [field]: value };
+    setSettings({ ...settings, about: { ...settings.about, certifications: newList } });
+  };
+
+  const addLanguage = () => {
+    setSettings({ ...settings, about: { ...settings.about, languages: [...(settings.about.languages || []), { lang: "Language", level: "Level", cefr: "CEFR", pct: 50 }] } });
+  };
+
+  const updateLanguage = (index: number, field: string, value: any) => {
+    const newList = [...(settings.about.languages || [])];
+    newList[index] = { ...newList[index], [field]: value };
+    setSettings({ ...settings, about: { ...settings.about, languages: newList } });
+  };
+
+  const addRecommendation = () => {
+    setSettings({ ...settings, about: { ...settings.about, recommendations: [...(settings.about.recommendations || []), { name: "Name", role: "Role", phone: "Phone", initials: "NA" }] } });
+  };
+
+  const updateRecommendation = (index: number, field: string, value: any) => {
+    const newList = [...(settings.about.recommendations || [])];
+    newList[index] = { ...newList[index], [field]: value };
+    setSettings({ ...settings, about: { ...settings.about, recommendations: newList } });
+  };
+
   if (loading) {
     return <div className="flex items-center justify-center h-[50vh]"><Loader2 className="animate-spin h-10 w-10 text-[#e10098]" /></div>;
   }
@@ -375,6 +415,177 @@ export default function AdminAboutPage() {
                    <p className="text-xs text-gray-400 font-black uppercase tracking-widest">No experience entries</p>
                  </div>
                )}
+            </div>
+          </div>
+
+          {/* Education Ledger */}
+          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#00d15e]/30 transition-colors duration-300">
+            <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#00d15e] mb-1">Module 4</div>
+                <h2 className="text-base font-bold text-[#242424] dark:text-white flex items-center gap-2">
+                  Academic Ledger (Education)
+                </h2>
+              </div>
+              <button type="button" onClick={addEducation} className="bg-transparent border border-[#00d15e] text-[#00d15e] px-3 py-1.5 text-[10px] font-black uppercase tracking-widest hover:bg-[#00d15e] hover:text-black hover:shadow-[0_0_15px_rgba(0,209,94,0.4)] transition-all flex items-center gap-1.5">
+                 <Plus size={12} /> Add Entry
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+               <AnimatePresence>
+                 {settings.about.education.map((edu: any, index: number) => (
+                   <motion.div key={index} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} className="bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 p-6 relative group/edu hover:border-[#00d15e] transition-colors shadow-[0_0_15px_rgba(0,209,94,0)] hover:shadow-[0_0_15px_rgba(0,209,94,0.1)]">
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-5">
+                         <div className="space-y-1.5 md:col-span-1">
+                           <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Timeline</label>
+                           <input type="text" value={edu.year} placeholder="e.g. 2018 - 2022" onChange={(e) => updateEducation(index, "year", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-black uppercase text-[#00d15e] focus:border-[#00d15e] outline-none" />
+                         </div>
+                         <div className="space-y-1.5 md:col-span-3">
+                           <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Degree/Program</label>
+                           <input type="text" value={edu.degree} placeholder="BS Computer Science" onChange={(e) => updateEducation(index, "degree", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#00d15e] outline-none" />
+                         </div>
+                      </div>
+                      <div className="space-y-5">
+                        <div className="space-y-1.5">
+                          <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Institution</label>
+                          <input type="text" value={edu.institution} placeholder="University Name" onChange={(e) => updateEducation(index, "institution", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-medium focus:border-[#00d15e] outline-none" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Description</label>
+                          <textarea value={edu.description} placeholder="Academic achievements..." onChange={(e) => updateEducation(index, "description", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-3 text-[12px] leading-relaxed resize-none h-24 focus:border-[#00d15e] outline-none" />
+                        </div>
+                      </div>
+                      <button 
+                        type="button" 
+                        onClick={() => {
+                           const updated = settings.about.education.filter((_: any, i: number) => i !== index);
+                           setSettings({...settings, about: {...settings.about, education: updated}});
+                        }} 
+                        className="absolute -top-3 -right-3 bg-red-500/20 text-red-500 border border-red-500/50 p-1.5 opacity-0 group-hover/edu:opacity-100 transition-all hover:bg-red-500 hover:text-white hover:shadow-[0_0_15px_rgba(239,68,68,0.5)]"
+                      >
+                        <Trash2 size={12} />
+                      </button>
+                   </motion.div>
+                 ))}
+               </AnimatePresence>
+               {settings.about.education.length === 0 && (
+                 <div className="py-8 text-center border-2 border-dashed border-gray-200 dark:border-gray-800">
+                   <p className="text-xs text-gray-400 font-black uppercase tracking-widest">No education entries</p>
+                 </div>
+               )}
+            </div>
+          </div>
+
+          {/* Certifications Ledger */}
+          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#0067b8]/30 transition-colors duration-300">
+            <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] mb-1">Module 5</div>
+                <h2 className="text-base font-bold text-[#242424] dark:text-white flex items-center gap-2">
+                  Certifications
+                </h2>
+              </div>
+              <button type="button" onClick={addCertification} className="bg-transparent border border-[#0067b8] text-[#0067b8] px-3 py-1.5 text-[10px] font-black uppercase tracking-widest hover:bg-[#0067b8] hover:text-white transition-all flex items-center gap-1.5">
+                 <Plus size={12} /> Add Entry
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+               <AnimatePresence>
+                 {(settings.about.certifications || []).map((cert: any, index: number) => (
+                   <motion.div key={index} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} className="bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 p-6 relative group/cert hover:border-[#0067b8] transition-colors">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                         <div className="space-y-1.5">
+                           <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Title</label>
+                           <input type="text" value={cert.title} onChange={(e) => updateCertification(index, "title", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                         </div>
+                         <div className="space-y-1.5">
+                           <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Issuer</label>
+                           <input type="text" value={cert.issuer} onChange={(e) => updateCertification(index, "issuer", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                         </div>
+                         <div className="space-y-1.5">
+                           <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Date</label>
+                           <input type="text" value={cert.date} onChange={(e) => updateCertification(index, "date", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                         </div>
+                         <div className="space-y-1.5">
+                           <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Badge</label>
+                           <input type="text" value={cert.badge} onChange={(e) => updateCertification(index, "badge", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                         </div>
+                         <div className="space-y-1.5 md:col-span-2">
+                           <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Skills (Comma separated)</label>
+                           <input type="text" value={(cert.skills || []).join(", ")} onChange={(e) => updateCertification(index, "skills", e.target.value.split(",").map((s: string) => s.trim()).filter(Boolean))} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs focus:border-[#0067b8] outline-none" />
+                         </div>
+                      </div>
+                      <button 
+                        type="button" 
+                        onClick={() => {
+                           const updated = settings.about.certifications.filter((_: any, i: number) => i !== index);
+                           setSettings({...settings, about: {...settings.about, certifications: updated}});
+                        }} 
+                        className="absolute -top-3 -right-3 bg-red-500/20 text-red-500 border border-red-500/50 p-1.5 opacity-0 group-hover/cert:opacity-100 transition-all hover:bg-red-500 hover:text-white"
+                      >
+                        <Trash2 size={12} />
+                      </button>
+                   </motion.div>
+                 ))}
+               </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Languages & Recommendations Ledger */}
+          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#5c2d91]/30 transition-colors duration-300">
+            <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#5c2d91] mb-1">Module 6</div>
+                <h2 className="text-base font-bold text-[#242424] dark:text-white flex items-center gap-2">
+                  Languages & Recommendations
+                </h2>
+              </div>
+            </div>
+            
+            <div className="p-6 space-y-8">
+               {/* Languages */}
+               <div>
+                  <div className="flex justify-between items-center mb-4">
+                     <h3 className="text-sm font-bold text-[#242424] dark:text-white">Languages</h3>
+                     <button type="button" onClick={addLanguage} className="text-[10px] font-black text-[#5c2d91] uppercase tracking-widest flex items-center gap-1"><Plus size={12}/> Add</button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     {(settings.about.languages || []).map((lang: any, index: number) => (
+                       <div key={index} className="bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 p-4 relative group/lang">
+                          <div className="grid grid-cols-2 gap-3">
+                             <input type="text" placeholder="Language" value={lang.lang} onChange={(e) => updateLanguage(index, "lang", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                             <input type="text" placeholder="Level" value={lang.level} onChange={(e) => updateLanguage(index, "level", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                             <input type="text" placeholder="CEFR" value={lang.cefr} onChange={(e) => updateLanguage(index, "cefr", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                             <input type="number" placeholder="%" value={lang.pct} onChange={(e) => updateLanguage(index, "pct", parseInt(e.target.value))} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                          </div>
+                          <button type="button" onClick={() => setSettings({...settings, about: {...settings.about, languages: settings.about.languages.filter((_: any, i: number) => i !== index)}})} className="absolute -top-2 -right-2 bg-red-500 text-white p-1 opacity-0 group-hover/lang:opacity-100"><Trash2 size={10} /></button>
+                       </div>
+                     ))}
+                  </div>
+               </div>
+
+               {/* Recommendations */}
+               <div>
+                  <div className="flex justify-between items-center mb-4 border-t border-gray-200 dark:border-gray-700 pt-6">
+                     <h3 className="text-sm font-bold text-[#242424] dark:text-white">Recommendations</h3>
+                     <button type="button" onClick={addRecommendation} className="text-[10px] font-black text-[#5c2d91] uppercase tracking-widest flex items-center gap-1"><Plus size={12}/> Add</button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     {(settings.about.recommendations || []).map((rec: any, index: number) => (
+                       <div key={index} className="bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 p-4 relative group/rec">
+                          <div className="grid grid-cols-2 gap-3">
+                             <input type="text" placeholder="Name" value={rec.name} onChange={(e) => updateRecommendation(index, "name", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                             <input type="text" placeholder="Role" value={rec.role} onChange={(e) => updateRecommendation(index, "role", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                             <input type="text" placeholder="Phone" value={rec.phone} onChange={(e) => updateRecommendation(index, "phone", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                             <input type="text" placeholder="Initials" value={rec.initials} onChange={(e) => updateRecommendation(index, "initials", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs outline-none" />
+                          </div>
+                          <button type="button" onClick={() => setSettings({...settings, about: {...settings.about, recommendations: settings.about.recommendations.filter((_: any, i: number) => i !== index)}})} className="absolute -top-2 -right-2 bg-red-500 text-white p-1 opacity-0 group-hover/rec:opacity-100"><Trash2 size={10} /></button>
+                       </div>
+                     ))}
+                  </div>
+               </div>
             </div>
           </div>
         </div>

@@ -169,6 +169,34 @@ export default function AboutPage() {
   })) || [];
   const finalExperience = dbExperience.length > 0 ? dbExperience : defaultExperience;
 
+  const dbCertifications = settings?.about?.certifications?.map((c: any, i: number) => ({
+    title: c.title,
+    issuer: c.issuer,
+    date: c.date,
+    color: ["#0067b8", "#107c10", "#d83b01", "#5c2d91"][i % 4],
+    badge: c.badge,
+    skills: c.skills || [],
+  })) || [];
+  const finalCertifications = dbCertifications.length > 0 ? dbCertifications : certifications;
+
+  const dbLanguages = settings?.about?.languages?.map((l: any, i: number) => ({
+    lang: l.lang,
+    level: l.level,
+    cefr: l.cefr,
+    pct: l.pct,
+    color: ["#0067b8", "#107c10", "#d83b01", "#5c2d91"][i % 4]
+  })) || [];
+  const finalLanguages = dbLanguages.length > 0 ? dbLanguages : languages;
+
+  const dbRecommendations = settings?.about?.recommendations?.map((r: any, i: number) => ({
+    name: r.name,
+    role: r.role,
+    phone: r.phone,
+    initials: r.initials,
+    color: ["#0067b8", "#107c10", "#d83b01", "#5c2d91"][i % 4]
+  })) || [];
+  const finalRecommendations = dbRecommendations.length > 0 ? dbRecommendations : recommendations;
+
   return (
     <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
 
@@ -426,7 +454,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {certifications.map((cert, i) => (
+            {finalCertifications.map((cert: any, i: number) => (
               <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors overflow-hidden group">
@@ -439,7 +467,7 @@ export default function AboutPage() {
                   <h3 className="text-lg font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#0067b8] transition-colors leading-snug">{cert.title}</h3>
                   <div className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: cert.color }}>{cert.issuer}</div>
                   <div className="flex flex-wrap gap-2 mb-5">
-                    {cert.skills.map((s) => (
+                    {cert.skills?.map((s: string) => (
                       <span key={s} className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400">{s}</span>
                     ))}
                   </div>
@@ -467,7 +495,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {languages.map((l, i) => (
+            {finalLanguages.map((l: any, i: number) => (
               <motion.div key={l.lang} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors p-7 group">
@@ -503,7 +531,7 @@ export default function AboutPage() {
             <p className="text-sm text-[#505050] dark:text-gray-400 font-medium">Faculty from Baba Guru Nanak University available as professional references.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {recommendations.map((rec, i) => (
+            {finalRecommendations.map((rec: any, i: number) => (
               <motion.div key={rec.name} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors p-6 flex flex-col gap-4 group">

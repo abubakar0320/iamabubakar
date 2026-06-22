@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Save, Loader2, Home, Layout, Zap, TrendingUp, Sparkles, Info, Eye, ChevronRight } from "lucide-react";
+import { Save, Loader2, Home, Layout, Zap, TrendingUp, Sparkles, Info, Eye, ChevronRight, Plus, Trash2, Brain } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -37,13 +37,33 @@ export default function AdminHomePage() {
     } finally {
       setSaving(false);
     }
+  const updateFypHighlight = (index: number, field: string, value: string) => {
+    const newList = [...settings.fypSection.highlights];
+    newList[index] = { ...newList[index], [field]: value };
+    setSettings({ ...settings, fypSection: { ...settings.fypSection, highlights: newList } });
   };
 
-  const handleStatChange = (index: number, field: string, value: string) => {
-    const newStats = [...settings.home.stats];
-    newStats[index] = { ...newStats[index], [field]: value };
-    setSettings({ ...settings, home: { ...settings.home, stats: newStats } });
+  const addFypHighlight = () => {
+    setSettings({
+      ...settings,
+      fypSection: {
+        ...settings.fypSection,
+        highlights: [...settings.fypSection.highlights, { icon: "Star", label: "New Highlight", desc: "Description here" }]
+      }
+    });
   };
+
+  const removeFypHighlight = (index: number) => {
+    setSettings({
+      ...settings,
+      fypSection: {
+        ...settings.fypSection,
+        highlights: settings.fypSection.highlights.filter((_: any, i: number) => i !== index)
+      }
+    });
+  };
+
+
 
   if (loading) {
     return (
@@ -138,55 +158,90 @@ export default function AdminHomePage() {
             </div>
           </div>
 
-          {/* Metrics Tile */}
-          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#00d4ff]/30 transition-colors duration-300">
+          {/* FYP Hub */}
+          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#00d15e]/30 transition-colors duration-300">
             <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
               <div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-[#00d4ff] mb-1">Module 2</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#00d15e] mb-1">Module 2</div>
                 <h2 className="text-base font-bold text-[#242424] dark:text-white flex items-center gap-2">
-                  Impact Metrics
+                  FYP Section
                 </h2>
               </div>
-              <TrendingUp size={16} className="text-gray-400 group-hover:text-[#00d4ff] transition-colors" />
+              <Brain size={16} className="text-gray-400 group-hover:text-[#00d15e] transition-colors" />
             </div>
-            
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {settings.home.stats.map((stat: any, index: number) => {
-                  const colors = ["text-[#00d4ff] focus:border-[#00d4ff]", "text-[#e10098] focus:border-[#e10098]", "text-[#00d15e] focus:border-[#00d15e]"];
-                  const colorClass = colors[index % colors.length];
-                  return (
-                    <div key={index} className="p-5 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 space-y-4 hover:border-gray-400 dark:hover:border-gray-500 transition-colors">
-                      <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Data Label</label>
-                        <input
-                          type="text"
-                          value={stat.label}
-                          onChange={(e) => handleStatChange(index, "label", e.target.value)}
-                          className="w-full px-3 py-2 bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 outline-none focus:border-gray-400 text-xs font-black uppercase"
-                          placeholder="e.g. PROJECTS COMPLETED"
-                        />
+            <div className="p-6 space-y-6">
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Project Title</label>
+                <input
+                  type="text"
+                  value={settings.fypSection?.title || ""}
+                  onChange={(e) => setSettings({...settings, fypSection: {...settings.fypSection, title: e.target.value}})}
+                  className="w-full px-5 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#00d15e] outline-none transition-all font-bold"
+                />
+              </div>
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Project Description</label>
+                <textarea
+                  rows={3}
+                  value={settings.fypSection?.description || ""}
+                  onChange={(e) => setSettings({...settings, fypSection: {...settings.fypSection, description: e.target.value}})}
+                  className="w-full px-5 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#00d15e] outline-none transition-all text-[13px] font-medium leading-relaxed resize-none"
+                />
+              </div>
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Tech Stack (Comma Separated)</label>
+                <input
+                  type="text"
+                  value={(settings.fypSection?.techStack || []).join(", ")}
+                  onChange={(e) => setSettings({...settings, fypSection: {...settings.fypSection, techStack: e.target.value.split(",").map((s: string) => s.trim()).filter(Boolean)}})}
+                  className="w-full px-5 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#00d15e] outline-none transition-all text-sm font-mono text-[#00d15e]"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">University Name</label>
+                  <input
+                    type="text"
+                    value={settings.fypSection?.university?.name || ""}
+                    onChange={(e) => setSettings({...settings, fypSection: {...settings.fypSection, university: {...settings.fypSection.university, name: e.target.value}}})}
+                    className="w-full px-5 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#00d15e] outline-none transition-all text-sm"
+                  />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Location</label>
+                  <input
+                    type="text"
+                    value={settings.fypSection?.university?.location || ""}
+                    onChange={(e) => setSettings({...settings, fypSection: {...settings.fypSection, university: {...settings.fypSection.university, location: e.target.value}}})}
+                    className="w-full px-5 py-3 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 focus:border-[#00d15e] outline-none transition-all text-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Highlights array */}
+              <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
+                <div className="flex justify-between items-center mb-4">
+                  <label className="text-xs font-bold text-[#242424] dark:text-white uppercase tracking-widest">Highlights</label>
+                  <button type="button" onClick={addFypHighlight} className="text-[10px] text-[#00d15e] font-black uppercase tracking-widest flex items-center gap-1 border border-[#00d15e] px-3 py-1.5 hover:bg-[#00d15e] hover:text-black transition-colors">
+                    <Plus size={12} /> Add Highlight
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {(settings.fypSection?.highlights || []).map((h: any, idx: number) => (
+                    <div key={idx} className="bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 p-4 relative group/card">
+                      <div className="space-y-3">
+                        <input type="text" value={h.icon} onChange={(e) => updateFypHighlight(idx, "icon", e.target.value)} placeholder="Icon (e.g. Brain)" className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs" />
+                        <input type="text" value={h.label} onChange={(e) => updateFypHighlight(idx, "label", e.target.value)} placeholder="Label" className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs font-bold" />
+                        <textarea value={h.desc} onChange={(e) => updateFypHighlight(idx, "desc", e.target.value)} placeholder="Description" className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-3 py-2 text-xs" rows={2} />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Node Value</label>
-                        <input
-                          type="text"
-                          value={stat.value}
-                          onChange={(e) => handleStatChange(index, "value", e.target.value)}
-                          className={cn("w-full px-3 py-2 bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 outline-none text-2xl font-black", colorClass)}
-                          placeholder="e.g. 50+"
-                        />
-                      </div>
+                      <button type="button" onClick={() => removeFypHighlight(idx)} className="absolute -top-2 -right-2 bg-red-500 text-white p-1 opacity-0 group-hover/card:opacity-100 transition-opacity"><Trash2 size={12} /></button>
                     </div>
-                  )
-                })}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Right Sidebar Control Tile */}
-        <div className="lg:col-span-4 space-y-6">
           <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800">
             <div className="p-6 bg-[#f8fafc] dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-gray-800">
               <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-800 dark:text-gray-200 flex items-center gap-2">

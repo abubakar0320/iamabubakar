@@ -39,7 +39,7 @@ export function Footer() {
         <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-[#0067b8]/10 flex items-center justify-center text-[#0067b8]">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#e10098]/20 to-[#00d4ff]/20 flex items-center justify-center text-[#e10098]">
                 <MessageSquare size={20} />
               </div>
               <div>
@@ -47,7 +47,7 @@ export function Footer() {
                 <p className="text-xs text-gray-500 font-medium">Currently accepting freelance & full-time roles.</p>
               </div>
             </div>
-            <Link href="/contact" className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-[#0067b8] text-white text-xs font-black uppercase tracking-widest px-8 py-3.5 hover:bg-[#005da6] transition-colors">
+            <Link href="/contact" className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#e10098] to-[#00d4ff] text-white text-xs font-black uppercase tracking-widest px-8 py-3.5 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all">
               Start a Conversation <ArrowRight size={14} />
             </Link>
           </div>
@@ -60,21 +60,21 @@ export function Footer() {
           {/* ── Brand Column ────────────────────────── */}
           <div className="md:col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 group shrink-0 mb-6 w-fit">
-              <div className="w-10 h-10 bg-[#0067b8] flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#e10098] via-[#5c2d91] to-[#00d4ff] flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(225,0,152,0.5)] transition-all">
                 <AbubakarLogo size={24} className="text-white" />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-white font-black tracking-tight text-xl uppercase leading-none">Abu Bakar</span>
-                <span className="text-[#0067b8] text-[9px] font-black uppercase tracking-[0.2em] leading-none mt-1">MERN Developer</span>
+                <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent text-[9px] font-black uppercase tracking-[0.2em] leading-none mt-1">MERN Developer</span>
               </div>
             </Link>
             <p className="text-xs leading-relaxed text-gray-400 font-medium mb-8 max-w-sm">
               Detail-oriented Information Technology student and Full-Stack Web Developer. Engineering high-fidelity digital assets with architectural precision. Based in Lahore, deploying globally.
             </p>
             <div className="flex gap-4">
-               <a href={settings.contact.socialLinks.github} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] hover:bg-[#0067b8]/5 transition-all"><Github size={16} /></a>
-               <a href={settings.contact.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] hover:bg-[#0067b8]/5 transition-all"><Linkedin size={16} /></a>
-               <a href={settings.contact.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] hover:bg-[#0067b8]/5 transition-all"><Twitter size={16} /></a>
+               <a href={settings.contact.socialLinks.github} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Github size={16} /></a>
+               <a href={settings.contact.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Linkedin size={16} /></a>
+               <a href={settings.contact.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Twitter size={16} /></a>
                <a href={settings.contact.socialLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#107c10] hover:text-[#107c10] hover:bg-[#107c10]/5 transition-all"><MessageSquare size={16} /></a>
             </div>
           </div>
@@ -82,7 +82,7 @@ export function Footer() {
           {/* ── Links Columns ───────────────────────── */}
           <div className="space-y-4">
             <h3 className="text-white text-[10px] font-black uppercase tracking-[0.15em] mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 bg-[#0067b8]" /> Explore
+              <span className="w-2 h-2 bg-[#00d4ff]" /> Explore
             </h3>
             <ul className="space-y-3.5">
               <li><Link href="/" className="text-xs font-medium text-gray-400 hover:text-white transition-colors">Home</Link></li>
@@ -94,7 +94,7 @@ export function Footer() {
           
           <div className="space-y-4">
             <h3 className="text-white text-[10px] font-black uppercase tracking-[0.15em] mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 bg-[#0067b8]" /> Services
+              <span className="w-2 h-2 bg-[#e10098]" /> Services
             </h3>
             <ul className="space-y-3.5">
               <li><Link href="/services" className="text-xs font-medium text-gray-400 hover:text-white transition-colors">MERN Stack Apps</Link></li>
@@ -107,12 +107,12 @@ export function Footer() {
           {/* ── Contact Column ──────────────────────── */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="text-white text-[10px] font-black uppercase tracking-[0.15em] mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 bg-[#0067b8]" /> Contact
+              <span className="w-2 h-2 bg-[#5c2d91]" /> Contact
             </h3>
             <ul className="space-y-4">
                <li>
                  <a href={`mailto:${settings.contact.email}`} className="flex items-start gap-3 group">
-                   <Mail size={16} className="text-gray-500 group-hover:text-[#0067b8] shrink-0 mt-0.5 transition-colors" />
+                   <Mail size={16} className="text-gray-500 group-hover:text-[#00d4ff] shrink-0 mt-0.5 transition-colors" />
                    <div>
                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-0.5">Email</p>
                      <p className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">{settings.contact.email}</p>
@@ -121,7 +121,7 @@ export function Footer() {
                </li>
                <li>
                  <a href={`tel:${settings.contact.phone.replace(/\s/g, "")}`} className="flex items-start gap-3 group">
-                   <Phone size={16} className="text-gray-500 group-hover:text-[#0067b8] shrink-0 mt-0.5 transition-colors" />
+                   <Phone size={16} className="text-gray-500 group-hover:text-[#00d15e] shrink-0 mt-0.5 transition-colors" />
                    <div>
                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-0.5">Phone / WhatsApp</p>
                      <p className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">{settings.contact.phone}</p>
@@ -130,7 +130,7 @@ export function Footer() {
                </li>
                <li>
                  <div className="flex items-start gap-3 group">
-                   <MapPin size={16} className="text-gray-500 group-hover:text-[#0067b8] shrink-0 mt-0.5 transition-colors" />
+                   <MapPin size={16} className="text-gray-500 group-hover:text-[#e10098] shrink-0 mt-0.5 transition-colors" />
                    <div>
                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-0.5">Location</p>
                      <p className="text-xs font-medium text-gray-300">{settings.contact.location}</p>
@@ -153,7 +153,7 @@ export function Footer() {
             <span className="opacity-50">|</span>
             <span>© Abubakar {currentYear}</span>
             <span className="opacity-50">|</span>
-            <span className="text-[#0067b8]">Built with Next.js</span>
+            <span className="text-transparent bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text">Built with Next.js</span>
           </div>
         </div>
       </div>

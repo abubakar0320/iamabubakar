@@ -11,7 +11,6 @@ import {
   Network, Palette, GraduationCap, Star, Plus, Minus
 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
-import { pricingPlans, faqs } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 // ─── Static "Why Me" cards ──────────────────────────────────────────────────
@@ -97,6 +96,11 @@ export default function ServicesPage() {
   const filteredCategories = activeCategory
     ? activeCategories.filter((c) => c === activeCategory)
     : activeCategories;
+
+  const dbWhyCards = settings?.servicesPage?.whyCards || whyCards;
+  const dbProcessSteps = settings?.servicesPage?.processSteps || processSteps;
+  const dbPricingPlans = settings?.servicesPage?.pricingPlans || [];
+  const dbFaqs = settings?.servicesPage?.faqs || [];
 
   return (
     <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
@@ -329,7 +333,7 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step, i) => (
+            {dbProcessSteps.map((step: any, i: number) => (
               <motion.div
                 key={step.step}
                 initial={{ opacity: 0, y: 16 }}
@@ -368,7 +372,9 @@ export default function ServicesPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyCards.map((card, i) => (
+            {dbWhyCards.map((card: any, i: number) => {
+              const IconComp = (LucideIcons as any)[card.icon || "Star"] || LucideIcons.Star;
+              return (
               <motion.div
                 key={card.title}
                 initial={{ opacity: 0, y: 12 }}
@@ -378,7 +384,7 @@ export default function ServicesPage() {
                 className="flex items-start gap-5 p-6 bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group"
               >
                 <div className="w-11 h-11 shrink-0 bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#0067b8] group-hover:bg-[#0067b8] group-hover:text-white transition-colors">
-                  <card.icon size={20} />
+                  <IconComp size={20} />
                 </div>
                 <div>
                   <h3 className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1 group-hover:text-[#0067b8] transition-colors">
@@ -389,7 +395,7 @@ export default function ServicesPage() {
                   </p>
                 </div>
               </motion.div>
-            ))}
+            );})}
           </div>
         </div>
       </section>
@@ -409,7 +415,7 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {pricingPlans.map((plan, index) => (
+            {dbPricingPlans.map((plan: any, index: number) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 10 }}
@@ -440,7 +446,7 @@ export default function ServicesPage() {
                     {plan.description}
                   </p>
                   <div className="space-y-3 mb-10 flex-1">
-                    {plan.features.map((f) => (
+                    {plan.features?.map((f: string) => (
                       <div key={f} className="flex items-center gap-3 text-xs font-bold uppercase tracking-tight">
                         <Check size={13} className={plan.recommended ? "text-white shrink-0" : "text-[#0067b8] shrink-0"} />
                         {f}
@@ -491,7 +497,7 @@ export default function ServicesPage() {
             </div>
             {/* Accordion */}
             <div className="flex-1 divide-y divide-gray-100 dark:divide-gray-800">
-              {faqs.map((faq, index) => (
+              {dbFaqs.map((faq: any, index: number) => (
                 <div key={index}>
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}

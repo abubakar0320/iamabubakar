@@ -14,14 +14,14 @@ import {
 import { Github, Linkedin, Twitter } from "@/components/Icons";
 
 // ─── Static Data ─────────────────────────────────────────────────────────────
-const contactMethods = [
+const contactMethodsTemplate = [
   {
     icon: Mail,
     label: "Email",
     value: "abubakr.bgnu@gmail.com",
     href: "mailto:abubakr.bgnu@gmail.com",
     desc: "Best for project inquiries",
-    color: "#0067b8",
+    color: "#00d4ff",
   },
   {
     icon: Phone,
@@ -29,7 +29,7 @@ const contactMethods = [
     value: "(+92) 309-7354874",
     href: "tel:+923097354874",
     desc: "Available 9am – 9pm PKT",
-    color: "#107c10",
+    color: "#00d15e",
   },
   {
     icon: MapPin,
@@ -37,15 +37,15 @@ const contactMethods = [
     value: "Mananwala, Sheikhupura, Pakistan",
     href: "https://maps.google.com/?q=Mananwala+Sheikhupura+Pakistan",
     desc: "Available globally (remote)",
-    color: "#d83b01",
+    color: "#ff4d4d",
   },
   {
     icon: Globe,
     label: "Website",
-    value: "iamabubakar.site",
-    href: "https://iamabubakar.site",
+    value: "iamabubakar.com",
+    href: "https://iamabubakar.com",
     desc: "Portfolio & live projects",
-    color: "#5c2d91",
+    color: "#e10098",
   },
 ];
 
@@ -125,7 +125,7 @@ function ContactForm({ settings }: { settings: any }) {
   return (
     <div className="bg-white dark:bg-[#1a1a1a] p-8 md:p-12 border border-gray-200 dark:border-gray-800 h-full">
       <div className="mb-8 space-y-2">
-        <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Get In Touch</div>
+        <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest">Get In Touch</div>
         <h3 className="text-2xl font-semibold uppercase tracking-tight text-[#242424] dark:text-white">
           Send a Message
         </h3>
@@ -143,7 +143,7 @@ function ContactForm({ settings }: { settings: any }) {
             <input
               type="text" id="name" required value={formData.name} onChange={handleChange}
               placeholder="Abu Bakar Siddique"
-              className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#0067b8] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium"
+              className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#00d4ff] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium"
             />
           </div>
           <div className="space-y-1.5">
@@ -153,7 +153,7 @@ function ContactForm({ settings }: { settings: any }) {
             <input
               type="email" id="email" required value={formData.email} onChange={handleChange}
               placeholder="you@example.com"
-              className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#0067b8] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium"
+              className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#00d4ff] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium"
             />
           </div>
         </div>
@@ -165,7 +165,7 @@ function ContactForm({ settings }: { settings: any }) {
           <select
             id="subject" required value={formData.subject}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#0067b8] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium appearance-none"
+            className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#00d4ff] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium appearance-none"
           >
             <option value="">Select a topic...</option>
             <option value="MERN Web Development">MERN Web Development</option>
@@ -184,7 +184,7 @@ function ContactForm({ settings }: { settings: any }) {
           <textarea
             id="message" required rows={6} value={formData.message} onChange={handleChange}
             placeholder="Tell me about your project, requirements, or timeline..."
-            className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#0067b8] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium resize-none leading-relaxed"
+            className="w-full px-4 py-3 bg-[#f7f7f7] dark:bg-[#111] border border-gray-200 dark:border-gray-700 focus:border-[#00d4ff] focus:bg-white dark:focus:bg-[#1a1a1a] outline-none transition-all text-sm font-medium resize-none leading-relaxed"
           />
         </div>
 
@@ -194,7 +194,7 @@ function ContactForm({ settings }: { settings: any }) {
           </p>
           <button
             type="submit" disabled={loading}
-            className="w-full sm:w-auto bg-[#0067b8] text-white font-black py-3.5 px-10 hover:bg-[#005da6] transition-all flex items-center justify-center gap-3 disabled:opacity-60 uppercase text-xs tracking-widest"
+            className="w-full sm:w-auto bg-gradient-to-r from-[#e10098] to-[#00d4ff] text-white font-black py-3.5 px-10 hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all flex items-center justify-center gap-3 disabled:opacity-60 uppercase text-xs tracking-widest"
           >
             {loading ? <Loader2 className="animate-spin" size={16} /> : <Send size={16} />}
             {loading ? "Sending..." : "Send Message"}
@@ -218,10 +218,17 @@ export default function ContactPage() {
   if (!settings) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#111]">
-        <Loader2 className="animate-spin h-12 w-12 text-[#0067b8]" />
+        <Loader2 className="animate-spin h-12 w-12 text-[#e10098]" />
       </div>
     );
   }
+
+  const contactMethods = [
+    { ...contactMethodsTemplate[0], value: settings.contact.email, href: `mailto:${settings.contact.email}` },
+    { ...contactMethodsTemplate[1], value: settings.contact.phone, href: `tel:${settings.contact.phone.replace(/\s/g, "")}` },
+    { ...contactMethodsTemplate[2], value: settings.contact.location, href: `https://maps.google.com/?q=${encodeURIComponent(settings.contact.location)}` },
+    contactMethodsTemplate[3],
+  ];
 
   return (
     <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
@@ -236,21 +243,21 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d0d] via-[#0d0d0d]/80 to-transparent z-10" />
         <div className="relative z-20 max-w-[1600px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-2xl">
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest mb-4">Let's Talk</div>
+            <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest mb-4">Let's Talk</div>
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-5 leading-tight">
-              Contact <span className="text-[#0067b8]">Me</span>
+              Contact <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Me</span>
             </h1>
             <p className="text-sm md:text-lg text-gray-300 leading-relaxed mb-8 max-w-xl">
               Have a project in mind? Need FYP help? Or just want to say hello?
               I respond to every message — usually within an hour.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="mailto:abubakr.bgnu@gmail.com"
-                className="inline-flex items-center gap-2 bg-[#0067b8] text-white font-bold px-6 py-3 hover:bg-[#005da6] transition-colors text-sm uppercase tracking-widest">
+              <a href={`mailto:${settings.contact.email}`}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e10098] to-[#00d4ff] text-white font-bold px-6 py-3 hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all text-sm uppercase tracking-widest">
                 <Mail size={15} /> Email Me
               </a>
               <a href={settings?.contact?.socialLinks?.whatsapp || "#"} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-white/30 text-white font-bold px-6 py-3 hover:border-[#0067b8] hover:text-[#0067b8] transition-colors text-sm uppercase tracking-widest">
+                className="inline-flex items-center gap-2 border border-white/30 text-white font-bold px-6 py-3 hover:border-[#00d15e] hover:text-[#00d15e] transition-colors text-sm uppercase tracking-widest">
                 <MessageSquare size={15} /> WhatsApp
               </a>
             </div>
@@ -261,8 +268,9 @@ export default function ContactPage() {
       {/* ══════════════════════════════════════════
           2. RESPONSE STATS BAR
           ══════════════════════════════════════════ */}
-      <section className="bg-[#0067b8] py-5 px-4 md:px-12 xl:px-20">
-        <div className="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-white">
+      <section className="bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] py-5 px-4 md:px-12 xl:px-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+        <div className="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-white relative z-10">
           {responseInfo.map((r, i) => (
             <motion.div key={r.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.07 }}
               className="flex items-center gap-3">
@@ -282,9 +290,9 @@ export default function ContactPage() {
       <section className="py-16 md:py-20 px-4 md:px-12 xl:px-20 bg-[#f2f2f2] dark:bg-[#0d0d0d] border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-[1600px] mx-auto">
           <div className="mb-12 space-y-2">
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Reach Out</div>
+            <div className="text-xs font-black uppercase text-[#e10098] tracking-widest">Reach Out</div>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
-              Contact <span className="text-[#0067b8]">Methods</span>
+              Contact <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Methods</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -294,13 +302,13 @@ export default function ContactPage() {
                 initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-all p-7 flex flex-col gap-4 overflow-hidden">
-                <div className="w-12 h-12 flex items-center justify-center text-white transition-transform group-hover:scale-110"
-                  style={{ backgroundColor: m.color }}>
+                <div className="w-12 h-12 flex items-center justify-center text-white transition-transform group-hover:scale-110 shadow-lg"
+                  style={{ backgroundColor: m.color, boxShadow: `0 0 15px ${m.color}80` }}>
                   <m.icon size={22} />
                 </div>
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">{m.label}</div>
-                  <div className="text-sm font-bold text-[#242424] dark:text-white group-hover:text-[#0067b8] transition-colors leading-snug break-all">{m.value}</div>
+                  <div className="text-sm font-bold text-[#242424] dark:text-white transition-colors leading-snug break-all" style={{ color: m.color }}>{m.value}</div>
                   <div className="text-xs text-[#505050] dark:text-gray-400 font-medium mt-1">{m.desc}</div>
                 </div>
                 <div className="mt-auto flex items-center gap-1 text-[10px] font-black uppercase tracking-widest" style={{ color: m.color }}>
@@ -338,30 +346,30 @@ export default function ContactPage() {
                 <div className="space-y-3 pt-2 border-t border-gray-200 dark:border-gray-700">
                   {["Internship", "Freelance", "Part-time", "Full-time"].map((t) => (
                     <div key={t} className="flex items-center gap-2 text-xs font-bold text-[#505050] dark:text-gray-400 uppercase tracking-widest">
-                      <CheckCircle size={13} className="text-[#0067b8]" /> {t}
+                      <CheckCircle size={13} className="text-[#00d15e]" /> {t}
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Quick info */}
-              <div className="bg-[#0067b8] p-7 text-white space-y-5">
+              <div className="bg-gradient-to-br from-[#5c2d91] to-[#00d4ff] p-7 text-white space-y-5 shadow-[0_0_20px_rgba(0,212,255,0.2)]">
                 <h4 className="text-base font-black uppercase tracking-tight">Quick Facts</h4>
                 <div className="space-y-3">
                   {[
-                    { label: "Location", val: "Mananwala, Sheikhupura" },
+                    { label: "Location", val: settings.contact.location },
                     { label: "University", val: "BGNU — BSIT" },
                     { label: "CGPA", val: "3.42 / 4.00" },
                     { label: "Response Time", val: "< 1 hour" },
                   ].map((f) => (
                     <div key={f.label} className="flex items-center justify-between text-xs border-b border-white/15 pb-2">
                       <span className="font-bold text-blue-100 uppercase tracking-widest">{f.label}</span>
-                      <span className="font-black">{f.val}</span>
+                      <span className="font-black text-right max-w-[120px]">{f.val}</span>
                     </div>
                   ))}
                 </div>
                 <a href={settings?.contact?.socialLinks?.whatsapp || "#"} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-white text-[#0067b8] font-black text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors">
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-white text-[#5c2d91] font-black text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors">
                   <MessageSquare size={14} /> WhatsApp Me
                 </a>
               </div>
@@ -376,8 +384,8 @@ export default function ContactPage() {
                     { href: settings?.contact?.socialLinks?.twitter, Icon: Twitter, label: "Twitter" },
                   ].map(({ href, Icon, label }) => (
                     <a key={label} href={href || "#"} target="_blank" rel="noopener noreferrer"
-                      className="flex flex-col items-center gap-1.5 text-gray-400 hover:text-[#0067b8] transition-colors group">
-                      <div className="w-10 h-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center group-hover:border-[#0067b8] transition-colors">
+                      className="flex flex-col items-center gap-1.5 text-gray-400 hover:text-[#e10098] transition-colors group">
+                      <div className="w-10 h-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center group-hover:border-[#e10098] transition-colors">
                         <Icon size={16} />
                       </div>
                       <span className="text-[9px] font-black uppercase tracking-widest">{label}</span>
@@ -386,10 +394,9 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* CV Download */}
               {settings?.contact?.cvUrl && (
                 <a href={settings.contact.cvUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#242424] dark:bg-white text-white dark:text-[#242424] font-black text-xs uppercase tracking-widest hover:bg-[#0067b8] dark:hover:bg-[#0067b8] dark:hover:text-white transition-colors border border-transparent">
+                  className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#242424] dark:bg-white text-white dark:text-[#242424] font-black text-xs uppercase tracking-widest hover:bg-[#00d4ff] dark:hover:bg-[#00d4ff] dark:hover:text-black transition-colors border border-transparent hover:shadow-[0_0_15px_rgba(0,212,255,0.4)]">
                   <Download size={15} /> Download My CV
                 </a>
               )}
@@ -415,27 +422,27 @@ export default function ContactPage() {
       <section className="py-16 md:py-20 px-4 md:px-12 xl:px-20 bg-[#f2f2f2] dark:bg-[#0d0d0d] border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-[1600px] mx-auto">
           <div className="mb-12 space-y-2">
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Services</div>
+            <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest">Services</div>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
-              What I Can <span className="text-[#0067b8]">Help With</span>
+              What I Can <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Help With</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {quickServices.map((s, i) => (
               <motion.div key={s.title} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors p-7 group">
-                <div className="w-11 h-11 mb-5 bg-[#0067b8] flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-7 group">
+                <div className="w-11 h-11 mb-5 bg-gradient-to-br from-[#e10098] to-[#00d4ff] flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(0,212,255,0.3)]">
                   <s.icon size={20} />
                 </div>
-                <h3 className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-2 group-hover:text-[#0067b8] transition-colors">{s.title}</h3>
+                <h3 className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-2 group-hover:text-[#00d4ff] transition-colors">{s.title}</h3>
                 <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">{s.desc}</p>
               </motion.div>
             ))}
           </div>
           <div className="mt-8 text-center">
             <Link href="/services"
-              className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-[#0067b8] hover:underline underline-offset-4">
+              className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors">
               View All Services <ChevronRight size={14} />
             </Link>
           </div>
@@ -448,28 +455,28 @@ export default function ContactPage() {
       <section className="py-16 px-4 md:px-12 xl:px-20 bg-white dark:bg-[#111] border-t border-gray-100 dark:border-gray-800">
         <div className="max-w-[1600px] mx-auto">
           <div className="mb-10 space-y-2">
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Location</div>
+            <div className="text-xs font-black uppercase text-[#ff4d4d] tracking-widest">Location</div>
             <h2 className="text-3xl font-semibold uppercase tracking-tight text-[#242424] dark:text-white">
-              Where I'm <span className="text-[#0067b8]">Based</span>
+              Where I'm <span className="text-[#ff4d4d]">Based</span>
             </h2>
           </div>
           <div className="relative h-[300px] md:h-[380px] bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 overflow-hidden flex items-center justify-center group">
             {/* Dot grid pattern */}
             <div className="absolute inset-0 opacity-20"
-              style={{ backgroundImage: "radial-gradient(circle, #0067b8 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+              style={{ backgroundImage: "radial-gradient(circle, #ff4d4d 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
             <div className="relative z-10 flex flex-col items-center text-center gap-5 px-6">
-              <div className="w-16 h-16 bg-[#0067b8] flex items-center justify-center text-white shadow-xl shadow-blue-500/30">
+              <div className="w-16 h-16 bg-[#ff4d4d] flex items-center justify-center text-white shadow-xl shadow-red-500/30">
                 <MapPin size={28} />
               </div>
               <div>
                 <h3 className="text-2xl font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1">
-                  Mananwala, Sheikhupura
+                  {settings.contact.location}
                 </h3>
-                <p className="text-sm font-bold text-[#0067b8] uppercase tracking-widest">Punjab, Pakistan 🇵🇰</p>
+                <p className="text-sm font-bold text-[#ff4d4d] uppercase tracking-widest">Pakistan 🇵🇰</p>
                 <p className="text-xs text-[#505050] dark:text-gray-400 font-medium mt-2">Available for remote work globally</p>
               </div>
-              <a href="https://maps.google.com/?q=Mananwala+Sheikhupura+Pakistan" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#0067b8] text-white font-black text-xs uppercase tracking-widest px-6 py-2.5 hover:bg-[#005da6] transition-colors">
+              <a href={`https://maps.google.com/?q=${encodeURIComponent(settings.contact.location)}`} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#ff4d4d] text-white font-black text-xs uppercase tracking-widest px-6 py-2.5 hover:bg-[#cc0000] transition-colors">
                 <ExternalLink size={12} /> Open in Google Maps
               </a>
             </div>
@@ -480,8 +487,9 @@ export default function ContactPage() {
       {/* ══════════════════════════════════════════
           7. FINAL CTA SECTION
           ══════════════════════════════════════════ */}
-      <section className="py-20 px-4 md:px-12 xl:px-20 bg-[#0067b8]">
-        <div className="max-w-[1600px] mx-auto text-center text-white space-y-6">
+      <section className="py-20 px-4 md:px-12 xl:px-20 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+        <div className="max-w-[1600px] mx-auto text-center text-white space-y-6 relative z-10">
           <h2 className="text-3xl md:text-4xl font-semibold uppercase tracking-tight">
             Don't Wait — Let's Build Together
           </h2>
@@ -490,13 +498,13 @@ export default function ContactPage() {
             turn your idea into a live, working product.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a href="mailto:abubakr.bgnu@gmail.com"
-              className="inline-flex items-center gap-2 bg-white text-[#0067b8] font-black px-8 py-3.5 hover:bg-[#f2f2f2] transition-colors uppercase tracking-widest text-sm">
-              <Mail size={15} /> abubakr.bgnu@gmail.com
+            <a href={`mailto:${settings.contact.email}`}
+              className="inline-flex items-center gap-2 bg-white text-[#5c2d91] font-black px-8 py-3.5 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-sm">
+              <Mail size={15} /> {settings.contact.email}
             </a>
-            <a href="tel:+923097354874"
+            <a href={`tel:${settings.contact.phone.replace(/\s/g, "")}`}
               className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-6 py-3.5 hover:border-white transition-colors text-sm uppercase tracking-widest">
-              <Phone size={15} /> (+92) 309-7354874
+              <Phone size={15} /> {settings.contact.phone}
             </a>
           </div>
         </div>

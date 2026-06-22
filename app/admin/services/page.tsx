@@ -83,6 +83,11 @@ export default function ServicesListPage() {
           </p>
         </div>
         <div className="relative z-10 flex gap-3">
+          <Link href="/admin/services/settings">
+            <button className="bg-transparent border border-white text-white font-bold py-3 px-6 hover:bg-white hover:text-[#5c2d91] transition-all flex items-center gap-2 uppercase text-xs tracking-widest text-nowrap">
+               Settings
+            </button>
+          </Link>
           <Link href="/admin/services/new">
             <button className="bg-white text-[#5c2d91] font-bold py-3 px-6 hover:bg-gray-100 transition-all flex items-center gap-2 shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_5px_25px_rgba(255,255,255,0.3)] uppercase text-xs tracking-widest text-nowrap">
               <Plus size={16} /> New Node

@@ -25,78 +25,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-// ─── GitHub Live Repos (abubakar0320) ──────────────────────────────────────
-const githubProjects = [
-  {
-    id: "gh-1",
-    name: "iamabubakar",
-    displayTitle: "Personal Portfolio Website",
-    description:
-      "A full-featured personal portfolio website built with Next.js, TypeScript, Node.js, and MongoDB. Includes admin panel, project showcase, services, contact form, and SEO optimization.",
-    tech: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
-    category: "Full Stack",
-    github: "https://github.com/abubakar0320/iamabubakar",
-    live: "https://iamabubakar.site",
-    stars: 0,
-    language: "TypeScript",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1469&auto=format&fit=crop",
-    featured: true,
-  },
-  {
-    id: "gh-2",
-    name: "jamia_shar_e_rabbani",
-    displayTitle: "Jamia Share Rabbani — Institutional Website",
-    description:
-      "Modern institutional website for Jamia Share Rabbani, built with React.js and TypeScript. Responsive UI with accessible navigation, mobile-first design, and fast performance.",
-    tech: ["React.js", "TypeScript", "CSS3", "Vercel"],
-    category: "Frontend",
-    github: "https://github.com/abubakar0320/jamia_shar_e_rabbani",
-    live: "https://jamiashererabbani.com",
-    stars: 0,
-    language: "TypeScript",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1470&auto=format&fit=crop",
-    featured: true,
-  },
-  {
-    id: "gh-3",
-    name: "Clothes",
-    displayTitle: "Clothes Store — PHP E-Commerce",
-    description:
-      "PHP-based e-commerce web application for a clothing store. Includes product listings, cart system, and basic admin panel for inventory management.",
-    tech: ["PHP", "MySQL", "HTML5", "CSS3"],
-    category: "PHP",
-    github: "https://github.com/abubakar0320/Clothes",
-    live: null,
-    stars: 0,
-    language: "PHP",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1470&auto=format&fit=crop",
-    featured: false,
-  },
-];
-
-const categoryIcons: Record<string, React.ElementType> = {
-  "Full Stack": Cpu,
-  "Frontend": LayoutGrid,
-  "PHP": Terminal,
-  "React": Code2,
-};
-
-const allCategories = ["All", "Full Stack", "Frontend", "PHP"];
-
-const techColors: Record<string, string> = {
-  "Next.js": "#000000",
-  "React.js": "#61dafb",
-  "TypeScript": "#3178c6",
-  "JavaScript": "#f7df1e",
-  "Node.js": "#68a063",
-  "MongoDB": "#47a248",
-  "Express.js": "#000000",
-  "PHP": "#777bb4",
-  "MySQL": "#4479a1",
-  "HTML5": "#e34f26",
-  "CSS3": "#1572b6",
-};
-
 // ─── Stat items ─────────────────────────────────────────────────────────────
 const pageStats = [
   { label: "Total Projects", value: "3+", icon: FileCode },
@@ -137,11 +65,18 @@ export default function ProjectsPage() {
     featured: true // DB projects are featured by default
   }));
 
-  // Merge GitHub projects + DB projects (DB takes priority if same title)
-  const dbTitles = formattedDbProjects.map((p: any) => p.displayTitle.toLowerCase());
-  const staticProjectsFiltered = githubProjects.filter((p: any) => !dbTitles.includes(p.displayTitle.toLowerCase()));
-  
-  const allProjects = [...formattedDbProjects, ...staticProjectsFiltered];
+  const allProjects = formattedDbProjects;
+
+  const categoriesSet = new Set(allProjects.map(p => p.category));
+  const allCategories = ["All", ...Array.from(categoriesSet)];
+
+  const categoryIcons: Record<string, React.ElementType> = {
+    "Full Stack": Cpu,
+    "Frontend": LayoutGrid,
+    "PHP": Terminal,
+    "React": Code2,
+    "All": FileCode
+  };
 
   const filtered = allProjects.filter((p) => {
     const matchCat = filter === "All" || p.category === filter;
@@ -157,7 +92,7 @@ export default function ProjectsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#111]">
-        <Loader2 className="animate-spin h-12 w-12 text-[#0067b8]" />
+        <Loader2 className="animate-spin h-12 w-12 text-[#e10098]" />
       </div>
     );
   }
@@ -187,9 +122,9 @@ export default function ProjectsPage() {
             transition={{ duration: 0.6 }}
             className="max-w-2xl"
           >
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest mb-4">Portfolio</div>
+            <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest mb-4">Portfolio</div>
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6 leading-tight">
-              Project <span className="text-[#0067b8]">Showcase</span>
+              Project <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Showcase</span>
             </h1>
             <p className="text-sm md:text-lg text-gray-300 leading-relaxed mb-8 max-w-xl">
               Real-world projects built with modern technology — from institutional websites
@@ -199,7 +134,7 @@ export default function ProjectsPage() {
               href="https://github.com/abubakar0320"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#0067b8] text-white font-bold px-6 py-3 hover:bg-[#005da6] transition-colors text-sm uppercase tracking-widest"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e10098] to-[#00d4ff] text-white font-bold px-6 py-3 hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all text-sm uppercase tracking-widest"
             >
               <GithubIcon size={16} /> View GitHub Profile
             </a>
@@ -210,8 +145,9 @@ export default function ProjectsPage() {
       {/* ══════════════════════════════════════════
           STATS BAR
           ══════════════════════════════════════════ */}
-      <section className="bg-[#0067b8] py-8 px-4 md:px-12 xl:px-20">
-        <div className="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-white">
+      <section className="bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] py-8 px-4 md:px-12 xl:px-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+        <div className="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-white relative z-10">
           {pageStats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -237,16 +173,16 @@ export default function ProjectsPage() {
         <div className="max-w-[1600px] mx-auto">
           <div className="flex items-end justify-between mb-12 gap-4">
             <div className="space-y-2">
-              <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Highlighted Work</div>
+              <div className="text-xs font-black uppercase text-[#e10098] tracking-widest">Highlighted Work</div>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
-                Featured <span className="text-[#0067b8]">Projects</span>
+                Featured <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Projects</span>
               </h2>
             </div>
             <a
               href="https://github.com/abubakar0320"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#0067b8] hover:underline"
+              className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors"
             >
               <GithubIcon size={14} /> All Repos
             </a>
@@ -260,7 +196,7 @@ export default function ProjectsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-all flex flex-col overflow-hidden"
+                className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#e10098] dark:hover:border-[#e10098] transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-[0_0_15px_rgba(225,0,152,0.15)]"
               >
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
@@ -272,7 +208,7 @@ export default function ProjectsPage() {
                     sizes="(max-width: 1024px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-[#0067b8] text-white text-[10px] font-black uppercase tracking-widest">
+                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-[#e10098] to-[#00d4ff] text-white text-[10px] font-black uppercase tracking-widest">
                     {p.category}
                   </div>
                   {p.live && (
@@ -284,7 +220,7 @@ export default function ProjectsPage() {
 
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-lg font-bold text-[#242424] dark:text-white mb-2 group-hover:text-[#0067b8] transition-colors leading-snug">
+                  <h3 className="text-lg font-bold text-[#242424] dark:text-white mb-2 group-hover:text-[#e10098] transition-colors leading-snug">
                     {p.displayTitle}
                   </h3>
                   <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed mb-4 flex-1 line-clamp-3">
@@ -310,7 +246,7 @@ export default function ProjectsPage() {
                         href={p.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#0067b8] hover:underline"
+                        className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors"
                       >
                         <ExternalLink size={12} /> Live Site
                       </a>
@@ -319,7 +255,7 @@ export default function ProjectsPage() {
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#0067b8] dark:hover:text-[#4da3ff]"
+                      className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#00d4ff]"
                     >
                       <GithubIcon size={12} /> Source Code
                     </a>
@@ -344,9 +280,9 @@ export default function ProjectsPage() {
 
           {/* Section header */}
           <div className="mb-12 space-y-2">
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">All Work</div>
+            <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest">All Work</div>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase text-[#242424] dark:text-white">
-              Complete <span className="text-[#0067b8]">Portfolio</span>
+              Complete <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Portfolio</span>
             </h2>
           </div>
 
@@ -363,8 +299,8 @@ export default function ProjectsPage() {
                     className={cn(
                       "flex items-center gap-2 px-4 py-2 text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap border",
                       filter === cat
-                        ? "bg-[#0067b8] text-white border-[#0067b8]"
-                        : "bg-transparent text-[#505050] dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-[#0067b8] hover:text-[#0067b8]"
+                        ? "bg-gradient-to-r from-[#e10098] to-[#00d4ff] text-white border-transparent"
+                        : "bg-transparent text-[#505050] dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-[#00d4ff] hover:text-[#00d4ff]"
                     )}
                   >
                     {cat !== "All" && <Icon size={12} />}
@@ -382,12 +318,12 @@ export default function ProjectsPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search projects or tech..."
-                className="w-full pl-9 pr-4 py-2.5 text-sm bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 text-[#242424] dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#0067b8] transition-colors"
+                className="w-full pl-9 pr-4 py-2.5 text-sm bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 text-[#242424] dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#00d4ff] transition-colors"
               />
             </div>
 
             <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-gray-400 shrink-0">
-              <Zap size={13} className="text-[#0067b8]" />
+              <Zap size={13} className="text-[#e10098]" />
               {filtered.length} Projects Found
             </div>
           </div>
@@ -403,7 +339,7 @@ export default function ProjectsPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ duration: 0.25 }}
-                  className="group flex flex-col bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-all overflow-hidden"
+                  className="group flex flex-col bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-all overflow-hidden"
                 >
                   {/* Image */}
                   <div className="relative aspect-video overflow-hidden">
@@ -414,7 +350,7 @@ export default function ProjectsPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
-                    <div className="absolute top-2 left-2 px-2 py-0.5 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-sm text-[10px] font-black uppercase tracking-widest text-[#0067b8]">
+                    <div className="absolute top-2 left-2 px-2 py-0.5 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-sm text-[10px] font-black uppercase tracking-widest text-[#e10098]">
                       {p.category}
                     </div>
                     {p.live && (
@@ -424,7 +360,7 @@ export default function ProjectsPage() {
 
                   {/* Content */}
                   <div className="p-5 flex flex-col flex-1">
-                    <h3 className="text-base font-bold text-[#242424] dark:text-white mb-2 group-hover:text-[#0067b8] transition-colors leading-snug line-clamp-2">
+                    <h3 className="text-base font-bold text-[#242424] dark:text-white mb-2 group-hover:text-[#00d4ff] transition-colors leading-snug line-clamp-2">
                       {p.displayTitle}
                     </h3>
                     <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed mb-4 flex-1 line-clamp-3">
@@ -450,7 +386,7 @@ export default function ProjectsPage() {
                           href={p.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-[#0067b8] hover:underline"
+                          className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors"
                         >
                           <ExternalLink size={11} /> Live
                         </a>
@@ -461,7 +397,7 @@ export default function ProjectsPage() {
                         href={p.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#0067b8] ml-auto"
+                        className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#00d4ff] ml-auto"
                       >
                         <GithubIcon size={11} /> Code
                       </a>
@@ -480,7 +416,7 @@ export default function ProjectsPage() {
               </p>
               <button
                 onClick={() => { setFilter("All"); setSearch(""); }}
-                className="text-[#0067b8] font-black uppercase text-xs hover:underline tracking-widest"
+                className="text-transparent bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text font-black uppercase text-xs hover:opacity-80 tracking-widest"
               >
                 Reset Filters
               </button>
@@ -496,9 +432,9 @@ export default function ProjectsPage() {
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-10 md:p-14">
             <div className="space-y-3 max-w-xl">
-              <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Open Source</div>
+              <div className="text-xs font-black uppercase text-[#e10098] tracking-widest">Open Source</div>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">
-                See More on <span className="text-[#0067b8]">GitHub</span>
+                See More on <span className="text-transparent bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text">GitHub</span>
               </h2>
               <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
                 All projects are open source and available on GitHub. Explore the source code,
@@ -516,7 +452,7 @@ export default function ProjectsPage() {
               href="https://github.com/abubakar0320"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#242424] dark:bg-white text-white dark:text-[#242424] font-black px-8 py-4 hover:bg-[#0067b8] dark:hover:bg-[#0067b8] dark:hover:text-white transition-colors uppercase tracking-widest text-sm shrink-0"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#e10098] to-[#00d4ff] text-white font-black px-8 py-4 hover:shadow-[0_0_15px_rgba(225,0,152,0.4)] transition-all uppercase tracking-widest text-sm shrink-0"
             >
               <GithubIcon size={18} /> github.com/abubakar0320
             </a>
@@ -527,8 +463,9 @@ export default function ProjectsPage() {
       {/* ══════════════════════════════════════════
           CONTACT CTA
           ══════════════════════════════════════════ */}
-      <section className="py-20 px-4 md:px-12 xl:px-20 bg-[#0067b8]">
-        <div className="max-w-[1600px] mx-auto text-center text-white space-y-6">
+      <section className="py-20 px-4 md:px-12 xl:px-20 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+        <div className="max-w-[1600px] mx-auto text-center text-white space-y-6 relative z-10">
           <h2 className="text-3xl md:text-4xl font-semibold uppercase tracking-tight">
             Have a Project in Mind?
           </h2>
@@ -538,7 +475,7 @@ export default function ProjectsPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#0067b8] font-black px-8 py-3.5 hover:bg-[#f2f2f2] transition-colors uppercase tracking-widest text-sm"
+            className="inline-flex items-center gap-2 bg-white text-[#5c2d91] font-black px-8 py-3.5 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all uppercase tracking-widest text-sm"
           >
             Start a Conversation <ChevronRight size={16} />
           </Link>

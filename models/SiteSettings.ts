@@ -29,6 +29,25 @@ const SiteSettingsSchema = new Schema({
       institution: String,
       description: String
     }],
+    certifications: [{
+      title: String,
+      issuer: String,
+      date: String,
+      skills: [String],
+      badge: String
+    }],
+    languages: [{
+      lang: String,
+      level: String,
+      cefr: String,
+      pct: Number
+    }],
+    recommendations: [{
+      name: String,
+      role: String,
+      phone: String,
+      initials: String
+    }],
     profileImage: { type: String, default: '/profile.jpeg' }
   },
   contact: {
@@ -42,6 +61,44 @@ const SiteSettingsSchema = new Schema({
       whatsapp: { type: String, default: '#' }
     },
     cvUrl: { type: String, default: '#' }
+  },
+  servicesPage: {
+    whyCards: [{
+      icon: String,
+      title: String,
+      desc: String
+    }],
+    processSteps: [{
+      step: String,
+      title: String,
+      desc: String
+    }],
+    pricingPlans: [{
+      name: String,
+      price: String,
+      description: String,
+      features: [String],
+      cta: String,
+      recommended: Boolean
+    }],
+    faqs: [{
+      question: String,
+      answer: String
+    }]
+  },
+  fypSection: {
+    title: { type: String, default: 'AI-Powered Smart Recruitment & HR System' },
+    description: { type: String, default: 'An enterprise-grade AI-powered HR platform for smart recruitment and employee management — built as the Final Year Project at Baba Guru Nanak University, Nankana Sahib.' },
+    techStack: [String],
+    university: {
+      name: { type: String, default: 'Baba Guru Nanak University' },
+      location: { type: String, default: 'Nankana Sahib, Pakistan' }
+    },
+    highlights: [{
+      icon: String,
+      label: String,
+      desc: String
+    }]
   }
 }, { timestamps: true });
 
