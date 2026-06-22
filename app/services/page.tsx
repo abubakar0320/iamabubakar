@@ -67,10 +67,10 @@ export default function ServicesPage() {
   useEffect(() => {
     const fetchLocationAndCurrency = async () => {
       try {
-        const ipRes = await fetch("https://ipapi.co/json/");
+        const ipRes = await fetch("https://freeipapi.com/api/json");
         const ipData = await ipRes.json();
-        if (ipData && ipData.currency) {
-          const userCurrency = ipData.currency;
+        if (ipData && ipData.currencies && ipData.currencies.length > 0) {
+          const userCurrency = ipData.currencies[0];
           setCurrency(userCurrency);
           
           const parts = new Intl.NumberFormat('en-US', {
