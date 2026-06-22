@@ -192,11 +192,6 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="shrink-0 w-full max-w-sm">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 space-y-4">
-                {settings?.about?.profileImage && (
-                  <div className="relative w-full aspect-square overflow-hidden border-2 border-[#0067b8]">
-                    <Image src={settings.about.profileImage} alt="Abu Bakar Siddique" fill className="object-cover" sizes="320px" />
-                  </div>
-                )}
                 <div className="space-y-3 pt-2">
                   {coreFacts.map((f) => (
                     <div key={f.label} className="flex items-center justify-between text-xs border-b border-white/10 pb-2">

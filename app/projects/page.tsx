@@ -59,36 +59,6 @@ const githubProjects = [
   },
   {
     id: "gh-3",
-    name: "Estatehub-mern",
-    displayTitle: "EstateHub — MERN Real Estate Platform",
-    description:
-      "Full-stack real estate listing platform built with the MERN stack. Features property search, listings, user authentication, and a clean dashboard for property management.",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
-    category: "Full Stack",
-    github: "https://github.com/abubakar0320/Estatehub-mern",
-    live: "https://estatehub.site",
-    stars: 0,
-    language: "JavaScript",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1473&auto=format&fit=crop",
-    featured: true,
-  },
-  {
-    id: "gh-4",
-    name: "Jamia-shere-rabbani",
-    displayTitle: "Jamia Shere Rabbani — PHP Website",
-    description:
-      "Original institutional website for Jamia Shere Rabbani Mananwala, developed in PHP. Achieved 8 GitHub stars and 1 fork. Includes course info, news, and contact pages.",
-    tech: ["PHP", "HTML5", "CSS3", "MySQL"],
-    category: "PHP",
-    github: "https://github.com/abubakar0320/Jamia-shere-rabbani",
-    live: null,
-    stars: 8,
-    language: "PHP",
-    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1374&auto=format&fit=crop",
-    featured: false,
-  },
-  {
-    id: "gh-5",
     name: "Clothes",
     displayTitle: "Clothes Store — PHP E-Commerce",
     description:
@@ -129,10 +99,10 @@ const techColors: Record<string, string> = {
 
 // ─── Stat items ─────────────────────────────────────────────────────────────
 const pageStats = [
-  { label: "Total Projects", value: "5+", icon: FileCode },
-  { label: "Live Deployments", value: "3", icon: Globe },
-  { label: "GitHub Stars", value: "9", icon: Star },
-  { label: "Technologies Used", value: "12+", icon: Code2 },
+  { label: "Total Projects", value: "3+", icon: FileCode },
+  { label: "Live Deployments", value: "2", icon: Globe },
+  { label: "GitHub Stars", value: "0", icon: Star },
+  { label: "Technologies Used", value: "10+", icon: Code2 },
 ];
 
 export default function ProjectsPage() {
