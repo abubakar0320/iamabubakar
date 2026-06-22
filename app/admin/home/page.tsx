@@ -37,6 +37,8 @@ export default function AdminHomePage() {
     } finally {
       setSaving(false);
     }
+  };
+
   const updateFypHighlight = (index: number, field: string, value: string) => {
     const newList = [...settings.fypSection.highlights];
     newList[index] = { ...newList[index], [field]: value };
@@ -242,6 +244,9 @@ export default function AdminHomePage() {
             </div>
           </div>
         </div>
+
+        {/* Right Column (Sidebar) */}
+        <div className="lg:col-span-4 space-y-6">
           <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800">
             <div className="p-6 bg-[#f8fafc] dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-gray-800">
               <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-800 dark:text-gray-200 flex items-center gap-2">
