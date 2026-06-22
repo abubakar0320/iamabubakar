@@ -35,16 +35,6 @@ export const projects = [
     github: "https://github.com/abubakar0320/Filehub-Client",
   },
   {
-    id: 3,
-    title: "Jamia Shere Rabbani",
-    description: "Official website for Jamia Shere Rabbani Mananwala, providing information about the institution and its services.",
-    tech: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
-    category: "PHP",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2000&auto=format&fit=crop",
-    live: "#",
-    github: "https://github.com/abubakar0320/Jamia-shere-rabbani",
-  },
-  {
     id: 4,
     title: "Personal Portfolio",
     description: "Modern, high-performance portfolio website built with Next.js and Tailwind CSS, featuring a Microsoft-inspired design.",
