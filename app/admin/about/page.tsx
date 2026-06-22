@@ -25,7 +25,8 @@ import {
   Globe,
   Eye,
   Settings as SettingsIcon,
-  LayoutTemplate
+  LayoutTemplate,
+  UserCircle
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
