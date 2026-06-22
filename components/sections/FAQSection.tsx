@@ -45,16 +45,16 @@ export function FAQSection() {
           {/* Left — Sticky Header */}
           <div className="lg:w-[380px] shrink-0">
             <div className="lg:sticky lg:top-24 space-y-6">
-              <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">FAQ</div>
+              <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest">FAQ</div>
               <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">
-                Frequently <span className="text-[#0067b8]">Asked</span>
+                Frequently <span className="text-[#00d4ff]">Asked</span>
               </h2>
               <p className="text-sm md:text-base text-[#505050] dark:text-gray-400 font-medium leading-relaxed">
                 Everything you need to know before working together. Can't find your answer? Contact me directly.
               </p>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#0067b8] hover:underline underline-offset-4"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#00d4ff] hover:underline underline-offset-4"
               >
                 Ask a question →
               </a>
@@ -67,7 +67,7 @@ export function FAQSection() {
               <div
                 key={i}
                 className={`border-b border-gray-100 dark:border-gray-800 transition-colors ${
-                  open === i ? "border-[#0067b8] dark:border-[#0067b8]" : ""
+                  open === i ? "border-[#00d4ff] dark:border-[#00d4ff]" : ""
                 }`}
               >
                 <button
@@ -79,13 +79,13 @@ export function FAQSection() {
                   <span
                     className={`text-sm md:text-base font-semibold transition-colors ${
                       open === i
-                        ? "text-[#0067b8]"
-                        : "text-[#242424] dark:text-white group-hover:text-[#0067b8]"
+                        ? "text-[#00d4ff]"
+                        : "text-[#242424] dark:text-white group-hover:text-[#00d4ff]"
                     }`}
                   >
                     {faq.q}
                   </span>
-                  <span className="shrink-0 w-7 h-7 flex items-center justify-center border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 group-hover:border-[#0067b8] group-hover:text-[#0067b8] transition-colors">
+                  <span className="shrink-0 w-7 h-7 flex items-center justify-center border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 group-hover:border-[#00d4ff] group-hover:text-[#00d4ff] transition-colors">
                     {open === i ? <Minus size={14} /> : <Plus size={14} />}
                   </span>
                 </button>

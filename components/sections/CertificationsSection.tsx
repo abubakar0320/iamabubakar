@@ -10,7 +10,7 @@ const certs = [
     issuer: "Cisco Networking Academy",
     date: "31 Oct 2025",
     skills: ["Network Security", "Cyber Threats", "Data Privacy", "Security Best Practices"],
-    color: "#0067b8",
+    color: "#e10098",
     logo: "CISCO",
   },
   {
@@ -25,7 +25,7 @@ const certs = [
       "Problem Solving",
     ],
     note: "All 5 Dimensions · Level 6/6 · Project-Based Learning",
-    color: "#107c10",
+    color: "#00d4ff",
     logo: "DCF",
   },
 ];
@@ -37,16 +37,16 @@ export function CertificationsSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
           <div className="space-y-3">
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Verified</div>
+            <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest">Verified</div>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">
-              Certifi<span className="text-[#0067b8]">cations</span>
+              Certifi<span className="text-[#00d4ff]">cations</span>
             </h2>
             <p className="text-sm md:text-base text-[#505050] dark:text-gray-400 max-w-xl font-medium">
               Industry-recognized credentials validating expertise in cybersecurity, digital literacy, and technical competence.
             </p>
           </div>
           <div className="hidden md:block h-[2px] flex-grow mx-12 bg-gray-200 dark:bg-gray-800 mb-4" />
-          <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest mb-4">Credentials</div>
+          <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest mb-4">Credentials</div>
         </div>
 
         {/* Cert Cards */}
@@ -58,7 +58,7 @@ export function CertificationsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group overflow-hidden"
+              className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group overflow-hidden"
             >
               {/* Top bar */}
               <div className="h-1.5 w-full" style={{ backgroundColor: cert.color }} />
@@ -78,10 +78,10 @@ export function CertificationsSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#0067b8] transition-colors leading-snug">
+                <h3 className="text-xl font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors leading-snug">
                   {cert.title}
                 </h3>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#0067b8] mb-4">
+                <div className="text-xs font-bold uppercase tracking-widest text-[#00d4ff] mb-4">
                   {cert.issuer}
                 </div>
 

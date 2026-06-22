@@ -35,10 +35,10 @@ export function CookieConsent() {
           <div className="max-w-[1600px] mx-auto">
             <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 shadow-[0_-10px_50px_rgba(0,0,0,0.1)] p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
               {/* Microsoft Style Accent Bar */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#0067b8]"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]"></div>
               
               <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left relative z-10">
-                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-[#0067b8] rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-[#00d4ff] rounded-full flex items-center justify-center shrink-0">
                   <Cookie size={24} />
                 </div>
                 <div className="space-y-1">
@@ -47,7 +47,7 @@ export function CookieConsent() {
                   </h4>
                   <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl italic">
                     We use minimalist technical nodes (cookies) to optimize your architectural experience and ensure secure transaction streams. 
-                    By continuing, you acknowledge our global <Link href="/privacy" className="text-[#0067b8] hover:underline font-bold">Privacy Protocols</Link>.
+                    By continuing, you acknowledge our global <Link href="/privacy" className="text-[#00d4ff] hover:underline font-bold">Privacy Protocols</Link>.
                   </p>
                 </div>
               </div>
@@ -61,7 +61,7 @@ export function CookieConsent() {
                 </button>
                 <button 
                   onClick={() => handleConsent("accept")}
-                  className="flex-grow lg:flex-none px-10 py-2.5 bg-[#0067b8] text-white text-xs font-black uppercase tracking-widest hover:bg-[#005da6] transition-all flex items-center justify-center gap-2"
+                  className="flex-grow lg:flex-none px-10 py-2.5 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white text-xs font-black uppercase tracking-widest hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-all flex items-center justify-center gap-2"
                 >
                   Accept <ChevronRight size={14} />
                 </button>

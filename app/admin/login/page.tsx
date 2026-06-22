@@ -42,7 +42,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex bg-[#0d0d0d]">
 
       {/* ── Left Panel (Branding) ── */}
-      <div className="hidden lg:flex flex-col justify-between w-1/2 bg-[#0067b8] px-16 py-14 relative overflow-hidden">
+      <div className="hidden lg:flex flex-col justify-between w-1/2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] px-16 py-14 relative overflow-hidden">
         {/* Background Grid */}
         <div className="absolute inset-0 opacity-10"
           style={{
@@ -72,12 +72,12 @@ export default function LoginPage() {
             <span className="text-white/60">Portfolio</span> with<br />
             Full Control.
           </h1>
-          <p className="text-blue-100 text-sm leading-relaxed max-w-sm font-medium">
+          <p className="text-pink-100 text-sm leading-relaxed max-w-sm font-medium">
             Admin panel for iamabubakar.site — manage projects, services, messages, and site content from one place.
           </p>
           <div className="flex items-center gap-3 mt-8">
             <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-blue-100">System Operational</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-pink-100">System Operational</span>
           </div>
         </div>
 
@@ -100,17 +100,17 @@ export default function LoginPage() {
           {/* Mobile Logo */}
           <div className="flex items-center gap-3 mb-12 lg:hidden">
             <div className="grid grid-cols-2 gap-1">
-              <div className="w-2 h-2 bg-[#0067b8]" />
-              <div className="w-2 h-2 bg-[#0067b8]/50" />
-              <div className="w-2 h-2 bg-[#0067b8]/50" />
-              <div className="w-2 h-2 bg-[#0067b8]" />
+              <div className="w-2 h-2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]" />
+              <div className="w-2 h-2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]/50" />
+              <div className="w-2 h-2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]/50" />
+              <div className="w-2 h-2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]" />
             </div>
-            <span className="text-[#0067b8] font-black uppercase tracking-[0.3em] text-sm">Admin Center</span>
+            <span className="text-[#00d4ff] font-black uppercase tracking-[0.3em] text-sm">Admin Center</span>
           </div>
 
           {/* Header */}
           <div className="mb-10">
-            <div className="text-[10px] font-black uppercase text-[#0067b8] tracking-widest mb-3">Sign In</div>
+            <div className="text-[10px] font-black uppercase text-[#00d4ff] tracking-widest mb-3">Sign In</div>
             <h2 className="text-4xl font-semibold text-[#242424] dark:text-white tracking-tight leading-tight">
               Welcome Back
             </h2>
@@ -136,7 +136,7 @@ export default function LoginPage() {
             {/* Email */}
             <div className="space-y-2">
               <label className="text-[11px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 flex items-center gap-2">
-                <Mail size={11} className="text-[#0067b8]" />
+                <Mail size={11} className="text-[#00d4ff]" />
                 Email Address
               </label>
               <input
@@ -145,14 +145,14 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@iamabubakar.site"
-                className="w-full px-4 py-3.5 bg-white dark:bg-[#1a1a1a] border border-gray-300 dark:border-gray-700 focus:border-[#0067b8] dark:focus:border-[#0067b8] outline-none transition-colors text-sm font-medium text-[#242424] dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600"
+                className="w-full px-4 py-3.5 bg-white dark:bg-[#1a1a1a] border border-gray-300 dark:border-gray-700 focus:border-[#00d4ff] dark:focus:border-[#00d4ff] outline-none transition-colors text-sm font-medium text-[#242424] dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600"
               />
             </div>
 
             {/* Password */}
             <div className="space-y-2">
               <label className="text-[11px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 flex items-center gap-2">
-                <Lock size={11} className="text-[#0067b8]" />
+                <Lock size={11} className="text-[#00d4ff]" />
                 Password
               </label>
               <input
@@ -161,7 +161,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••"
-                className="w-full px-4 py-3.5 bg-white dark:bg-[#1a1a1a] border border-gray-300 dark:border-gray-700 focus:border-[#0067b8] dark:focus:border-[#0067b8] outline-none transition-colors text-sm font-medium text-[#242424] dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600"
+                className="w-full px-4 py-3.5 bg-white dark:bg-[#1a1a1a] border border-gray-300 dark:border-gray-700 focus:border-[#00d4ff] dark:focus:border-[#00d4ff] outline-none transition-colors text-sm font-medium text-[#242424] dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600"
               />
             </div>
 
@@ -169,7 +169,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#0067b8] text-white font-bold py-4 px-8 hover:bg-[#005da6] transition-colors text-sm uppercase tracking-widest flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+              className="w-full bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-bold py-4 px-8 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-colors text-sm uppercase tracking-widest flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed mt-2"
             >
               {loading ? (
                 <>

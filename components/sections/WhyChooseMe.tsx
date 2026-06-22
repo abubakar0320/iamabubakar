@@ -43,13 +43,13 @@ export function WhyChooseMe() {
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
         <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">Why <span className="text-[#0067b8]">Abubakar?</span></h2>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">Why <span className="text-[#00d4ff]">Abubakar?</span></h2>
             <p className="text-sm md:text-lg text-[#505050] dark:text-gray-400 max-w-2xl font-medium">
               A comprehensive technical approach combining software engineering, networking, and AI intelligence.
             </p>
           </div>
           <div className="hidden md:block h-[2px] flex-grow mx-12 bg-gray-100 dark:bg-gray-800 mb-4"></div>
-          <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest mb-4">Core Principles</div>
+          <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest mb-4">Core Principles</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -63,11 +63,11 @@ export function WhyChooseMe() {
               className="group"
             >
               <div className="flex items-start gap-6">
-                <div className="w-12 h-12 shrink-0 bg-[#f2f2f2] dark:bg-[#1a1a1a] rounded-sm flex items-center justify-center text-[#0067b8] border border-gray-200 dark:border-gray-800 transition-transform group-hover:scale-110">
+                <div className="w-12 h-12 shrink-0 bg-[#f2f2f2] dark:bg-[#1a1a1a] rounded-sm flex items-center justify-center text-[#00d4ff] border border-gray-200 dark:border-gray-800 transition-transform group-hover:scale-110">
                   <p.icon size={24} />
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-xl font-bold uppercase tracking-tight text-[#242424] dark:text-white group-hover:text-[#0067b8] transition-colors">{p.title}</h3>
+                  <h3 className="text-xl font-bold uppercase tracking-tight text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors">{p.title}</h3>
                   <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
                     {p.description}
                   </p>

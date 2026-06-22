@@ -478,15 +478,15 @@ export default function AdminAboutPage() {
           </div>
 
           {/* Certifications Ledger */}
-          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#0067b8]/30 transition-colors duration-300">
+          <div className="bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 group hover:border-[#00d4ff]/30 transition-colors duration-300">
             <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
               <div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] mb-1">Module 5</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#00d4ff] mb-1">Module 5</div>
                 <h2 className="text-base font-bold text-[#242424] dark:text-white flex items-center gap-2">
                   Certifications
                 </h2>
               </div>
-              <button type="button" onClick={addCertification} className="bg-transparent border border-[#0067b8] text-[#0067b8] px-3 py-1.5 text-[10px] font-black uppercase tracking-widest hover:bg-[#0067b8] hover:text-white transition-all flex items-center gap-1.5">
+              <button type="button" onClick={addCertification} className="bg-transparent border border-[#00d4ff] text-[#00d4ff] px-3 py-1.5 text-[10px] font-black uppercase tracking-widest hover:bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] hover:text-white transition-all flex items-center gap-1.5">
                  <Plus size={12} /> Add Entry
               </button>
             </div>
@@ -494,27 +494,27 @@ export default function AdminAboutPage() {
             <div className="p-6 space-y-5">
                <AnimatePresence>
                  {(settings.about.certifications || []).map((cert: any, index: number) => (
-                   <motion.div key={index} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} className="bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 p-6 relative group/cert hover:border-[#0067b8] transition-colors">
+                   <motion.div key={index} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9 }} className="bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 p-6 relative group/cert hover:border-[#00d4ff] transition-colors">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                          <div className="space-y-1.5">
                            <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Title</label>
-                           <input type="text" value={cert.title} onChange={(e) => updateCertification(index, "title", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                           <input type="text" value={cert.title} onChange={(e) => updateCertification(index, "title", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#00d4ff] outline-none" />
                          </div>
                          <div className="space-y-1.5">
                            <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Issuer</label>
-                           <input type="text" value={cert.issuer} onChange={(e) => updateCertification(index, "issuer", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                           <input type="text" value={cert.issuer} onChange={(e) => updateCertification(index, "issuer", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#00d4ff] outline-none" />
                          </div>
                          <div className="space-y-1.5">
                            <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Date</label>
-                           <input type="text" value={cert.date} onChange={(e) => updateCertification(index, "date", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                           <input type="text" value={cert.date} onChange={(e) => updateCertification(index, "date", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#00d4ff] outline-none" />
                          </div>
                          <div className="space-y-1.5">
                            <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Badge</label>
-                           <input type="text" value={cert.badge} onChange={(e) => updateCertification(index, "badge", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#0067b8] outline-none" />
+                           <input type="text" value={cert.badge} onChange={(e) => updateCertification(index, "badge", e.target.value)} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs font-bold uppercase focus:border-[#00d4ff] outline-none" />
                          </div>
                          <div className="space-y-1.5 md:col-span-2">
                            <label className="text-[9px] font-black uppercase tracking-widest text-gray-500">Skills (Comma separated)</label>
-                           <input type="text" value={(cert.skills || []).join(", ")} onChange={(e) => updateCertification(index, "skills", e.target.value.split(",").map((s: string) => s.trim()).filter(Boolean))} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs focus:border-[#0067b8] outline-none" />
+                           <input type="text" value={(cert.skills || []).join(", ")} onChange={(e) => updateCertification(index, "skills", e.target.value.split(",").map((s: string) => s.trim()).filter(Boolean))} className="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-600 px-4 py-2.5 text-xs focus:border-[#00d4ff] outline-none" />
                          </div>
                       </div>
                       <button 

@@ -35,7 +35,7 @@ export function MicrosoftHero({ data }: any) {
           <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
             <Link 
               href="/contact" 
-              className="inline-flex items-center justify-center bg-[#0067b8] text-white font-semibold py-2.5 px-6 hover:bg-[#005da6] transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-semibold py-2.5 px-6 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-colors w-full sm:w-auto"
               aria-label="Hire Abubakar for your next project"
             >
               Hire Me

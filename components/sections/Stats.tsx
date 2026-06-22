@@ -26,13 +26,13 @@ export function Stats({ stats }: StatsProps) {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center md:items-start space-y-2"
             >
-              <div className="text-4xl md:text-6xl font-black tracking-tighter text-[#0067b8] dark:text-[#4da3ff]">
+              <div className="text-4xl md:text-6xl font-black tracking-tighter text-[#00d4ff] dark:text-[#4da3ff]">
                 {stat.value}
               </div>
               <div className="text-[10px] md:text-xs font-black uppercase text-gray-500 dark:text-gray-400 tracking-[0.2em] text-center md:text-left">
                 {stat.label}
               </div>
-              <div className="w-12 h-1 bg-[#0067b8] mt-2 opacity-20"></div>
+              <div className="w-12 h-1 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] mt-2 opacity-20"></div>
             </motion.div>
           ))}
         </div>

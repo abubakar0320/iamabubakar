@@ -159,7 +159,7 @@ export default function ProjectsPage() {
               <s.icon size={28} className="opacity-70 shrink-0" />
               <div>
                 <div className="text-2xl md:text-3xl font-black tracking-tighter">{s.value}</div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-blue-100">{s.label}</div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-pink-100">{s.label}</div>
               </div>
             </motion.div>
           ))}
@@ -469,7 +469,7 @@ export default function ProjectsPage() {
           <h2 className="text-3xl md:text-4xl font-semibold uppercase tracking-tight">
             Have a Project in Mind?
           </h2>
-          <p className="text-sm md:text-base text-blue-100 max-w-xl mx-auto font-medium">
+          <p className="text-sm md:text-base text-pink-100 max-w-xl mx-auto font-medium">
             Whether it's a new website, an FYP, or a full-stack web application —
             let's collaborate and build something great together.
           </p>

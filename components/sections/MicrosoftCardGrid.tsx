@@ -32,7 +32,7 @@ export function MicrosoftCardGrid({ title, items }: { title?: string, items: Car
               <p className="text-xs md:text-sm text-[#505050] dark:text-gray-300 mb-6 flex-grow leading-relaxed line-clamp-3">{item.description}</p>
               <Link 
                 href={item.link} 
-                className="inline-flex items-center text-[#0067b8] dark:text-[#4da3ff] font-semibold text-sm hover:underline w-fit mt-auto group/btn"
+                className="inline-flex items-center text-[#00d4ff] dark:text-[#4da3ff] font-semibold text-sm hover:underline w-fit mt-auto group/btn"
                 aria-label={`${item.cta} for ${item.title}`}
               >
                 {item.cta} <ChevronRight className="ml-1 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

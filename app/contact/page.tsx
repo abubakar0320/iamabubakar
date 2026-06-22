@@ -114,7 +114,7 @@ function ContactForm({ settings }: { settings: any }) {
         </p>
         <button
           onClick={() => setSuccess(false)}
-          className="text-[#0067b8] font-black uppercase text-xs hover:underline tracking-widest"
+          className="text-[#00d4ff] font-black uppercase text-xs hover:underline tracking-widest"
         >
           Send Another Message
         </button>
@@ -277,7 +277,7 @@ export default function ContactPage() {
               <r.icon size={20} className="opacity-70 shrink-0" />
               <div>
                 <div className="text-lg md:text-xl font-black tracking-tighter">{r.value}</div>
-                <div className="text-[9px] font-bold uppercase tracking-widest text-blue-100">{r.label}</div>
+                <div className="text-[9px] font-bold uppercase tracking-widest text-pink-100">{r.label}</div>
               </div>
             </motion.div>
           ))}
@@ -301,7 +301,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-all p-7 flex flex-col gap-4 overflow-hidden">
+                className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-all p-7 flex flex-col gap-4 overflow-hidden">
                 <div className="w-12 h-12 flex items-center justify-center text-white transition-transform group-hover:scale-110 shadow-lg"
                   style={{ backgroundColor: m.color, boxShadow: `0 0 15px ${m.color}80` }}>
                   <m.icon size={22} />
@@ -363,7 +363,7 @@ export default function ContactPage() {
                     { label: "Response Time", val: "< 1 hour" },
                   ].map((f) => (
                     <div key={f.label} className="flex items-center justify-between text-xs border-b border-white/15 pb-2">
-                      <span className="font-bold text-blue-100 uppercase tracking-widest">{f.label}</span>
+                      <span className="font-bold text-pink-100 uppercase tracking-widest">{f.label}</span>
                       <span className="font-black text-right max-w-[120px]">{f.val}</span>
                     </div>
                   ))}
@@ -406,7 +406,7 @@ export default function ContactPage() {
             <div className="lg:col-span-8 order-1 lg:order-2">
               <Suspense fallback={
                 <div className="bg-white dark:bg-[#1a1a1a] p-12 border border-gray-200 dark:border-gray-800 flex items-center justify-center min-h-[400px]">
-                  <Loader2 className="animate-spin h-10 w-10 text-[#0067b8]" />
+                  <Loader2 className="animate-spin h-10 w-10 text-[#00d4ff]" />
                 </div>
               }>
                 <ContactForm settings={settings} />
@@ -493,7 +493,7 @@ export default function ContactPage() {
           <h2 className="text-3xl md:text-4xl font-semibold uppercase tracking-tight">
             Don't Wait — Let's Build Together
           </h2>
-          <p className="text-sm md:text-base text-blue-100 max-w-xl mx-auto font-medium">
+          <p className="text-sm md:text-base text-pink-100 max-w-xl mx-auto font-medium">
             Every great project starts with a conversation. Reach out now and let's
             turn your idea into a live, working product.
           </p>

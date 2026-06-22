@@ -154,7 +154,7 @@ export default function GlobalSettingsPage() {
                 </div>
                 <div className="space-y-3">
                   <label className="text-[11px] font-black uppercase tracking-widest text-gray-500 flex items-center gap-2">
-                     <Linkedin size={12} className="text-blue-500" /> LinkedIn Node
+                     <Linkedin size={12} className="text-pink-500" /> LinkedIn Node
                   </label>
                   <input
                     type="text"

@@ -14,7 +14,7 @@ const defaultTimeline = [
     description:
       "Leading a team of 3 to build an AI-powered HR platform for smart recruitment and employee management. Responsible for project architecture, task delegation, and full-stack MERN development.",
     badge: "FYP",
-    badgeColor: "#d83b01",
+    badgeColor: "#5c2d91",
     tech: ["React.js", "Node.js", "Express.js", "MongoDB", "AI/ML"],
   },
   {
@@ -38,7 +38,7 @@ const defaultTimeline = [
     description:
       "Developed and deployed a personal portfolio website using the MERN stack. Showcased projects, skills, certifications, and contact information. Implemented responsive design and SEO optimization.",
     badge: "Active",
-    badgeColor: "#0067b8",
+    badgeColor: "#e10098",
     tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
   },
   {
@@ -50,7 +50,7 @@ const defaultTimeline = [
     description:
       "CGPA: 3.42 / 4.00 — Pursuing BSIT with a focus on full-stack web development, software engineering, and AI-driven systems. Active team lead in Final Year Project.",
     badge: "Current",
-    badgeColor: "#107c10",
+    badgeColor: "#00d4ff",
     tech: [],
   },
   {
@@ -80,8 +80,8 @@ const defaultTimeline = [
 ];
 
 const typeColor: Record<string, string> = {
-  education: "#0067b8",
-  work: "#107c10",
+  education: "#e10098",
+  work: "#00d4ff",
 };
 
 export function Timeline({ education: dbEducation, experience: dbExperience }: { education?: any[], experience?: any[] }) {
@@ -97,7 +97,7 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
         org: e.company,
         description: e.description,
         badge: i === 0 ? "Active" : "Past",
-        badgeColor: ["#d83b01", "#5c2d91", "#0067b8"][i % 3],
+        badgeColor: ["#5c2d91", "#5c2d91", "#e10098"][i % 3],
         tech: []
      }));
 
@@ -109,7 +109,7 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
         org: e.institution,
         description: e.description,
         badge: i === 0 ? "Current" : "Completed",
-        badgeColor: ["#107c10", "#505050", "#0067b8"][i % 3],
+        badgeColor: ["#00d4ff", "#505050", "#e10098"][i % 3],
         tech: []
      }));
 
@@ -124,16 +124,16 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
         {/* Header */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
           <div className="space-y-3">
-            <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest">Background</div>
+            <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest">Background</div>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white uppercase">
-              Education &amp; <span className="text-[#0067b8]">Experience</span>
+              Education &amp; <span className="text-[#00d4ff]">Experience</span>
             </h2>
             <p className="text-sm md:text-base text-[#505050] dark:text-gray-400 max-w-xl font-medium">
               A journey built on academic excellence at Baba Guru Nanak University and real-world full-stack development experience.
             </p>
           </div>
           <div className="hidden md:block h-[2px] flex-grow mx-12 bg-gray-200 dark:bg-gray-800 mb-4" />
-          <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest mb-4">Timeline</div>
+          <div className="text-xs font-black uppercase text-[#00d4ff] tracking-widest mb-4">Timeline</div>
         </div>
 
         {/* Timeline */}
@@ -157,7 +157,7 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
                 >
                   {/* Card */}
                   <div
-                    className={`flex-1 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group`}
+                    className={`flex-1 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group`}
                   >
                     <div className={`flex items-center gap-3 mb-3 flex-wrap ${isLeft ? "sm:flex-row-reverse sm:justify-end" : ""}`}>
                       <span
@@ -170,10 +170,10 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
                         {item.year}
                       </span>
                     </div>
-                    <h3 className={`text-base font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#0067b8] transition-colors ${isLeft ? "sm:text-right" : ""}`}>
+                    <h3 className={`text-base font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors ${isLeft ? "sm:text-right" : ""}`}>
                       {item.title}
                     </h3>
-                    <div className={`text-xs font-bold uppercase tracking-wider text-[#0067b8] mb-3 ${isLeft ? "sm:text-right" : ""}`}>
+                    <div className={`text-xs font-bold uppercase tracking-wider text-[#00d4ff] mb-3 ${isLeft ? "sm:text-right" : ""}`}>
                       {item.org}
                     </div>
                     <p className={`text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium ${isLeft ? "sm:text-right" : ""}`}>

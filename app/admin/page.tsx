@@ -214,7 +214,7 @@ export default function AdminDashboard() {
           <h1 className="text-4xl font-bold tracking-tight mb-2">
             Command Center
           </h1>
-          <p className="text-sm text-blue-100 font-medium max-w-xl">
+          <p className="text-sm text-pink-100 font-medium max-w-xl">
             Welcome back, Abu Bakar. Manage your entire portfolio, services, and client interactions from here.
           </p>
         </div>
@@ -222,7 +222,7 @@ export default function AdminDashboard() {
           <Link
             href="/"
             target="_blank"
-            className="inline-flex items-center gap-2 bg-white text-[#0067b8] font-bold px-6 py-3 hover:bg-gray-100 transition-colors text-xs uppercase tracking-widest shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_5px_25px_rgba(255,255,255,0.3)]"
+            className="inline-flex items-center gap-2 bg-white text-[#00d4ff] font-bold px-6 py-3 hover:bg-gray-100 transition-colors text-xs uppercase tracking-widest shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_5px_25px_rgba(255,255,255,0.3)]"
           >
             <Eye size={15} /> View Live Site
           </Link>

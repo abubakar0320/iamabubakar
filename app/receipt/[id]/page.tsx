@@ -40,7 +40,7 @@ export default function ReceiptPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="animate-spin h-12 w-12 text-[#0067b8]" />
+        <Loader2 className="animate-spin h-12 w-12 text-[#00d4ff]" />
       </div>
     );
   }
@@ -104,13 +104,13 @@ export default function ReceiptPage() {
       <div className="max-w-4xl mx-auto px-4 md:px-0">
         <div className="flex justify-between items-center mb-8 print:hidden">
            <Link href="/services">
-              <button className="text-sm font-bold text-slate-500 hover:text-[#0067b8] flex items-center gap-2 transition-colors uppercase tracking-widest">
+              <button className="text-sm font-bold text-slate-500 hover:text-[#00d4ff] flex items-center gap-2 transition-colors uppercase tracking-widest">
                  <ArrowLeft size={16} /> Exit to Services
               </button>
            </Link>
            <button 
              onClick={handlePrint}
-             className="bg-[#0067b8] text-white font-bold py-3 px-8 hover:bg-[#005da6] transition-all flex items-center gap-2 text-xs uppercase tracking-[0.2em] shadow-xl shadow-blue-500/20"
+             className="bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-bold py-3 px-8 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-all flex items-center gap-2 text-xs uppercase tracking-[0.2em] shadow-xl shadow-fuchsia-500/20"
            >
              <Printer size={16} /> Generate Document
            </button>
@@ -123,18 +123,18 @@ export default function ReceiptPage() {
           className="bg-white dark:bg-[#151515] border border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden flex flex-col"
         >
           {/* Header Accent Line */}
-          <div className="h-2 bg-[#0067b8] w-full"></div>
+          <div className="h-2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] w-full"></div>
 
           <div className="p-8 md:p-12 flex-grow flex flex-col">
             {/* Top Branding Bar */}
             <div className="flex justify-between items-center mb-8 border-b border-slate-100 dark:border-slate-800 pb-6 receipt-section">
                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-[#0067b8] flex items-center justify-center text-white rounded-sm shadow-md">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] flex items-center justify-center text-white rounded-sm shadow-md">
                      <ShieldCheck size={24} />
                   </div>
                   <div>
                      <h2 className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">Abubakar Siddique</h2>
-                     <p className="text-[9px] font-bold text-[#0067b8] uppercase tracking-[0.3em]">Full Stack Developer</p>
+                     <p className="text-[9px] font-bold text-[#00d4ff] uppercase tracking-[0.3em]">Full Stack Developer</p>
                   </div>
                </div>
                <div className="text-right flex flex-col items-end">
@@ -153,7 +153,7 @@ export default function ReceiptPage() {
             {/* Entity Information Table */}
             <div className="grid grid-cols-2 gap-0 border border-slate-200 dark:border-slate-800 mb-8 receipt-section">
                <div className="p-6 border-r border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/20">
-                  <h4 className="text-[10px] font-black text-[#0067b8] uppercase tracking-[0.2em] mb-4">Client Assignment</h4>
+                  <h4 className="text-[10px] font-black text-[#00d4ff] uppercase tracking-[0.2em] mb-4">Client Assignment</h4>
                   <p className="text-lg font-black text-slate-900 dark:text-white uppercase leading-tight">{order.customerName}</p>
                   <div className="mt-2 space-y-1 text-[11px] text-slate-500 dark:text-slate-400 font-medium italic">
                      <p>{order.customerEmail}</p>
@@ -161,7 +161,7 @@ export default function ReceiptPage() {
                   </div>
                </div>
                <div className="p-6">
-                  <h4 className="text-[10px] font-black text-[#0067b8] uppercase tracking-[0.2em] mb-4">Transaction Meta</h4>
+                  <h4 className="text-[10px] font-black text-[#00d4ff] uppercase tracking-[0.2em] mb-4">Transaction Meta</h4>
                   <div className="grid grid-cols-2 gap-y-3 text-[11px]">
                      <div>
                         <span className="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Method</span>
@@ -173,7 +173,7 @@ export default function ReceiptPage() {
                      </div>
                      <div className="col-span-2">
                         <span className="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Verified Hash (TID)</span>
-                        <code className="font-mono text-[#0067b8] font-bold">{order.transactionId}</code>
+                        <code className="font-mono text-[#00d4ff] font-bold">{order.transactionId}</code>
                      </div>
                   </div>
                </div>
@@ -227,8 +227,8 @@ export default function ReceiptPage() {
                      <span className="text-slate-900 dark:text-white">{order.planPrice}</span>
                   </div>
                   <div className="flex justify-between items-end pt-2">
-                     <span className="text-[10px] font-black uppercase tracking-widest text-[#0067b8]">Total Settled</span>
-                     <span className="text-3xl font-black text-[#0067b8] tabular-nums tracking-tighter leading-none">{order.planPrice}</span>
+                     <span className="text-[10px] font-black uppercase tracking-widest text-[#00d4ff]">Total Settled</span>
+                     <span className="text-3xl font-black text-[#00d4ff] tabular-nums tracking-tighter leading-none">{order.planPrice}</span>
                   </div>
                </div>
             </div>
@@ -236,7 +236,7 @@ export default function ReceiptPage() {
             {/* Verification Footer */}
             <div className="mt-auto pt-8 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border border-slate-200 dark:border-slate-800 rounded-full flex items-center justify-center text-[#0067b8] bg-slate-50 dark:bg-slate-900/50">
+                  <div className="w-12 h-12 border border-slate-200 dark:border-slate-800 rounded-full flex items-center justify-center text-[#00d4ff] bg-slate-50 dark:bg-slate-900/50">
                      <ShieldCheck size={24} />
                   </div>
                   <div>

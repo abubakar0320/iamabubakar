@@ -22,7 +22,7 @@ export function MicrosoftBanner({ title, description, image, cta, link }: any) {
           <p className="text-sm md:text-lg mb-8 text-gray-200 leading-relaxed">{description}</p>
           <Link 
             href={link} 
-            className="inline-flex items-center justify-center bg-[#0067b8] text-white font-semibold py-2.5 px-8 hover:bg-[#005da6] transition-colors shadow-lg"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-semibold py-2.5 px-8 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-colors shadow-lg"
             aria-label={`${cta} - ${title}`}
           >
             {cta}

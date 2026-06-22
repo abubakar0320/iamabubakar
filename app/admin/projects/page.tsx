@@ -62,7 +62,7 @@ export default function ProjectsListPage() {
     "bg-pink-500/10 text-pink-500 border-pink-500/20",
     "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
     "bg-amber-500/10 text-amber-500 border-amber-500/20",
-    "bg-blue-500/10 text-blue-500 border-blue-500/20"
+    "bg-blue-500/10 text-pink-500 border-blue-500/20"
   ];
 
   if (loading) {

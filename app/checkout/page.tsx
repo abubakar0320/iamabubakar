@@ -78,7 +78,7 @@ function CheckoutProcess() {
                   className={cn(
                     "w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all border-2",
                     isActive 
-                      ? "bg-[#0067b8] border-[#0067b8] text-white" 
+                      ? "bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] border-[#00d4ff] text-white" 
                       : "bg-white dark:bg-[#1a1a1a] border-gray-300 dark:border-gray-600 text-gray-400"
                   )}
                 >
@@ -86,7 +86,7 @@ function CheckoutProcess() {
                 </div>
                 <span className={cn(
                   "mt-3 text-[11px] font-bold uppercase tracking-[0.1em]",
-                  isActive ? "text-[#0067b8] dark:text-[#4da3ff]" : "text-gray-400"
+                  isActive ? "text-[#00d4ff] dark:text-[#4da3ff]" : "text-gray-400"
                 )}>
                   {label}
                 </span>
@@ -108,7 +108,7 @@ function CheckoutProcess() {
             <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-12 pb-12 border-b border-gray-100 dark:border-gray-800">
               <div>
                 <h2 className="text-2xl font-semibold mb-2">Order Summary</h2>
-                <p className="text-gray-500 text-sm">Subscribe to <span className="font-bold text-[#0067b8] dark:text-[#4da3ff]">{planName}</span></p>
+                <p className="text-gray-500 text-sm">Subscribe to <span className="font-bold text-[#00d4ff] dark:text-[#4da3ff]">{planName}</span></p>
               </div>
               <div className="text-left md:text-right">
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Due Today</p>
@@ -118,7 +118,7 @@ function CheckoutProcess() {
 
             <form onSubmit={handleNext} className="space-y-8">
               <h3 className="text-xl font-semibold mb-6 flex items-center gap-3">
-                 <div className="w-1.5 h-6 bg-[#0067b8]"></div> Personal Information
+                 <div className="w-1.5 h-6 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]"></div> Personal Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
@@ -129,7 +129,7 @@ function CheckoutProcess() {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="Enter your name"
-                    className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#0067b8] outline-none transition-all text-sm"
+                    className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#00d4ff] outline-none transition-all text-sm"
                   />
                 </div>
                 <div className="space-y-2">
@@ -140,7 +140,7 @@ function CheckoutProcess() {
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="example@domain.com"
-                    className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#0067b8] outline-none transition-all text-sm"
+                    className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#00d4ff] outline-none transition-all text-sm"
                   />
                 </div>
                 <div className="md:col-span-2 space-y-2">
@@ -151,13 +151,13 @@ function CheckoutProcess() {
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     placeholder="+92 3XX XXXXXXX"
-                    className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#0067b8] outline-none transition-all text-sm"
+                    className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#00d4ff] outline-none transition-all text-sm"
                   />
                 </div>
               </div>
               
               <div className="pt-8 flex justify-end">
-                <button type="submit" className="bg-[#0067b8] text-white font-semibold py-3 px-10 hover:bg-[#005da6] transition-all flex items-center gap-2">
+                <button type="submit" className="bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-semibold py-3 px-10 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-all flex items-center gap-2">
                   Next <ChevronRight size={18} />
                 </button>
               </div>
@@ -188,31 +188,31 @@ function CheckoutProcess() {
                   className={cn(
                     "p-8 border-2 text-center transition-all flex flex-col items-center gap-4",
                     formData.paymentMethod === method.id
-                      ? "border-[#0067b8] bg-[#0067b8]/5"
+                      ? "border-[#00d4ff] bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]/5"
                       : "border-gray-100 dark:border-gray-800 hover:border-gray-300"
                   )}
                 >
                   <method.icon 
                     size={40} 
                     strokeWidth={1.5}
-                    className={formData.paymentMethod === method.id ? "text-[#0067b8]" : "text-gray-400"} 
+                    className={formData.paymentMethod === method.id ? "text-[#00d4ff]" : "text-gray-400"} 
                   />
                   <h3 className={cn(
                     "font-bold text-sm uppercase tracking-widest",
-                    formData.paymentMethod === method.id ? "text-[#0067b8]" : "text-gray-500"
+                    formData.paymentMethod === method.id ? "text-[#00d4ff]" : "text-gray-500"
                   )}>{method.name}</h3>
                 </button>
               ))}
             </div>
 
             <div className="flex justify-between items-center pt-8 border-t border-gray-100 dark:border-gray-800">
-              <button onClick={handleBack} className="text-[#0067b8] font-bold text-sm hover:underline flex items-center gap-2">
+              <button onClick={handleBack} className="text-[#00d4ff] font-bold text-sm hover:underline flex items-center gap-2">
                 <ChevronLeft size={18} /> Previous
               </button>
               <button 
                 onClick={() => handleNext()} 
                 disabled={!formData.paymentMethod}
-                className="bg-[#0067b8] text-white font-semibold py-3 px-10 hover:bg-[#005da6] transition-all flex items-center gap-2 disabled:bg-gray-300"
+                className="bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-semibold py-3 px-10 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-all flex items-center gap-2 disabled:bg-gray-300"
               >
                 Proceed <ChevronRight size={18} />
               </button>
@@ -231,9 +231,9 @@ function CheckoutProcess() {
             <h2 className="text-2xl font-semibold mb-2">Final Confirmation</h2>
             <p className="text-gray-500 text-sm mb-12">Submit your payment reference to establish connection.</p>
 
-            <div className="bg-[#f2f2f2] dark:bg-[#242424] p-8 mb-12 border-l-4 border-[#0067b8]">
+            <div className="bg-[#f2f2f2] dark:bg-[#242424] p-8 mb-12 border-l-4 border-[#00d4ff]">
               <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-6 flex items-center gap-2">
-                 <Info size={14} className="text-[#0067b8]" /> Recipient Meta
+                 <Info size={14} className="text-[#00d4ff]" /> Recipient Meta
               </h4>
               {formData.paymentMethod === "bank" && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -284,7 +284,7 @@ function CheckoutProcess() {
                   value={formData.transactionId}
                   onChange={(e) => setFormData({...formData, transactionId: e.target.value})}
                   placeholder="Paste your 12-digit reference number"
-                  className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#0067b8] outline-none transition-all font-mono text-base font-bold"
+                  className="w-full px-4 py-3 bg-white dark:bg-[#121212] border border-gray-300 dark:border-gray-600 focus:border-[#00d4ff] outline-none transition-all font-mono text-base font-bold"
                 />
                 <p className="text-[11px] text-gray-400 font-medium italic mt-2 flex items-center gap-1.5">
                    <ShieldCheck size={12} className="text-emerald-500" /> Transaction details are logged via encrypted protocols.
@@ -292,13 +292,13 @@ function CheckoutProcess() {
               </div>
 
               <div className="flex justify-between items-center pt-8 border-t border-gray-100 dark:border-gray-800">
-                <button type="button" onClick={handleBack} className="text-[#0067b8] font-bold text-sm hover:underline flex items-center gap-2">
+                <button type="button" onClick={handleBack} className="text-[#00d4ff] font-bold text-sm hover:underline flex items-center gap-2">
                    <ChevronLeft size={18} /> Previous
                 </button>
                 <button 
                   type="submit" 
                   disabled={saving}
-                  className="bg-[#0067b8] text-white font-semibold py-4 px-12 hover:bg-[#005da6] transition-all flex items-center gap-3 disabled:bg-gray-300 shadow-lg shadow-blue-500/20 uppercase text-xs tracking-widest"
+                  className="bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-semibold py-4 px-12 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-all flex items-center gap-3 disabled:bg-gray-300 shadow-lg shadow-fuchsia-500/20 uppercase text-xs tracking-widest"
                 >
                   {saving ? <Loader2 className="animate-spin" size={18} /> : <CheckCircle size={18} />}
                   {saving ? "Authorizing..." : "Complete Order"}
@@ -317,13 +317,13 @@ export default function CheckoutPage() {
     <div className="py-24 min-h-screen bg-[#fcfcfc] dark:bg-[#121212]">
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
         <div className="mb-16">
-          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white">Review your <span className="text-[#0067b8] dark:text-[#4da3ff]">Investment</span></h1>
+          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#242424] dark:text-white">Review your <span className="text-[#00d4ff] dark:text-[#4da3ff]">Investment</span></h1>
           <p className="text-gray-500 text-sm md:text-base mt-2">Finish your project deployment setup.</p>
         </div>
 
         <Suspense fallback={
           <div className="flex justify-center py-20">
-            <Loader2 className="animate-spin h-12 w-12 text-[#0067b8]" />
+            <Loader2 className="animate-spin h-12 w-12 text-[#00d4ff]" />
           </div>
         }>
           <CheckoutProcess />

@@ -42,7 +42,7 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 
 export function StatsSection() {
   return (
-    <section className="py-20 bg-[#0067b8]">
+    <section className="py-20 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]">
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, i) => (
@@ -57,7 +57,7 @@ export function StatsSection() {
               <div className="text-4xl md:text-6xl font-black tracking-tighter mb-2">
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-blue-100">
+              <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-pink-100">
                 {stat.label}
               </div>
             </motion.div>

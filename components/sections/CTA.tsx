@@ -22,7 +22,7 @@ export function CTA() {
 
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to start your project?</h2>
-            <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-pink-100 mb-10 max-w-2xl mx-auto">
               Let&apos;s collaborate to build something amazing. Whether you have a clear vision or just an idea, I&apos;m here to help you bring it to life.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

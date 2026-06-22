@@ -43,7 +43,7 @@ export default function Home() {
   if (loading || !settings) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#111]">
-        <Loader2 className="animate-spin h-12 w-12 text-[#0067b8]" />
+        <Loader2 className="animate-spin h-12 w-12 text-[#00d4ff]" />
       </div>
     );
   }
@@ -84,7 +84,7 @@ export default function Home() {
         <section className="mt-24 py-16 bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
           <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter uppercase">
-              Global <span className="text-[#0067b8]">Trust Network</span>
+              Global <span className="text-[#00d4ff]">Trust Network</span>
             </h2>
             <p className="text-sm md:text-lg text-[#505050] dark:text-gray-400 font-medium max-w-2xl mx-auto">
               From Mananwala, Sheikhupura to the world — delivering mission-critical web solutions and high-performance
@@ -92,13 +92,13 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-12 pt-8">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                <ShieldCheck className="text-[#0067b8]" size={20} /> Cisco Certified
+                <ShieldCheck className="text-[#00d4ff]" size={20} /> Cisco Certified
               </div>
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                <Globe className="text-[#0067b8]" size={20} /> International Reach
+                <Globe className="text-[#00d4ff]" size={20} /> International Reach
               </div>
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                <Award className="text-[#0067b8]" size={20} /> CGPA 3.42 / 4.00
+                <Award className="text-[#00d4ff]" size={20} /> CGPA 3.42 / 4.00
               </div>
             </div>
           </div>
