@@ -7,15 +7,15 @@ import {
   MapPin, ShieldCheck, Cpu, Loader2, Target,
   Briefcase, Code2, Brain, Users, Award,
   Phone, Mail, ExternalLink, Download,
-  BookOpen, Languages, BadgeCheck
+  BookOpen, Languages, BadgeCheck, Check
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 // ─── Static CV Data ──────────────────────────────────────────────────────────
 const personalInfo = [
-  { icon: MapPin,     label: "Location",    value: "Mananwala, Sheikhupura, Pakistan" },
-  { icon: Phone,      label: "Phone",       value: "(+92) 309-7354874", href: "tel:+923097354874" },
+  { icon: MapPin,     label: "Location",    value: "Sheikhupura, Punjab, Pakistan" },
+  { icon: Phone,      label: "Phone",       value: "+92 309 7354874", href: "tel:+923097354874" },
   { icon: Mail,       label: "Email",       value: "abubakr.bgnu@gmail.com", href: "mailto:abubakr.bgnu@gmail.com" },
   { icon: Globe,      label: "Website",     value: "iamabubakar.site", href: "https://iamabubakar.site" },
   { icon: BookOpen,   label: "University",  value: "Baba Guru Nanak University (BGNU)" },
@@ -217,7 +217,7 @@ export default function AboutPage() {
                 Abu Bakar <span className="text-[#00d4ff]">Siddique</span>
               </h1>
               <div className="text-base md:text-lg text-[#00d4ff] font-black uppercase tracking-widest mb-6">
-                Full-Stack Web Developer (MERN)
+                FULL STACK DEVELOPER
               </div>
               <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-8 max-w-xl">
                 Detail-oriented Information Technology student at Baba Guru Nanak University with hands-on experience
@@ -226,7 +226,7 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-bold px-6 py-3 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-colors text-sm uppercase tracking-widest">
-                  Hire Me <ChevronRight size={16} />
+                  LET'S WORK TOGETHER <ChevronRight size={16} />
                 </Link>
                 {settings?.contact?.cvUrl && (
                   <a href={settings.contact.cvUrl} target="_blank" rel="noopener noreferrer"
@@ -292,11 +292,34 @@ export default function AboutPage() {
               </h2>
             </div>
             <div className="text-base text-[#505050] dark:text-gray-300 leading-relaxed font-medium whitespace-pre-wrap">
-              {settings?.about?.bio || `I'm Abu Bakar Siddique, a Full-Stack Web Developer (MERN) and BSIT student at Baba Guru Nanak University, Nankana Sahib, Pakistan with a CGPA of 3.42/4.00.\n\nI specialize in building responsive web applications using React.js, Next.js, Node.js, Express.js, and MongoDB. I've delivered projects ranging from institutional websites to real estate platforms, and I'm currently leading an AI-powered FYP as Team Lead at BGNU.\n\nBased in Mananwala, Sheikhupura — available globally for freelance and full-time opportunities.`}
+              I am Abu Bakar Siddique, a BS Information Technology student and Full-Stack Web Developer with hands-on experience in designing and developing modern web applications. My expertise includes React.js, Next.js, Node.js, MongoDB, MySQL, PHP, and REST API development. I have built projects ranging from business websites and portfolio platforms to real estate management systems and custom dashboards. I am passionate about creating responsive, user-friendly, scalable, and performance-driven digital solutions that help businesses establish a strong online presence and achieve their goals.
             </div>
+
+            <div className="pt-2 pb-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  "Full Stack Web Development",
+                  "MERN Stack Development",
+                  "React & Next.js Applications",
+                  "MongoDB & MySQL Databases",
+                  "REST API Development",
+                  "Website Deployment & Hosting",
+                  "Technical SEO & Google Setup",
+                  "Graphic Design & Motion Graphics"
+                ].map((highlight) => (
+                  <div key={highlight} className="flex items-center gap-3 text-sm font-bold text-[#242424] dark:text-gray-200">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#e10098] to-[#00d4ff] flex items-center justify-center shrink-0">
+                      <Check size={12} className="text-white" />
+                    </div>
+                    {highlight}
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <Link href="/contact">
               <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white font-semibold py-3 px-8 hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc] transition-colors text-sm uppercase tracking-widest">
-                Let's Connect <ChevronRight size={16} />
+                LET'S CONNECT <ChevronRight size={16} />
               </button>
             </Link>
           </div>
