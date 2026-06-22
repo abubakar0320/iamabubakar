@@ -17,6 +17,12 @@ import {
   Activity,
   BarChart3,
   PieChart as PieChartIcon,
+  Globe,
+  UserCircle,
+  LayoutTemplate,
+  Pencil,
+  Eye,
+  ListTodo
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -114,41 +120,70 @@ export default function AdminDashboard() {
   }, []);
 
   const statCards = [
-    {
-      label: "Total Revenue",
-      value: `$${stats.totalRevenue.toLocaleString()}`,
-      icon: DollarSign,
-      href: "/admin/orders",
-      accent: "#0067b8",
-    },
-    {
-      label: "Unread Messages",
-      value: stats.unreadMessagesCount,
-      icon: MessageSquare,
-      href: "/admin/messages",
-      accent: "#107c10",
-    },
-    {
-      label: "Pending Orders",
-      value: stats.pendingOrders,
-      icon: Clock,
-      href: "/admin/orders",
-      accent: "#d83b01",
-    },
-    {
-      label: "Total Projects",
-      value: stats.projectsCount,
-      icon: FileCode,
-      href: "/admin/projects",
-      accent: "#5c2d91",
-    },
+    { label: "Total Revenue", value: `$${stats.totalRevenue.toLocaleString()}`, icon: DollarSign, href: "/admin/orders", accent: "#0067b8" },
+    { label: "Unread Messages", value: stats.unreadMessagesCount, icon: MessageSquare, href: "/admin/messages", accent: "#107c10" },
+    { label: "Pending Orders", value: stats.pendingOrders, icon: Clock, href: "/admin/orders", accent: "#d83b01" },
+    { label: "Total Projects", value: stats.projectsCount, icon: FileCode, href: "/admin/projects", accent: "#5c2d91" },
   ];
 
-  const quickActions = [
-    { label: "Add New Project",   href: "/admin/projects/new",  icon: FileCode,     color: "#0067b8" },
-    { label: "Add New Service",   href: "/admin/services/new",  icon: Briefcase,    color: "#107c10" },
-    { label: "View Messages",     href: "/admin/messages",      icon: Mail,         color: "#d83b01" },
-    { label: "Site Settings",     href: "/admin/settings",      icon: Settings,     color: "#5c2d91" },
+  const commandModules = [
+    {
+      title: "Projects",
+      icon: FileCode,
+      color: "#0067b8",
+      desc: "Manage portfolio projects",
+      actions: [
+        { label: "Add New", href: "/admin/projects/new", icon: Plus, primary: true },
+        { label: "View All", href: "/admin/projects", icon: ListTodo, primary: false },
+      ]
+    },
+    {
+      title: "Services",
+      icon: Briefcase,
+      color: "#107c10",
+      desc: "Manage offered services",
+      actions: [
+        { label: "Add New", href: "/admin/services/new", icon: Plus, primary: true },
+        { label: "Manage", href: "/admin/services", icon: Settings, primary: false },
+      ]
+    },
+    {
+      title: "Profile & About",
+      icon: UserCircle,
+      color: "#d83b01",
+      desc: "Update bio & skills",
+      actions: [
+        { label: "Edit Profile", href: "/admin/about", icon: Pencil, primary: true },
+        { label: "View Live", href: "/about", icon: Eye, primary: false },
+      ]
+    },
+    {
+      title: "Home Content",
+      icon: LayoutTemplate,
+      color: "#5c2d91",
+      desc: "Hero section & features",
+      actions: [
+        { label: "Edit Home", href: "/admin/home", icon: Pencil, primary: true },
+      ]
+    },
+    {
+      title: "Messages",
+      icon: Mail,
+      color: "#0067b8",
+      desc: "Client inquiries & leads",
+      actions: [
+        { label: "Inbox", href: "/admin/messages", icon: MessageSquare, primary: true },
+      ]
+    },
+    {
+      title: "Orders",
+      icon: DollarSign,
+      color: "#107c10",
+      desc: "Service payments & status",
+      actions: [
+        { label: "All Orders", href: "/admin/orders", icon: ListTodo, primary: true },
+      ]
+    }
   ];
 
   const verifiedOrders = stats.totalOrders > 0 ? stats.totalOrders - stats.pendingOrders : 15;
@@ -168,306 +203,232 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="space-y-8 font-sans pb-10">
+    <div className="space-y-10 font-sans pb-10 max-w-7xl mx-auto">
 
       {/* ── Page Header ── */}
-      <div className="flex items-start justify-between">
-        <div>
-          <div className="text-[10px] font-black uppercase text-[#0067b8] tracking-widest mb-2">
-            Overview
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-[#0067b8] text-white p-8 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="relative z-10">
+          <div className="text-[10px] font-black uppercase tracking-widest text-blue-200 mb-2 flex items-center gap-2">
+            <Globe size={12} /> System Online
           </div>
-          <h1 className="text-3xl font-semibold text-[#242424] dark:text-white tracking-tight">
-            Dashboard
+          <h1 className="text-4xl font-bold tracking-tight mb-2">
+            Command Center
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">
-            Welcome back, Abu Bakar. Here's what's happening.
+          <p className="text-sm text-blue-100 font-medium max-w-xl">
+            Welcome back, Abu Bakar. Manage your entire portfolio, services, and client interactions from here.
           </p>
         </div>
-        <Link
-          href="/admin/projects/new"
-          className="inline-flex items-center gap-2 bg-[#0067b8] text-white font-bold px-5 py-2.5 hover:bg-[#005da6] transition-colors text-xs uppercase tracking-widest"
-        >
-          <Plus size={15} /> New Project
-        </Link>
+        <div className="relative z-10 flex gap-3">
+          <Link
+            href="/"
+            target="_blank"
+            className="inline-flex items-center gap-2 bg-white text-[#0067b8] font-bold px-6 py-3 hover:bg-gray-100 transition-colors text-xs uppercase tracking-widest"
+          >
+            <Eye size={15} /> View Live Site
+          </Link>
+          <Link
+            href="/admin/settings"
+            className="inline-flex items-center gap-2 border border-blue-300 text-white font-bold px-4 py-3 hover:bg-white/10 transition-colors text-xs uppercase tracking-widest"
+          >
+            <Settings size={15} />
+          </Link>
+        </div>
       </div>
 
       {/* ── Stat Cards ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((card, i) => (
-          <motion.div
-            key={card.label}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.07 }}
-          >
+          <motion.div key={card.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
             <Link href={card.href}>
-              <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group cursor-pointer h-full">
+              <div className="bg-white dark:bg-[#1a1a1a] border-l-4 border-y border-r border-gray-200 dark:border-gray-800 p-6 hover:bg-[#f8fafc] dark:hover:bg-[#242424] transition-colors group cursor-pointer h-full" style={{ borderLeftColor: card.accent }}>
                 <div className="flex items-start justify-between mb-4">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
                     {card.label}
                   </span>
-                  <div
-                    className="w-8 h-8 flex items-center justify-center"
-                    style={{ backgroundColor: card.accent + "15", color: card.accent }}
-                  >
-                    <card.icon size={16} />
-                  </div>
+                  <card.icon size={16} style={{ color: card.accent }} />
                 </div>
-                <p
-                  className="text-4xl font-semibold tracking-tight"
-                  style={{ color: card.accent }}
-                >
+                <p className="text-3xl font-bold tracking-tight text-[#242424] dark:text-white">
                   {card.value}
                 </p>
-                <div className="mt-4 flex items-center text-[10px] font-black text-[#0067b8] uppercase tracking-widest group-hover:underline">
-                  View details <ChevronRight size={11} className="ml-1" />
-                </div>
               </div>
             </Link>
           </motion.div>
         ))}
       </div>
 
-      {/* ── Charts Grid (Row 1) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Revenue Chart */}
-        <div className="lg:col-span-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
-          <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
-            <div>
-              <div className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] mb-1">Analytics</div>
-              <h2 className="text-base font-semibold text-[#242424] dark:text-white">Revenue & Orders</h2>
-            </div>
-            <Activity size={16} className="text-gray-400" />
-          </div>
-          <div className="p-6 h-[320px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={revenueData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#0067b8" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#0067b8" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" opacity={0.2} />
-                <XAxis 
-                  dataKey="month" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fontSize: 11, fill: '#888' }} 
-                  dy={10}
-                />
-                <YAxis 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fontSize: 11, fill: '#888' }}
-                />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Area 
-                  type="monotone" 
-                  dataKey="revenue" 
-                  stroke="#0067b8" 
-                  strokeWidth={2}
-                  fillOpacity={1} 
-                  fill="url(#colorRevenue)" 
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
+      {/* ── Command Modules (Action Grid) ── */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1.5 h-4 bg-[#0067b8]" />
+          <h2 className="text-lg font-bold text-[#242424] dark:text-white uppercase tracking-wider">Quick Controls</h2>
         </div>
-
-        {/* Order Status Pie Chart */}
-        <div className="lg:col-span-4 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
-          <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
-            <div>
-              <div className="text-[10px] font-black uppercase tracking-widest text-[#107c10] mb-1">Distribution</div>
-              <h2 className="text-base font-semibold text-[#242424] dark:text-white">Order Status</h2>
-            </div>
-            <PieChartIcon size={16} className="text-gray-400" />
-          </div>
-          <div className="p-6 h-[320px] flex flex-col justify-center items-center">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={orderStatusData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={70}
-                  outerRadius={90}
-                  paddingAngle={2}
-                  dataKey="value"
-                  stroke="none"
-                >
-                  {orderStatusData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <RechartsTooltip content={<CustomTooltip />} />
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="flex gap-6 mt-4">
-              {orderStatusData.map((entry) => (
-                <div key={entry.name} className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-none" style={{ backgroundColor: entry.color }} />
-                  <span className="text-[11px] font-bold text-[#242424] dark:text-gray-300 uppercase tracking-widest">
-                    {entry.name} ({entry.value})
-                  </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {commandModules.map((module, i) => (
+            <motion.div key={module.title} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}>
+              <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 flex flex-col h-full">
+                <div className="p-5 flex-grow">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 flex items-center justify-center bg-gray-50 dark:bg-[#242424]">
+                      <module.icon size={16} style={{ color: module.color }} />
+                    </div>
+                    <h3 className="font-bold text-[#242424] dark:text-white text-base">{module.title}</h3>
+                  </div>
+                  <p className="text-xs text-gray-500 font-medium pl-11">{module.desc}</p>
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className="p-3 bg-gray-50 dark:bg-[#242424] border-t border-gray-100 dark:border-gray-800 flex gap-2">
+                  {module.actions.map((act) => (
+                    <Link
+                      key={act.label}
+                      href={act.href}
+                      className={cn(
+                        "flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 text-[10px] font-black uppercase tracking-widest transition-colors text-center",
+                        act.primary
+                          ? "bg-[#0067b8] text-white hover:bg-[#005da6]"
+                          : "bg-white dark:bg-[#1a1a1a] text-[#242424] dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-[#0067b8] hover:text-[#0067b8]"
+                      )}
+                    >
+                      <act.icon size={12} /> {act.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
-      {/* ── Main Grid (Row 2) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-        {/* Recent Orders Table */}
-        <div className="lg:col-span-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
-          <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
-            <div>
-              <div className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] mb-1">Latest</div>
-              <h2 className="text-base font-semibold text-[#242424] dark:text-white">Recent Orders</h2>
-            </div>
-            <Link
-              href="/admin/orders"
-              className="text-[10px] font-black text-[#0067b8] uppercase tracking-widest hover:underline flex items-center gap-1"
-            >
-              See All <ArrowUpRight size={11} />
-            </Link>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-[#f3f2f1] dark:bg-[#242424]">
-                <tr>
-                  {["Customer", "Plan", "Status", "Amount"].map((h) => (
-                    <th
-                      key={h}
-                      className="px-6 py-3 text-[10px] font-black uppercase tracking-widest text-gray-400"
-                    >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                {recentOrders.map((order) => (
-                  <tr
-                    key={order._id}
-                    className="hover:bg-[#f3f2f1] dark:hover:bg-[#242424] transition-colors"
-                  >
-                    <td className="px-6 py-4">
-                      <p className="text-[13px] font-bold text-[#242424] dark:text-white">
-                        {order.customerName}
-                      </p>
-                      <p className="text-[11px] text-gray-500">{order.customerEmail}</p>
-                    </td>
-                    <td className="px-6 py-4 text-[12px] font-medium text-[#242424] dark:text-gray-300">
-                      {order.planName}
-                    </td>
-                    <td className="px-6 py-4">
-                      <span
-                        className={cn(
-                          "inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest px-2.5 py-1",
-                          order.status === "verified"
-                            ? "bg-emerald-50 dark:bg-emerald-900/10 text-emerald-700 dark:text-emerald-400"
-                            : "bg-amber-50 dark:bg-amber-900/10 text-amber-700 dark:text-amber-400"
-                        )}
-                      >
-                        {order.status === "verified" ? (
-                          <CheckCircle2 size={10} />
-                        ) : (
-                          <AlertCircle size={10} />
-                        )}
-                        {order.status === "verified" ? "Paid" : "Pending"}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-right text-[13px] font-black text-[#242424] dark:text-white">
-                      {order.planPrice}
-                    </td>
-                  </tr>
-                ))}
-                {recentOrders.length === 0 && (
-                  <tr>
-                    <td colSpan={4} className="px-6 py-12 text-center text-xs text-gray-400 font-medium">
-                      No orders yet. Share your services to get started.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+      {/* ── Charts Grid ── */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-1.5 h-4 bg-[#5c2d91]" />
+          <h2 className="text-lg font-bold text-[#242424] dark:text-white uppercase tracking-wider">Analytics</h2>
         </div>
-
-        {/* Right Column (Traffic & Actions) */}
-        <div className="lg:col-span-4 space-y-6">
-
-          {/* Traffic Chart */}
-          <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          {/* Revenue Chart */}
+          <div className="lg:col-span-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
             <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
               <div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-[#5c2d91] mb-1">Visitors</div>
-                <h3 className="text-base font-semibold text-[#242424] dark:text-white">Weekly Traffic</h3>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] mb-1">Growth</div>
+                <h2 className="text-sm font-bold text-[#242424] dark:text-white">Revenue Overview</h2>
               </div>
-              <BarChart3 size={16} className="text-gray-400" />
+              <Activity size={16} className="text-gray-400" />
             </div>
-            <div className="p-6 h-[200px]">
+            <div className="p-6 h-[280px]">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={trafficData} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
+                <AreaChart data={revenueData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#0067b8" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#0067b8" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" opacity={0.2} />
-                  <XAxis 
-                    dataKey="day" 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{ fontSize: 10, fill: '#888' }} 
-                    dy={5}
-                  />
-                  <YAxis 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{ fontSize: 10, fill: '#888' }}
-                  />
-                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'transparent' }} />
-                  <Bar dataKey="views" fill="#5c2d91" radius={[0, 0, 0, 0]} barSize={12} />
-                  <Bar dataKey="visitors" fill="#0067b8" radius={[0, 0, 0, 0]} barSize={12} />
-                </BarChart>
+                  <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#888' }} dy={10} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#888' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Area type="monotone" dataKey="revenue" stroke="#0067b8" strokeWidth={2} fillOpacity={1} fill="url(#colorRevenue)" />
+                </AreaChart>
               </ResponsiveContainer>
             </div>
           </div>
 
-          {/* Quick Actions */}
-          <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
-            <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800">
-              <div className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] mb-1">Shortcuts</div>
-              <h3 className="text-base font-semibold text-[#242424] dark:text-white">Quick Actions</h3>
+          {/* Traffic Chart */}
+          <div className="lg:col-span-4 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800">
+            <div className="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#5c2d91] mb-1">Visitors</div>
+                <h3 className="text-sm font-bold text-[#242424] dark:text-white">Weekly Traffic</h3>
+              </div>
+              <BarChart3 size={16} className="text-gray-400" />
             </div>
-            <div className="p-3 space-y-1">
-              {quickActions.map((action) => (
-                <Link key={action.label} href={action.href}>
-                  <div className="flex items-center justify-between px-4 py-3 hover:bg-[#f3f2f1] dark:hover:bg-[#242424] transition-colors group cursor-pointer">
-                    <div className="flex items-center gap-3.5">
-                      <div
-                        className="w-8 h-8 flex items-center justify-center"
-                        style={{ backgroundColor: action.color + "15", color: action.color }}
-                      >
-                        <action.icon size={15} />
-                      </div>
-                      <span className="text-[12.5px] font-semibold text-[#242424] dark:text-white">
-                        {action.label}
-                      </span>
-                    </div>
-                    <ChevronRight
-                      size={14}
-                      className="text-gray-300 group-hover:text-[#0067b8] transition-colors"
-                    />
-                  </div>
-                </Link>
-              ))}
+            <div className="p-6 h-[280px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={trafficData} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" opacity={0.2} />
+                  <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#888' }} dy={5} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#888' }} />
+                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'transparent' }} />
+                  <Bar dataKey="views" fill="#5c2d91" radius={[0, 0, 0, 0]} barSize={10} />
+                  <Bar dataKey="visitors" fill="#0067b8" radius={[0, 0, 0, 0]} barSize={10} />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           </div>
-
         </div>
       </div>
+
+      {/* ── Recent Orders ── */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-4 bg-[#107c10]" />
+            <h2 className="text-lg font-bold text-[#242424] dark:text-white uppercase tracking-wider">Recent Orders</h2>
+          </div>
+          <Link href="/admin/orders" className="text-[10px] font-black uppercase tracking-widest text-[#0067b8] hover:underline flex items-center gap-1">
+            View All <ArrowUpRight size={12} />
+          </Link>
+        </div>
+        
+        <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-[#f3f2f1] dark:bg-[#242424] border-b border-gray-200 dark:border-gray-800">
+              <tr>
+                {["Customer", "Plan", "Status", "Amount", "Actions"].map((h) => (
+                  <th key={h} className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-500">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              {recentOrders.map((order) => (
+                <tr key={order._id} className="hover:bg-gray-50 dark:hover:bg-[#242424]/50 transition-colors">
+                  <td className="px-6 py-4">
+                    <p className="text-[13px] font-bold text-[#242424] dark:text-white">{order.customerName}</p>
+                    <p className="text-[11px] text-gray-500">{order.customerEmail}</p>
+                  </td>
+                  <td className="px-6 py-4 text-[12px] font-bold text-[#242424] dark:text-gray-300">
+                    {order.planName}
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={cn(
+                      "inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest px-2.5 py-1",
+                      order.status === "verified"
+                        ? "bg-emerald-50 dark:bg-emerald-900/10 text-emerald-700 dark:text-emerald-400"
+                        : "bg-amber-50 dark:bg-amber-900/10 text-amber-700 dark:text-amber-400"
+                    )}>
+                      {order.status === "verified" ? <CheckCircle2 size={10} /> : <AlertCircle size={10} />}
+                      {order.status === "verified" ? "Paid" : "Pending"}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-[13px] font-black text-[#242424] dark:text-white">
+                    {order.planPrice}
+                  </td>
+                  <td className="px-6 py-4">
+                    <Link href={`/admin/orders/${order._id}`} className="inline-flex items-center justify-center gap-1 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#0067b8] border border-[#0067b8] hover:bg-[#0067b8] hover:text-white transition-colors">
+                      <Eye size={12} /> View
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+              {recentOrders.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="px-6 py-12 text-center text-xs text-gray-400 font-medium">
+                    No orders yet.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
     </div>
   );
 }
