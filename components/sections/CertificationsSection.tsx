@@ -28,6 +28,22 @@ const certs = [
     color: "#00d4ff",
     logo: "DCF",
   },
+  {
+    title: "ChatGPT Advanced Data Analysis",
+    issuer: "Vanderbilt University (Coursera)",
+    date: "22 Jun 2026",
+    skills: [
+      "AI Workflows",
+      "Data Processing",
+      "Data Visualization",
+      "Prompt Engineering",
+      "Generative AI",
+    ],
+    note: "Automating tasks with ChatGPT Code Interpreter",
+    color: "#5c2d91",
+    logo: "COURSERA",
+    fileUrl: "/Coursera Chatgpt certificate.pdf"
+  },
 ];
 
 export function CertificationsSection() {
@@ -106,12 +122,25 @@ export function CertificationsSection() {
                   ))}
                 </div>
 
-                {/* Verified badge */}
-                <div className="flex items-center gap-2 mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
-                  <BadgeCheck size={16} style={{ color: cert.color }} />
-                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: cert.color }}>
-                    Verified Certification
-                  </span>
+                {/* Verified badge / PDF Link */}
+                <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
+                  <div className="flex items-center gap-2">
+                    <BadgeCheck size={16} style={{ color: cert.color }} />
+                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: cert.color }}>
+                      Verified Certification
+                    </span>
+                  </div>
+                  {(cert as any).fileUrl && (
+                    <a 
+                      href={(cert as any).fileUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                      style={{ color: cert.color }}
+                    >
+                      View PDF <ExternalLink size={14} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

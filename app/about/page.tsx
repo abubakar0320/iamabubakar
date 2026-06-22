@@ -531,9 +531,22 @@ export default function AboutPage() {
                       <span key={s} className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400">{s}</span>
                     ))}
                   </div>
-                  <div className="flex items-center gap-2 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <BadgeCheck size={15} style={{ color: cert.color }} />
-                    <span className="text-xs font-black uppercase tracking-widest" style={{ color: cert.color }}>Verified Certification</span>
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center gap-2">
+                      <BadgeCheck size={15} style={{ color: cert.color }} />
+                      <span className="text-xs font-black uppercase tracking-widest" style={{ color: cert.color }}>Verified Certification</span>
+                    </div>
+                    {cert.fileUrl && (
+                      <a 
+                        href={cert.fileUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                        style={{ color: cert.color }}
+                      >
+                        View PDF <ExternalLink size={14} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>
