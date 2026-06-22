@@ -105,6 +105,15 @@ const certifications = [
     badge: "DCF",
     skills: ["Data Literacy", "Digital Collaboration", "Content Creation", "Problem Solving"],
   },
+  {
+    title: "ChatGPT Advanced Data Analysis",
+    issuer: "Vanderbilt University (Coursera)",
+    date: "22 Jun 2026",
+    color: "#5c2d91",
+    badge: "COURSERA",
+    skills: ["AI Workflows", "Data Processing", "Data Visualization", "Prompt Engineering"],
+    fileUrl: "/Coursera Chatgpt certificate.pdf"
+  },
 ];
 
 const languages = [
