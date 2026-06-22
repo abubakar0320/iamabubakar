@@ -60,6 +60,40 @@ export default function ServicesPage() {
   const [loading, setLoading] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [currency, setCurrency] = useState<string>("USD");
+  const [currencySymbol, setCurrencySymbol] = useState<string>("$");
+  const [exchangeRate, setExchangeRate] = useState<number>(1);
+
+  useEffect(() => {
+    const fetchLocationAndCurrency = async () => {
+      try {
+        const ipRes = await fetch("https://ipapi.co/json/");
+        const ipData = await ipRes.json();
+        if (ipData && ipData.currency) {
+          const userCurrency = ipData.currency;
+          setCurrency(userCurrency);
+          
+          const parts = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: userCurrency,
+          }).formatToParts(1);
+          const sym = parts.find(p => p.type === 'currency')?.value || userCurrency;
+          setCurrencySymbol(sym);
+
+          if (userCurrency !== "USD") {
+            const rateRes = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+            const rateData = await rateRes.json();
+            if (rateData && rateData.rates && rateData.rates[userCurrency]) {
+              setExchangeRate(rateData.rates[userCurrency]);
+            }
+          }
+        }
+      } catch (err) {
+        console.error("Currency fetch error:", err);
+      }
+    };
+    fetchLocationAndCurrency();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,6 +129,19 @@ export default function ServicesPage() {
   const dbProcessSteps = settings?.servicesPage?.processSteps || processSteps;
   const dbPricingPlans = settings?.servicesPage?.pricingPlans || [];
   const dbFaqs = settings?.servicesPage?.faqs || [];
+
+  const getDisplayPrice = (basePrice: string) => {
+    const numMatch = basePrice.match(/[\d.]+/);
+    if (!numMatch) return basePrice;
+    
+    const num = parseFloat(numMatch[0]);
+    const converted = num * exchangeRate;
+    
+    const formattedNum = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(converted);
+    const hasPlus = basePrice.includes('+');
+    
+    return `${currencySymbol}${formattedNum}${hasPlus ? '+' : ''}`;
+  };
 
   return (
     <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
@@ -353,7 +400,7 @@ export default function ServicesPage() {
                 <div className="p-8 md:p-10 flex flex-col flex-1">
                   <h3 className="text-xl font-black uppercase tracking-tight mb-1">{plan.name}</h3>
                   <div className="flex items-baseline gap-1 mt-4 mb-6 pb-6 border-b border-current/10">
-                    <span className="text-5xl font-black">{plan.price}</span>
+                    <span className="text-5xl font-black">{getDisplayPrice(plan.price)}</span>
                     <span className={cn("text-[10px] font-black uppercase tracking-widest", plan.recommended ? "text-blue-100" : "text-gray-400")}>
                       / project
                     </span>
