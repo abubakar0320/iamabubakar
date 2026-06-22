@@ -89,13 +89,7 @@ export default function ServicesPage() {
     );
   }
 
-  const activeCategories = allCategories.filter(
-    (cat) => services.filter((s) => s.category === cat).length > 0
-  );
-
-  const filteredCategories = activeCategory
-    ? activeCategories.filter((c) => c === activeCategory)
-    : activeCategories;
+  // Categories logic simplified for unified grid
 
   const dbWhyCards = settings?.servicesPage?.whyCards || whyCards;
   const dbProcessSteps = settings?.servicesPage?.processSteps || processSteps;
@@ -129,11 +123,10 @@ export default function ServicesPage() {
           >
             <div className="text-xs font-black uppercase text-[#0067b8] tracking-widest mb-4">What I Offer</div>
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6 leading-tight">
-              Services &amp; <span className="text-[#0067b8]">Solutions</span>
+              My <span className="text-[#0067b8]">Services</span>
             </h1>
             <p className="text-sm md:text-lg text-gray-300 leading-relaxed mb-8 max-w-xl">
-              Full-stack web development, AI integration, networking, SEO, and FYP assistance —
-              all delivered with precision and professionalism.
+              Providing professional web development, deployment, database solutions, SEO setup, and digital design services to help businesses grow online.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -159,7 +152,7 @@ export default function ServicesPage() {
       <section className="bg-[#0067b8] py-6 px-4 md:px-12 xl:px-20">
         <div className="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-white">
           {[
-            { label: "Service Categories", value: `${activeCategories.length}+` },
+            { label: "Active Services", value: `${services.length}+` },
             { label: "Technologies", value: "15+" },
             { label: "Clients Served", value: "30+" },
             { label: "Satisfaction Rate", value: "99%" },
@@ -179,143 +172,66 @@ export default function ServicesPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          3. CATEGORY FILTER TABS
+          3. SERVICE CARDS (Grid view for all services)
           ══════════════════════════════════════════ */}
-      {activeCategories.length > 0 && (
-        <div id="services" className="sticky top-0 z-40 bg-white/95 dark:bg-[#111]/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 px-4 md:px-12 xl:px-20 py-3">
-          <div className="max-w-[1600px] mx-auto flex items-center gap-2 overflow-x-auto scrollbar-hide">
-            <button
-              onClick={() => setActiveCategory(null)}
-              className={cn(
-                "flex-shrink-0 px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all border",
-                !activeCategory
-                  ? "bg-[#0067b8] text-white border-[#0067b8]"
-                  : "border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8]"
-              )}
-            >
-              All
-            </button>
-            {activeCategories.map((cat) => {
-              const meta = categoryMeta[cat];
-              const Icon = meta?.icon || Globe;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat === activeCategory ? null : cat)}
-                  className={cn(
-                    "flex-shrink-0 flex items-center gap-1.5 px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all border",
-                    activeCategory === cat
-                      ? "text-white border-[#0067b8]"
-                      : "border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8]"
-                  )}
-                  style={activeCategory === cat ? { backgroundColor: meta?.color || "#0067b8", borderColor: meta?.color || "#0067b8" } : {}}
-                >
-                  <Icon size={11} />
-                  {cat.replace(" SERVICES", "").replace(" & ", " & ")}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* ══════════════════════════════════════════
-          4. SERVICE CATEGORIES + CARDS
-          ══════════════════════════════════════════ */}
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 py-16 md:py-24 space-y-24">
-        <AnimatePresence mode="wait">
-          {filteredCategories.map((category) => {
-            const categoryServices = services.filter((s) => s.category === category);
-            if (categoryServices.length === 0) return null;
-            const meta = categoryMeta[category];
-            const CatIcon = meta?.icon || Globe;
-
+      <div id="services" className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {services.map((service, index) => {
+            const IconComponent = (LucideIcons as any)[service.icon || "Globe"] || LucideIcons.Globe;
+            const accentColor = "#0067b8";
+            
             return (
               <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
+                key={service._id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="flex flex-col group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-all overflow-hidden h-full"
               >
-                {/* Category Header */}
-                <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-100 dark:border-gray-800">
-                  <div
-                    className="w-10 h-10 flex items-center justify-center text-white shrink-0"
-                    style={{ backgroundColor: meta?.color || "#0067b8" }}
-                  >
-                    <CatIcon size={20} />
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="text-xl md:text-2xl font-black tracking-tight uppercase text-[#242424] dark:text-white">
-                      {category}
-                    </h2>
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">
-                      {categoryServices.length} Service{categoryServices.length > 1 ? "s" : ""} Available
+                {/* Image */}
+                <div className="relative h-44 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <div
+                      className="w-10 h-10 flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-lg"
+                      style={{ backgroundColor: accentColor }}
+                    >
+                      <IconComponent size={20} />
                     </div>
                   </div>
+                  {/* Top accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: accentColor }} />
                 </div>
 
-                {/* Service Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {categoryServices.map((service, index) => {
-                    const IconComponent = (LucideIcons as any)[service.icon || "Globe"] || LucideIcons.Globe;
-                    return (
-                      <motion.div
-                        key={service._id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.06 }}
-                        className="flex flex-col group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-all overflow-hidden"
-                      >
-                        {/* Image */}
-                        <div className="relative h-44 overflow-hidden">
-                          <Image
-                            src={service.image}
-                            alt={service.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                          <div className="absolute bottom-4 left-4">
-                            <div
-                              className="w-10 h-10 flex items-center justify-center text-white group-hover:scale-110 transition-transform"
-                              style={{ backgroundColor: meta?.color || "#0067b8" }}
-                            >
-                              <IconComponent size={20} />
-                            </div>
-                          </div>
-                          {/* Top accent line */}
-                          <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: meta?.color || "#0067b8" }} />
-                        </div>
-
-                        {/* Content */}
-                        <div className="p-6 flex flex-col flex-1">
-                          <h3 className="text-base font-bold mb-2 text-[#242424] dark:text-white leading-snug group-hover:text-[#0067b8] transition-colors uppercase tracking-tight">
-                            {service.title}
-                          </h3>
-                          <p className="text-xs text-[#505050] dark:text-gray-400 mb-5 leading-relaxed font-medium flex-1">
-                            {service.description}
-                          </p>
-                          <div className="space-y-2 pt-4 border-t border-gray-100 dark:border-gray-800">
-                            {service.features?.slice(0, 3).map((feature: string) => (
-                              <div key={feature} className="flex items-center gap-2 text-[10px] font-black text-[#505050] dark:text-gray-400 uppercase tracking-widest">
-                                <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: meta?.color || "#0067b8" }} />
-                                {feature}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-base font-bold mb-2 text-[#242424] dark:text-white leading-snug group-hover:text-[#0067b8] transition-colors uppercase tracking-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs text-[#505050] dark:text-gray-400 mb-5 leading-relaxed font-medium flex-1">
+                    {service.description}
+                  </p>
+                  <div className="space-y-2 pt-4 border-t border-gray-100 dark:border-gray-800 mt-auto">
+                    {service.features?.slice(0, 3).map((feature: string) => (
+                      <div key={feature} className="flex items-center gap-2 text-[10px] font-black text-[#505050] dark:text-gray-400 uppercase tracking-widest">
+                        <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: accentColor }} />
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             );
           })}
-        </AnimatePresence>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════
