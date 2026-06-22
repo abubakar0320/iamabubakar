@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { GraduationCap, Briefcase, Code2 } from "lucide-react";
 
-const timeline = [
+const defaultTimeline = [
   {
     year: "Jun 2026 – Dec 2026",
     type: "work",
@@ -84,7 +84,40 @@ const typeColor: Record<string, string> = {
   work: "#107c10",
 };
 
-export function Timeline() {
+export function Timeline({ education: dbEducation, experience: dbExperience }: { education?: any[], experience?: any[] }) {
+  
+  let finalTimeline: any[] = [];
+  
+  if ((dbEducation && dbEducation.length > 0) || (dbExperience && dbExperience.length > 0)) {
+     const expMapped = (dbExperience || []).map((e: any, i: number) => ({
+        year: e.year,
+        type: "work",
+        icon: i === 0 ? Code2 : Briefcase,
+        title: e.title,
+        org: e.company,
+        description: e.description,
+        badge: i === 0 ? "Active" : "Past",
+        badgeColor: ["#d83b01", "#5c2d91", "#0067b8"][i % 3],
+        tech: []
+     }));
+
+     const eduMapped = (dbEducation || []).map((e: any, i: number) => ({
+        year: e.year,
+        type: "education",
+        icon: GraduationCap,
+        title: e.degree,
+        org: e.institution,
+        description: e.description,
+        badge: i === 0 ? "Current" : "Completed",
+        badgeColor: ["#107c10", "#505050", "#0067b8"][i % 3],
+        tech: []
+     }));
+
+     finalTimeline = [...expMapped, ...eduMapped];
+  } else {
+     finalTimeline = defaultTimeline;
+  }
+
   return (
     <section className="py-24 bg-[#f2f2f2] dark:bg-[#0d0d0d] border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20">
@@ -109,7 +142,7 @@ export function Timeline() {
           <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700 -translate-x-1/2 hidden sm:block" />
 
           <div className="space-y-10">
-            {timeline.map((item, i) => {
+            {finalTimeline.map((item, i) => {
               const isLeft = i % 2 === 0;
               return (
                 <motion.div
@@ -148,7 +181,7 @@ export function Timeline() {
                     </p>
                     {item.tech.length > 0 && (
                       <div className={`flex flex-wrap gap-2 mt-4 ${isLeft ? "sm:justify-end" : ""}`}>
-                        {item.tech.map((t) => (
+                        {item.tech.map((t: string) => (
                           <span
                             key={t}
                             className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"

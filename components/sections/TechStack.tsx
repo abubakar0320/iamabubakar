@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const categories = [
+const defaultCategories = [
   {
     id: "top",
     label: "Top Skills",
@@ -58,16 +58,51 @@ const categories = [
   },
 ];
 
-const allTags = [
+const defaultAllTags = [
   "React.js", "Node.js", "Express.js", "MongoDB", "JavaScript",
   "HTML5", "CSS3", "REST API", "MySQL", "GitHub",
   "PHP", "Java", "Laravel", "C++", "Python",
   "Responsive Design", "UI/UX", "Cybersecurity", "MS Office", "Figma",
 ];
 
-export function TechStack() {
-  const [active, setActive] = useState("top");
-  const current = categories.find((c) => c.id === active)!;
+export function TechStack({ skills: dbSkills }: { skills?: any[] }) {
+  const [active, setActive] = useState("Frontend");
+
+  // Format DB skills into categories
+  let dynamicCategories: any[] = [];
+  let dynamicTags: string[] = [];
+  
+  if (dbSkills && dbSkills.length > 0) {
+    const cats: Record<string, any[]> = {};
+    dbSkills.forEach(s => {
+      const cat = s.category || "Other";
+      if (!cats[cat]) cats[cat] = [];
+      cats[cat].push({ name: s.name, level: s.level });
+      dynamicTags.push(s.name);
+    });
+
+    const colors = ["#0067b8", "#107c10", "#d83b01", "#5c2d91", "#004b50"];
+    let i = 0;
+    for (const [catName, catSkills] of Object.entries(cats)) {
+      dynamicCategories.push({
+        id: catName,
+        label: catName,
+        color: colors[i % colors.length],
+        skills: catSkills.sort((a, b) => b.level - a.level)
+      });
+      i++;
+    }
+  }
+
+  const finalCategories = dynamicCategories.length > 0 ? dynamicCategories : defaultCategories;
+  const finalTags = dynamicTags.length > 0 ? dynamicTags : defaultAllTags;
+
+  // Make sure 'active' exists in the categories
+  if (!finalCategories.find(c => c.id === active)) {
+    setActive(finalCategories[0]?.id || "top");
+  }
+
+  const current = finalCategories.find((c) => c.id === active) || finalCategories[0];
 
   return (
     <section className="py-24 bg-white dark:bg-[#111] border-t border-gray-100 dark:border-gray-800">
@@ -89,7 +124,7 @@ export function TechStack() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* Tab Selector */}
           <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible lg:min-w-[220px] pb-2 lg:pb-0">
-            {categories.map((cat) => (
+            {finalCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActive(cat.id)}
@@ -119,7 +154,7 @@ export function TechStack() {
                 transition={{ duration: 0.3 }}
                 className="grid grid-cols-1 sm:grid-cols-2 gap-5"
               >
-                {current.skills.map((skill, i) => (
+                {current.skills.map((skill: any, i: number) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, y: 10 }}
@@ -154,7 +189,7 @@ export function TechStack() {
 
         {/* Tag Cloud */}
         <div className="mt-16 flex flex-wrap gap-3">
-          {allTags.map((tag) => (
+          {finalTags.map((tag) => (
             <span
               key={tag}
               className="px-3 py-1.5 text-xs font-bold uppercase tracking-widest border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 hover:border-[#0067b8] hover:text-[#0067b8] dark:hover:border-[#0067b8] dark:hover:text-[#4da3ff] transition-colors cursor-default"

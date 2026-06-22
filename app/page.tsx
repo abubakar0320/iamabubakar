@@ -60,13 +60,13 @@ export default function Home() {
       </div>
 
       {/* 3. SKILLS & ARSENAL */}
-      <TechStack />
+      <TechStack skills={settings?.about?.skills || []} />
 
       {/* 5. FYP SHOWCASE */}
       <FYPSection />
 
       {/* 6. EDUCATION & EXPERIENCE TIMELINE */}
-      <Timeline />
+      <Timeline education={settings?.about?.education || []} experience={settings?.about?.experience || []} />
 
       {/* 7. CERTIFICATIONS */}
       <CertificationsSection />

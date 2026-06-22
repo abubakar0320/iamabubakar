@@ -121,19 +121,38 @@ export default function ProjectsPage() {
       .catch(() => setLoading(false));
   }, []);
 
+  // Map DB Projects to match the expected format
+  const formattedDbProjects = dbProjects.map((p: any) => ({
+    id: p._id,
+    name: p.title,
+    displayTitle: p.title,
+    description: p.description,
+    tech: p.tech || [],
+    category: p.category,
+    github: p.github || "",
+    live: p.live || null,
+    stars: 0,
+    language: p.tech?.[0] || "Unknown",
+    image: p.image || "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1469&auto=format&fit=crop",
+    featured: true // DB projects are featured by default
+  }));
+
   // Merge GitHub projects + DB projects (DB takes priority if same title)
-  const allProjects = [...githubProjects];
+  const dbTitles = formattedDbProjects.map((p: any) => p.displayTitle.toLowerCase());
+  const staticProjectsFiltered = githubProjects.filter((p: any) => !dbTitles.includes(p.displayTitle.toLowerCase()));
+  
+  const allProjects = [...formattedDbProjects, ...staticProjectsFiltered];
 
   const filtered = allProjects.filter((p) => {
     const matchCat = filter === "All" || p.category === filter;
     const matchSearch =
       search === "" ||
       p.displayTitle.toLowerCase().includes(search.toLowerCase()) ||
-      p.tech.some((t) => t.toLowerCase().includes(search.toLowerCase()));
+      p.tech.some((t: string) => t.toLowerCase().includes(search.toLowerCase()));
     return matchCat && matchSearch;
   });
 
-  const featured = githubProjects.filter((p) => p.featured);
+  const featured = allProjects.filter((p) => p.featured);
 
   if (loading) {
     return (
@@ -274,7 +293,7 @@ export default function ProjectsPage() {
 
                   {/* Tech tags */}
                   <div className="flex flex-wrap gap-1.5 mb-5">
-                    {p.tech.map((t) => (
+                    {p.tech.map((t: string) => (
                       <span
                         key={t}
                         className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
@@ -414,7 +433,7 @@ export default function ProjectsPage() {
 
                     {/* Tech */}
                     <div className="flex flex-wrap gap-1 mb-4">
-                      {p.tech.slice(0, 3).map((t) => (
+                      {p.tech.slice(0, 3).map((t: string) => (
                         <span
                           key={t}
                           className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 bg-[#f2f2f2] dark:bg-[#252525] text-[#505050] dark:text-gray-400 border border-gray-200 dark:border-gray-700"

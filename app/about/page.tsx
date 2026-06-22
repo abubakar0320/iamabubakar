@@ -31,7 +31,7 @@ const coreFacts = [
   { label: "Languages",    value: "Punjabi, Urdu, English" },
 ];
 
-const education = [
+const defaultEducation = [
   {
     degree: "Bachelor of Science in Information Technology (BSIT)",
     institution: "Baba Guru Nanak University, Nankana Sahib",
@@ -58,7 +58,7 @@ const education = [
   },
 ];
 
-const experience = [
+const defaultExperience = [
   {
     period: "Jun 2026 – Dec 2026",
     role: "Team Lead — FYP",
@@ -147,6 +147,27 @@ export default function AboutPage() {
       </div>
     );
   }
+
+  const dbEducation = settings?.about?.education?.map((e: any, i: number) => ({
+    degree: e.degree,
+    institution: e.institution,
+    year: e.year,
+    cgpa: null,
+    description: e.description,
+    color: ["#0067b8", "#107c10", "#d83b01", "#5c2d91"][i % 4]
+  })) || [];
+  const finalEducation = dbEducation.length > 0 ? dbEducation : defaultEducation;
+
+  const dbExperience = settings?.about?.experience?.map((e: any, i: number) => ({
+    period: e.year,
+    role: e.title,
+    company: e.company,
+    type: "Professional",
+    color: ["#d83b01", "#5c2d91", "#0067b8", "#107c10"][i % 4],
+    description: e.description,
+    tech: []
+  })) || [];
+  const finalExperience = dbExperience.length > 0 ? dbExperience : defaultExperience;
 
   return (
     <div className="bg-white dark:bg-[#111] min-h-screen text-[#242424] dark:text-white font-sans">
@@ -331,7 +352,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="space-y-5">
-            {experience.map((item, i) => (
+            {finalExperience.map((item: any, i: number) => (
               <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="grid grid-cols-1 md:grid-cols-12 gap-6 p-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors group">
@@ -346,7 +367,7 @@ export default function AboutPage() {
                   <h3 className="text-xl font-bold text-[#242424] dark:text-white tracking-tight mb-2 group-hover:text-[#0067b8] transition-colors">{item.role}</h3>
                   <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium mb-4 max-w-3xl">{item.description}</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {item.tech.map((t) => (
+                    {item.tech?.map((t: string) => (
                       <span key={t} className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400">{t}</span>
                     ))}
                   </div>
@@ -370,7 +391,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {education.map((edu, i) => (
+            {finalEducation.map((edu: any, i: number) => (
               <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#0067b8] dark:hover:border-[#0067b8] transition-colors overflow-hidden group">
