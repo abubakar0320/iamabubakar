@@ -42,7 +42,9 @@ const certs = [
     note: "Automating tasks with ChatGPT Code Interpreter",
     color: "#5c2d91",
     logo: "COURSERA",
-    fileUrl: "/Coursera Chatgpt certificate.pdf"
+    fileUrl: "/Coursera Chatgpt certificate.pdf",
+    verifyUrl: "https://coursera.org/share/57a8c740343764e182074d6ab3b1b078",
+    linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
   },
   {
     title: "Foundations of Project Management",
