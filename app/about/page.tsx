@@ -114,6 +114,17 @@ const certifications = [
     skills: ["AI Workflows", "Data Processing", "Data Visualization", "Prompt Engineering"],
     fileUrl: "/Coursera Chatgpt certificate.pdf"
   },
+  {
+    title: "Foundations of Project Management",
+    issuer: "Google (Coursera)",
+    date: "24 Jun 2026",
+    color: "#e10098",
+    badge: "GOOGLE",
+    skills: ["Project Planning", "Change Management", "Strategic Thinking", "Program Management"],
+    fileUrl: "/Coursera google project manager certificate.pdf",
+    verifyUrl: "https://coursera.org/share/0c662097634e3d3ca3d88a0d5388d3e3",
+    linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
+  },
 ];
 
 const languages = [
@@ -540,22 +551,45 @@ export default function AboutPage() {
                       <span key={s} className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400">{s}</span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700 gap-4">
+                    <div className="flex items-center gap-2 shrink-0">
                       <BadgeCheck size={15} style={{ color: cert.color }} />
                       <span className="text-xs font-black uppercase tracking-widest" style={{ color: cert.color }}>Verified Certification</span>
                     </div>
-                    {cert.fileUrl && (
-                      <a 
-                        href={cert.fileUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
-                        style={{ color: cert.color }}
-                      >
-                        View PDF <ExternalLink size={14} />
-                      </a>
-                    )}
+                    <div className="flex flex-wrap items-center gap-4">
+                      {cert.verifyUrl && (
+                        <a 
+                          href={cert.verifyUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                          style={{ color: cert.color }}
+                        >
+                          Verify <ExternalLink size={14} />
+                        </a>
+                      )}
+                      {cert.linkedinUrl && (
+                        <a 
+                          href={cert.linkedinUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest text-[#0077B5]"
+                        >
+                          LinkedIn <ExternalLink size={14} />
+                        </a>
+                      )}
+                      {cert.fileUrl && (
+                        <a 
+                          href={cert.fileUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                          style={{ color: cert.color }}
+                        >
+                          View PDF <ExternalLink size={14} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
