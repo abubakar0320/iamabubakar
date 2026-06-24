@@ -127,6 +127,17 @@ const certifications = [
     verifyUrl: "https://coursera.org/share/0c662097634e3d3ca3d88a0d5388d3e3",
     linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
   },
+  {
+    title: "Project Initiation: Starting a Successful Project",
+    issuer: "Google (Coursera)",
+    date: "24 Jun 2026",
+    color: "#00d4ff",
+    badge: "GOOGLE",
+    skills: ["Stakeholder Analysis", "Goal Setting", "Project Scoping", "Scope Management"],
+    fileUrl: "/Coursera Project Initiation Starting a successful project.pdf",
+    verifyUrl: "https://coursera.org/share/c045313717c2896b8ccb68bae6287553",
+    linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
+  },
 ];
 
 const languages = [

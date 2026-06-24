@@ -64,6 +64,24 @@ const certs = [
     verifyUrl: "https://coursera.org/share/0c662097634e3d3ca3d88a0d5388d3e3",
     linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
   },
+  {
+    title: "Project Initiation: Starting a Successful Project",
+    issuer: "Google (Coursera)",
+    date: "24 Jun 2026",
+    skills: [
+      "Stakeholder Analysis",
+      "Goal Setting",
+      "Project Scoping",
+      "Scope Management",
+      "Resource Management",
+    ],
+    note: "Google Project Management Certificate",
+    color: "#00d4ff",
+    logo: "GOOGLE",
+    fileUrl: "/Coursera Project Initiation Starting a successful project.pdf",
+    verifyUrl: "https://coursera.org/share/c045313717c2896b8ccb68bae6287553",
+    linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
+  },
 ];
 
 export function CertificationsSection() {
