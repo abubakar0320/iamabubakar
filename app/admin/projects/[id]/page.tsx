@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import { ProjectForm } from "@/components/admin/ProjectForm";
 import { Loader2 } from "lucide-react";
 
-export default function EditProjectPage({ params }: { params: { id: string } }) {
+export default function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = React.use(params);
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/api/projects/${params.id}`)
+    fetch(`/api/projects/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProject(data);
