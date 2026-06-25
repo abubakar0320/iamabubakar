@@ -20,7 +20,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
         console.error(err);
         setLoading(false);
       });
-  }, [params.id]);
+  }, [id]);
 
   if (loading) {
     return (
