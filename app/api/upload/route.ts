@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { uploadFile } from "@/lib/cloudinary";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
@@ -23,3 +23,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
