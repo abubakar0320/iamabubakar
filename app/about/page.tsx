@@ -273,7 +273,20 @@ export default function AboutPage() {
             {/* Profile Card */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="shrink-0 w-full max-w-sm">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 space-y-4">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 space-y-4 relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff]" />
+                
+                {/* Profile Image */}
+                <div className="relative w-full aspect-square mb-6 overflow-hidden rounded-sm border border-white/10 bg-[#111]">
+                  <Image 
+                    src="/Abubakar Siddiue.jpg" 
+                    alt="Abu Bakar Siddique" 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                    priority 
+                  />
+                </div>
+
                 <div className="space-y-3 pt-2">
                   {coreFacts.map((f) => (
                     <div key={f.label} className="flex items-center justify-between text-xs border-b border-white/10 pb-2">

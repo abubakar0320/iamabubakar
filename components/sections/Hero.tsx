@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Download } from "lucide-react";
 
 interface HeroProps {
@@ -30,6 +31,19 @@ export function Hero({ data, cvUrl }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          <div className="flex justify-center mb-8">
+            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] shadow-2xl">
+              <div className="w-full h-full rounded-full overflow-hidden bg-[#0d0d0d] relative">
+                <Image 
+                  src="/Abubakar Siddiue.jpg" 
+                  alt="Abu Bakar Siddique" 
+                  fill 
+                  className="object-cover" 
+                  priority 
+                />
+              </div>
+            </div>
+          </div>
           <span className="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
             {data?.tagline || "Available for New Projects"}
           </span>
