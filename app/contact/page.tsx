@@ -295,24 +295,24 @@ export default function ContactPage() {
               Contact <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Methods</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {contactMethods.map((m, i) => (
               <motion.a key={m.label} href={m.href} target={m.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-all p-7 flex flex-col gap-4 overflow-hidden">
-                <div className="w-12 h-12 flex items-center justify-center text-white transition-transform group-hover:scale-110 shadow-lg"
+                className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-all p-3 sm:p-7 flex flex-col gap-2 sm:gap-4 overflow-hidden">
+                <div className="w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center text-white transition-transform group-hover:scale-110 shadow-lg shrink-0"
                   style={{ backgroundColor: m.color, boxShadow: `0 0 15px ${m.color}80` }}>
-                  <m.icon size={22} />
+                  <m.icon className="w-4 h-4 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">{m.label}</div>
-                  <div className="text-sm font-bold text-[#242424] dark:text-white transition-colors leading-snug break-all" style={{ color: m.color }}>{m.value}</div>
-                  <div className="text-xs text-[#505050] dark:text-gray-400 font-medium mt-1">{m.desc}</div>
+                  <div className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5 sm:mb-1 line-clamp-1">{m.label}</div>
+                  <div className="text-[9px] sm:text-sm font-bold text-[#242424] dark:text-white transition-colors leading-snug truncate sm:break-all" style={{ color: m.color }}>{m.value}</div>
+                  <div className="text-[8px] sm:text-xs text-[#505050] dark:text-gray-400 font-medium mt-0.5 sm:mt-1 line-clamp-2 sm:line-clamp-none">{m.desc}</div>
                 </div>
-                <div className="mt-auto flex items-center gap-1 text-[10px] font-black uppercase tracking-widest" style={{ color: m.color }}>
-                  Connect <ChevronRight size={11} />
+                <div className="mt-auto flex items-center gap-0.5 sm:gap-1 text-[8px] sm:text-[10px] font-black uppercase tracking-widest" style={{ color: m.color }}>
+                  Connect <ChevronRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </motion.a>
             ))}
@@ -427,16 +427,16 @@ export default function ContactPage() {
               What I Can <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent">Help With</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {quickServices.map((s, i) => (
               <motion.div key={s.title} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-7 group">
-                <div className="w-11 h-11 mb-5 bg-gradient-to-br from-[#e10098] to-[#00d4ff] flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(0,212,255,0.3)]">
-                  <s.icon size={20} />
+                className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-3 sm:p-7 group flex flex-col h-full">
+                <div className="w-7 h-7 sm:w-11 sm:h-11 mb-2 sm:mb-5 bg-gradient-to-br from-[#e10098] to-[#00d4ff] flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(0,212,255,0.3)] shrink-0">
+                  <s.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-2 group-hover:text-[#00d4ff] transition-colors">{s.title}</h3>
-                <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">{s.desc}</p>
+                <h3 className="text-[10px] sm:text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1.5 sm:mb-2 group-hover:text-[#00d4ff] transition-colors line-clamp-2">{s.title}</h3>
+                <p className="text-[8px] sm:text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium line-clamp-3 sm:line-clamp-none flex-1">{s.desc}</p>
               </motion.div>
             ))}
           </div>
