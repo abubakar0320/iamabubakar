@@ -104,7 +104,7 @@ export function CertificationsSection() {
         </div>
 
         {/* Cert Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-8">
           {certs.map((cert, i) => (
             <motion.div
               key={cert.title}
@@ -117,31 +117,31 @@ export function CertificationsSection() {
               {/* Top bar */}
               <div className="h-1.5 w-full" style={{ backgroundColor: cert.color }} />
 
-              <div className="p-8">
+              <div className="p-3 sm:p-8">
                 {/* Issuer Badge */}
                 <div className="flex items-center justify-between mb-6">
                   <div
-                    className="px-4 py-2 text-xs font-black uppercase tracking-widest text-white"
+                    className="px-2 sm:px-4 py-1 sm:py-2 text-[8px] sm:text-xs font-black uppercase tracking-widest text-white"
                     style={{ backgroundColor: cert.color }}
                   >
                     {cert.logo}
                   </div>
-                  <span className="text-xs font-bold text-[#505050] dark:text-gray-400 uppercase tracking-widest">
+                  <span className="text-[8px] sm:text-xs font-bold text-[#505050] dark:text-gray-400 uppercase tracking-widest">
                     {cert.date}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors leading-snug">
+                <h3 className="text-sm sm:text-xl font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors leading-snug line-clamp-2 sm:line-clamp-none">
                   {cert.title}
                 </h3>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#00d4ff] mb-4">
+                <div className="text-[9px] sm:text-xs font-bold uppercase tracking-widest text-[#00d4ff] mb-2 sm:mb-4 line-clamp-1 sm:line-clamp-none">
                   {cert.issuer}
                 </div>
 
                 {cert.note && (
                   <div
-                    className="text-xs font-semibold mb-4 px-3 py-2 border-l-2"
+                    className="text-[9px] sm:text-xs font-semibold mb-2 sm:mb-4 px-2 sm:px-3 py-1 sm:py-2 border-l-2 line-clamp-2 sm:line-clamp-none"
                     style={{ borderColor: cert.color, color: cert.color, backgroundColor: cert.color + "10" }}
                   >
                     {cert.note}
@@ -153,7 +153,7 @@ export function CertificationsSection() {
                   {cert.skills.map((s) => (
                     <span
                       key={s}
-                      className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
+                      className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest px-1.5 sm:px-2.5 py-0.5 sm:py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
                     >
                       {s}
                     </span>
@@ -162,22 +162,22 @@ export function CertificationsSection() {
 
                 {/* Verified badge / PDF Link */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-6 pt-4 border-t border-gray-100 dark:border-gray-800 gap-4">
-                  <div className="flex items-center gap-2 shrink-0">
-                    <BadgeCheck size={16} style={{ color: cert.color }} />
-                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: cert.color }}>
-                      Verified Certification
+                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                    <BadgeCheck className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: cert.color }} />
+                    <span className="text-[8px] sm:text-xs font-bold uppercase tracking-widest" style={{ color: cert.color }}>
+                      Verified
                     </span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                     {(cert as any).verifyUrl && (
                       <a 
                         href={(cert as any).verifyUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                        className="text-[8px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1 hover:underline uppercase tracking-widest"
                         style={{ color: cert.color }}
                       >
-                        Verify <ExternalLink size={14} />
+                        Verify <ExternalLink className="w-2.5 h-2.5 sm:w-[14px] sm:h-[14px]" />
                       </a>
                     )}
                     {(cert as any).linkedinUrl && (
@@ -185,9 +185,9 @@ export function CertificationsSection() {
                         href={(cert as any).linkedinUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest text-[#0077B5]"
+                        className="text-[8px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1 hover:underline uppercase tracking-widest text-[#0077B5]"
                       >
-                        LinkedIn <ExternalLink size={14} />
+                        LinkedIn <ExternalLink className="w-2.5 h-2.5 sm:w-[14px] sm:h-[14px]" />
                       </a>
                     )}
                     {(cert as any).fileUrl && (
@@ -195,10 +195,10 @@ export function CertificationsSection() {
                         href={(cert as any).fileUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                        className="text-[8px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1 hover:underline uppercase tracking-widest"
                         style={{ color: cert.color }}
                       >
-                        View PDF <ExternalLink size={14} />
+                        PDF <ExternalLink className="w-2.5 h-2.5 sm:w-[14px] sm:h-[14px]" />
                       </a>
                     )}
                   </div>

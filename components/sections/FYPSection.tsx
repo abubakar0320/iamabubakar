@@ -86,7 +86,7 @@ export function FYPSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5"
+            className="flex-1 grid grid-cols-2 gap-3 sm:gap-5"
           >
             {fyp.highlights.map((h: any, i: number) => {
               const IconComp = (LucideIcons as any)[h.icon || "Star"] || LucideIcons.Star;
@@ -97,15 +97,15 @@ export function FYPSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group"
+                className="bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-3 sm:p-6 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group flex flex-col items-start"
               >
-                <div className="w-10 h-10 mb-4 flex items-center justify-center bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 text-[#00d4ff] group-hover:bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] group-hover:text-white transition-colors">
-                  <IconComp size={20} />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 mb-3 sm:mb-4 flex items-center justify-center bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 text-[#00d4ff] group-hover:bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] group-hover:text-white transition-colors shrink-0">
+                  <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-                <div className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-2 group-hover:text-[#00d4ff] transition-colors">
+                <div className="text-[10px] sm:text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1.5 sm:mb-2 group-hover:text-[#00d4ff] transition-colors line-clamp-2">
                   {h.label}
                 </div>
-                <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">{h.desc}</p>
+                <p className="text-[10px] sm:text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium line-clamp-3">{h.desc}</p>
               </motion.div>
             )})}
           </motion.div>

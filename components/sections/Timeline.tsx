@@ -141,7 +141,7 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
           {/* Vertical Line */}
           <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700 -translate-x-1/2 hidden sm:block" />
 
-          <div className="space-y-10">
+          <div className="grid grid-cols-2 gap-3 sm:gap-10 sm:grid-cols-1 sm:block sm:space-y-10">
             {finalTimeline.map((item, i) => {
               const isLeft = i % 2 === 0;
               return (
@@ -151,32 +151,32 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className={`relative flex flex-col sm:flex-row items-start gap-6 ${
+                  className={`relative flex flex-col sm:flex-row items-start gap-3 sm:gap-6 ${
                     isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
                   }`}
                 >
                   {/* Card */}
                   <div
-                    className={`flex-1 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-6 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group`}
+                    className={`flex-1 w-full bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-3 sm:p-6 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group`}
                   >
                     <div className={`flex items-center gap-3 mb-3 flex-wrap ${isLeft ? "sm:flex-row-reverse sm:justify-end" : ""}`}>
                       <span
-                        className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1"
+                        className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest px-1.5 sm:px-2.5 py-1"
                         style={{ backgroundColor: item.badgeColor + "18", color: item.badgeColor }}
                       >
                         {item.badge}
                       </span>
-                      <span className="text-xs font-bold text-[#505050] dark:text-gray-400 uppercase tracking-widest">
+                      <span className="text-[9px] sm:text-xs font-bold text-[#505050] dark:text-gray-400 uppercase tracking-widest">
                         {item.year}
                       </span>
                     </div>
-                    <h3 className={`text-base font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors ${isLeft ? "sm:text-right" : ""}`}>
+                    <h3 className={`text-sm sm:text-base font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors line-clamp-2 ${isLeft ? "sm:text-right" : ""}`}>
                       {item.title}
                     </h3>
-                    <div className={`text-xs font-bold uppercase tracking-wider text-[#00d4ff] mb-3 ${isLeft ? "sm:text-right" : ""}`}>
+                    <div className={`text-[9px] sm:text-xs font-bold uppercase tracking-wider text-[#00d4ff] mb-2 sm:mb-3 line-clamp-1 ${isLeft ? "sm:text-right" : ""}`}>
                       {item.org}
                     </div>
-                    <p className={`text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium ${isLeft ? "sm:text-right" : ""}`}>
+                    <p className={`text-[10px] sm:text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium line-clamp-4 sm:line-clamp-none ${isLeft ? "sm:text-right" : ""}`}>
                       {item.description}
                     </p>
                     {item.tech.length > 0 && (
@@ -184,7 +184,7 @@ export function Timeline({ education: dbEducation, experience: dbExperience }: {
                         {item.tech.map((t: string) => (
                           <span
                             key={t}
-                            className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
+                            className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest px-1.5 sm:px-2 py-0.5 sm:py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
                           >
                             {t}
                           </span>

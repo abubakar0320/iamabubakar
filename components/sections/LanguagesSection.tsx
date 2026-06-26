@@ -78,7 +78,7 @@ export function LanguagesSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
           {langs.map((lang, i) => (
             <motion.div
               key={lang.language}
@@ -86,7 +86,7 @@ export function LanguagesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-7 group"
+              className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-3 sm:p-7 group"
             >
               {/* Lang name */}
               <div className="flex items-center gap-3 mb-5">
@@ -94,31 +94,32 @@ export function LanguagesSection() {
                   <Languages size={18} />
                 </div>
                 <div>
-                  <div className="text-lg font-black text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors">
+                  <div className="text-sm sm:text-lg font-black text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors">
                     {lang.language}
                   </div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-[#00d4ff]">{lang.label}</div>
+                  <div className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-[#00d4ff]">{lang.label}</div>
                 </div>
               </div>
 
               {lang.native ? (
                 <div className="flex items-center gap-2 py-4 border-t border-gray-100 dark:border-gray-800">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#107c10]" />
-                  <span className="text-sm font-semibold text-[#242424] dark:text-white">Native Speaker</span>
+                  <span className="text-[10px] sm:text-sm font-semibold text-[#242424] dark:text-white">Native Speaker</span>
                 </div>
               ) : (
                 <div className="space-y-3 border-t border-gray-100 dark:border-gray-800 pt-4">
                   {lang.skills!.map((s) => (
                     <div key={s.skill} className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-[#505050] dark:text-gray-400">{s.skill}</span>
+                      <span className="text-[9px] sm:text-xs font-semibold text-[#505050] dark:text-gray-400">{s.skill}</span>
                       <span
-                        className="text-xs font-black px-2.5 py-0.5"
+                        className="text-[8px] sm:text-xs font-black px-1.5 sm:px-2.5 py-0.5"
                         style={{
                           backgroundColor: levelColor[s.level] + "18",
                           color: levelColor[s.level],
                         }}
                       >
-                        {s.level} · {levelLabel[s.level]}
+                        <span className="hidden sm:inline">{s.level} · {levelLabel[s.level]}</span>
+                        <span className="sm:hidden">{s.level}</span>
                       </span>
                     </div>
                   ))}
