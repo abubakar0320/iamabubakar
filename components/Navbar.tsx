@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronRight, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { AbubakarLogo } from "@/components/Icons";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home",     href: "/" },
@@ -53,9 +53,7 @@ export function Navbar() {
 
           {/* ── Logo ───────────────────────────────── */}
           <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="Abubakar Home">
-            <div className="w-9 h-9 bg-gradient-to-br from-[#e10098] via-[#5c2d91] to-[#00d4ff] flex items-center justify-center transition-all group-hover:shadow-[0_0_15px_rgba(225,0,152,0.5)]">
-              <AbubakarLogo size={20} className="text-white" />
-            </div>
+            <Image src="/Logo.png" alt="Abubakar Logo" width={40} height={40} className="w-10 h-10 object-contain transition-transform group-hover:scale-105" priority />
             <div className="flex flex-col leading-none">
               <span className="text-[#242424] dark:text-white font-black tracking-tight text-[0.95rem] uppercase leading-none">
                 Abu Bakar

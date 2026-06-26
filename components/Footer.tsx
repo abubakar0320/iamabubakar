@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Globe, MessageSquare, ShieldCheck, Phone, MapPin, Mail, ExternalLink, ArrowRight } from "lucide-react";
-import { Github, Linkedin, Twitter, AbubakarLogo } from "@/components/Icons";
+import { Github, Linkedin, Twitter } from "@/components/Icons";
+import Image from "next/image";
 
 interface FooterSettings {
   contact: {
@@ -60,9 +61,7 @@ export function Footer() {
           {/* ── Brand Column ────────────────────────── */}
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 group shrink-0 mb-6 w-fit">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#e10098] via-[#5c2d91] to-[#00d4ff] flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(225,0,152,0.5)] transition-all">
-                <AbubakarLogo size={24} className="text-white" />
-              </div>
+              <Image src="/Logo.png" alt="Abubakar Logo" width={48} height={48} className="w-12 h-12 object-contain transition-transform group-hover:scale-105" />
               <div className="flex flex-col leading-none">
                 <span className="text-white font-black tracking-tight text-xl uppercase leading-none">Abu Bakar</span>
                 <span className="bg-gradient-to-r from-[#e10098] to-[#00d4ff] bg-clip-text text-transparent text-[9px] font-black uppercase tracking-[0.2em] leading-none mt-1">MERN Developer</span>
