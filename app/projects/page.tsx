@@ -188,7 +188,7 @@ export default function ProjectsPage() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {featured.map((p, i) => (
               <motion.div
                 key={p.id}
@@ -199,7 +199,7 @@ export default function ProjectsPage() {
                 className="group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#e10098] dark:hover:border-[#e10098] transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-[0_0_15px_rgba(225,0,152,0.15)]"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative aspect-[4/3] sm:h-48 overflow-hidden">
                   <Image
                     src={p.image}
                     alt={p.displayTitle}
@@ -212,27 +212,27 @@ export default function ProjectsPage() {
                     {p.category}
                   </div>
                   {p.live && (
-                    <div className="absolute top-3 right-3 px-2.5 py-1 bg-[#107c10] text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> Live
+                    <div className="absolute top-3 right-3 px-1.5 sm:px-2.5 py-1 bg-[#107c10] text-white text-[8px] sm:text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> <span className="hidden sm:inline">Live</span>
                     </div>
                   )}
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-lg font-bold text-[#242424] dark:text-white mb-2 group-hover:text-[#e10098] transition-colors leading-snug">
+                <div className="p-3 sm:p-6 flex flex-col flex-1">
+                  <h3 className="text-xs sm:text-lg font-bold text-[#242424] dark:text-white mb-2 group-hover:text-[#e10098] transition-colors leading-snug line-clamp-2">
                     {p.displayTitle}
                   </h3>
-                  <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed mb-4 flex-1 line-clamp-3">
+                  <p className="text-[9px] sm:text-sm text-[#505050] dark:text-gray-400 leading-relaxed mb-4 flex-1 line-clamp-3">
                     {p.description}
                   </p>
 
                   {/* Tech tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {p.tech.map((t: string) => (
+                  <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-3 sm:mb-5">
+                    {p.tech.slice(0, 3).map((t: string) => (
                       <span
                         key={t}
-                        className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
+                        className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest px-1.5 sm:px-2 py-0.5 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400"
                       >
                         {t}
                       </span>
@@ -240,28 +240,28 @@ export default function ProjectsPage() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center gap-5 pt-4 border-t border-gray-100 dark:border-gray-800">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-5 pt-3 sm:pt-4 border-t border-gray-100 dark:border-gray-800 mt-auto">
                     {p.live && (
                       <a
                         href={p.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors"
+                        className="inline-flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-xs font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors"
                       >
-                        <ExternalLink size={12} /> Live Site
+                        <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> <span className="hidden sm:inline">Live Site</span>
                       </a>
                     )}
                     <a
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#00d4ff]"
+                      className="inline-flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-xs font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#00d4ff]"
                     >
-                      <GithubIcon size={12} /> Source Code
+                      <GithubIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> Code
                     </a>
                     {p.stars > 0 && (
-                      <span className="ml-auto inline-flex items-center gap-1 text-xs font-bold text-yellow-500">
-                        <Star size={11} fill="currentColor" /> {p.stars}
+                      <span className="ml-auto inline-flex items-center gap-1 text-[9px] sm:text-xs font-bold text-yellow-500">
+                        <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" /> {p.stars}
                       </span>
                     )}
                   </div>
@@ -329,7 +329,7 @@ export default function ProjectsPage() {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
             <AnimatePresence mode="popLayout">
               {filtered.map((p) => (
                 <motion.div
@@ -350,7 +350,7 @@ export default function ProjectsPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
-                    <div className="absolute top-2 left-2 px-2 py-0.5 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-sm text-[10px] font-black uppercase tracking-widest text-[#e10098]">
+                    <div className="absolute top-2 left-2 px-1.5 sm:px-2 py-0.5 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-sm text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-[#e10098]">
                       {p.category}
                     </div>
                     {p.live && (
@@ -359,11 +359,11 @@ export default function ProjectsPage() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-5 flex flex-col flex-1">
-                    <h3 className="text-base font-bold text-[#242424] dark:text-white mb-2 group-hover:text-[#00d4ff] transition-colors leading-snug line-clamp-2">
+                  <div className="p-3 sm:p-5 flex flex-col flex-1">
+                    <h3 className="text-[11px] sm:text-base font-bold text-[#242424] dark:text-white mb-1.5 sm:mb-2 group-hover:text-[#00d4ff] transition-colors leading-snug line-clamp-2">
                       {p.displayTitle}
                     </h3>
-                    <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed mb-4 flex-1 line-clamp-3">
+                    <p className="text-[9px] sm:text-xs text-[#505050] dark:text-gray-400 leading-relaxed mb-3 sm:mb-4 flex-1 line-clamp-3">
                       {p.description}
                     </p>
 
@@ -380,26 +380,26 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Links */}
-                    <div className="flex items-center gap-4 pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
+                    <div className="flex items-center gap-2 sm:gap-4 pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
                       {p.live ? (
                         <a
                           href={p.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors"
+                          className="inline-flex items-center gap-0.5 sm:gap-1 text-[8px] sm:text-[11px] font-black uppercase tracking-widest text-[#00d4ff] hover:text-[#e10098] transition-colors"
                         >
-                          <ExternalLink size={11} /> Live
+                          <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> Live
                         </a>
                       ) : (
-                        <span className="text-[11px] font-black uppercase tracking-widest text-gray-300 dark:text-gray-600">No Live</span>
+                        <span className="text-[8px] sm:text-[11px] font-black uppercase tracking-widest text-gray-300 dark:text-gray-600">No Live</span>
                       )}
                       <a
                         href={p.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#00d4ff] ml-auto"
+                        className="inline-flex items-center gap-0.5 sm:gap-1 text-[8px] sm:text-[11px] font-black uppercase tracking-widest text-[#505050] dark:text-gray-400 hover:text-[#00d4ff] ml-auto"
                       >
-                        <GithubIcon size={11} /> Code
+                        <GithubIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> Code
                       </a>
                     </div>
                   </div>
