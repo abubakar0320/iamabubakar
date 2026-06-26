@@ -168,7 +168,7 @@ export function TechStack({ skills: dbSkills }: { skills?: any[] }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -12 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+                className="grid grid-cols-2 gap-3 sm:gap-5"
               >
                 {current.skills.map((skill: any, i: number) => (
                   <motion.div
@@ -176,12 +176,12 @@ export function TechStack({ skills: dbSkills }: { skills?: any[] }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.06 }}
-                    className="group bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-5 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-all"
+                    className="group bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-3 sm:p-5 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-all"
                   >
                     <div className="flex justify-between items-center mb-3">
-                      <span className="text-sm font-bold text-[#242424] dark:text-white">{skill.name}</span>
+                      <span className="text-[10px] sm:text-sm font-bold text-[#242424] dark:text-white line-clamp-1 pr-1">{skill.name}</span>
                       <span
-                        className="text-xs font-black tabular-nums"
+                        className="text-[10px] sm:text-xs font-black tabular-nums"
                         style={{ color: current.color }}
                       >
                         {skill.level}%

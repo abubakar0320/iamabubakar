@@ -55,10 +55,10 @@ export function Footer() {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-x-4 sm:gap-x-8 gap-y-10 sm:gap-y-12 mb-16">
           
           {/* ── Brand Column ────────────────────────── */}
-          <div className="md:col-span-2 lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 group shrink-0 mb-6 w-fit">
               <div className="w-10 h-10 bg-gradient-to-br from-[#e10098] via-[#5c2d91] to-[#00d4ff] flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(225,0,152,0.5)] transition-all">
                 <AbubakarLogo size={24} className="text-white" />
@@ -80,7 +80,7 @@ export function Footer() {
           </div>
 
           {/* ── Links Columns ───────────────────────── */}
-          <div className="space-y-4">
+          <div className="col-span-1 space-y-4">
             <h3 className="text-white text-[10px] font-black uppercase tracking-[0.15em] mb-6 flex items-center gap-2">
               <span className="w-2 h-2 bg-[#00d4ff]" /> Explore
             </h3>
@@ -92,7 +92,7 @@ export function Footer() {
             </ul>
           </div>
           
-          <div className="space-y-4">
+          <div className="col-span-1 space-y-4">
             <h3 className="text-white text-[10px] font-black uppercase tracking-[0.15em] mb-6 flex items-center gap-2">
               <span className="w-2 h-2 bg-[#e10098]" /> Services
             </h3>
@@ -105,7 +105,7 @@ export function Footer() {
           </div>
 
           {/* ── Contact Column ──────────────────────── */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="col-span-2 lg:col-span-2 space-y-4">
             <h3 className="text-white text-[10px] font-black uppercase tracking-[0.15em] mb-6 flex items-center gap-2">
               <span className="w-2 h-2 bg-[#5c2d91]" /> Contact
             </h3>
