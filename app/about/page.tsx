@@ -342,7 +342,7 @@ export default function AboutPage() {
             </div>
 
             <div className="pt-2 pb-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 {[
                   "Full Stack Web Development",
                   "MERN Stack Development",
@@ -353,9 +353,9 @@ export default function AboutPage() {
                   "Technical SEO & Google Setup",
                   "Graphic Design & Motion Graphics"
                 ].map((highlight) => (
-                  <div key={highlight} className="flex items-center gap-3 text-sm font-bold text-[#242424] dark:text-gray-200">
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#e10098] to-[#00d4ff] flex items-center justify-center shrink-0">
-                      <Check size={12} className="text-white" />
+                  <div key={highlight} className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-sm font-bold text-[#242424] dark:text-gray-200 line-clamp-1">
+                    <div className="w-3 h-3 sm:w-5 sm:h-5 rounded-full bg-gradient-to-r from-[#e10098] to-[#00d4ff] flex items-center justify-center shrink-0">
+                      <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
                     </div>
                     {highlight}
                   </div>
@@ -456,17 +456,17 @@ export default function AboutPage() {
               What I <span className="text-[#00d4ff]">Believe In</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {values.map((v, i) => (
               <motion.div key={v.title} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.07 }}
-                className="flex items-start gap-5 p-6 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group">
-                <div className="w-11 h-11 shrink-0 bg-[#f2f2f2] dark:bg-[#252525] border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#00d4ff] group-hover:bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] group-hover:text-white transition-colors">
-                  <v.icon size={20} />
+                className="flex flex-col sm:flex-row items-start gap-3 sm:gap-5 p-3 sm:p-6 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group">
+                <div className="w-8 h-8 sm:w-11 sm:h-11 shrink-0 bg-[#f2f2f2] dark:bg-[#252525] border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#00d4ff] group-hover:bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] group-hover:text-white transition-colors">
+                  <v.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors">{v.title}</h3>
-                  <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">{v.desc}</p>
+                  <h3 className="text-[10px] sm:text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors line-clamp-2">{v.title}</h3>
+                  <p className="text-[9px] sm:text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium line-clamp-3 sm:line-clamp-none">{v.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -485,24 +485,24 @@ export default function AboutPage() {
               Experience <span className="text-[#00d4ff]">Timeline</span>
             </h2>
           </div>
-          <div className="space-y-5">
+          <div className="grid grid-cols-2 md:flex md:flex-col gap-3 md:gap-5">
             {finalExperience.map((item: any, i: number) => (
               <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="grid grid-cols-1 md:grid-cols-12 gap-6 p-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group">
-                <div className="md:col-span-3 space-y-2">
-                  <div className="text-xs font-black uppercase tracking-widest" style={{ color: item.color }}>{item.period}</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{item.company}</div>
-                  <span className="inline-block text-[9px] font-black uppercase tracking-widest px-2 py-0.5"
+                className="flex flex-col md:grid md:grid-cols-12 gap-3 sm:gap-6 p-3 sm:p-8 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group">
+                <div className="md:col-span-3 space-y-1.5 sm:space-y-2">
+                  <div className="text-[9px] sm:text-xs font-black uppercase tracking-widest" style={{ color: item.color }}>{item.period}</div>
+                  <div className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-gray-400 line-clamp-1">{item.company}</div>
+                  <span className="inline-block text-[7px] sm:text-[9px] font-black uppercase tracking-widest px-1.5 sm:px-2 py-0.5"
                     style={{ backgroundColor: item.color + "18", color: item.color }}>{item.type}</span>
                 </div>
-                <div className="md:col-span-9">
-                  <div className="w-1 h-full absolute left-0 top-0" style={{ backgroundColor: item.color }} />
-                  <h3 className="text-xl font-bold text-[#242424] dark:text-white tracking-tight mb-2 group-hover:text-[#00d4ff] transition-colors">{item.role}</h3>
-                  <p className="text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium mb-4 max-w-3xl">{item.description}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.tech?.map((t: string) => (
-                      <span key={t} className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400">{t}</span>
+                <div className="md:col-span-9 relative flex flex-col flex-1">
+                  <div className="w-1 h-full absolute -left-3 sm:left-0 top-0 hidden md:block" style={{ backgroundColor: item.color }} />
+                  <h3 className="text-[11px] sm:text-xl font-bold text-[#242424] dark:text-white tracking-tight mb-1 sm:mb-2 group-hover:text-[#00d4ff] transition-colors line-clamp-2">{item.role}</h3>
+                  <p className="text-[9px] sm:text-sm text-[#505050] dark:text-gray-400 leading-relaxed font-medium mb-2 sm:mb-4 max-w-3xl flex-1 line-clamp-3 sm:line-clamp-none">{item.description}</p>
+                  <div className="flex flex-wrap gap-1 sm:gap-1.5">
+                    {item.tech?.slice(0, 3).map((t: string) => (
+                      <span key={t} className="text-[7px] sm:text-[9px] font-black uppercase tracking-widest px-1.5 sm:px-2 py-0.5 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400">{t}</span>
                     ))}
                   </div>
                 </div>
@@ -524,23 +524,23 @@ export default function AboutPage() {
               Education
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
             {finalEducation.map((edu: any, i: number) => (
               <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors overflow-hidden group">
                 <div className="h-1.5 w-full" style={{ backgroundColor: edu.color }} />
-                <div className="p-7 space-y-3">
-                  <div className="text-[10px] font-black uppercase tracking-widest" style={{ color: edu.color }}>{edu.year}</div>
-                  <h3 className="text-base font-bold text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors leading-snug">{edu.degree}</h3>
-                  <div className="text-xs font-bold uppercase tracking-wide text-[#00d4ff]">{edu.institution}</div>
+                <div className="p-3 sm:p-7 space-y-1.5 sm:space-y-3 flex flex-col h-full">
+                  <div className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest" style={{ color: edu.color }}>{edu.year}</div>
+                  <h3 className="text-[10px] sm:text-base font-bold text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors leading-snug line-clamp-2">{edu.degree}</h3>
+                  <div className="text-[8px] sm:text-xs font-bold uppercase tracking-wide text-[#00d4ff] line-clamp-1">{edu.institution}</div>
                   {edu.cgpa && (
-                    <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest px-2.5 py-1"
+                    <div className="inline-flex items-center w-fit gap-1 sm:gap-1.5 text-[8px] sm:text-[10px] font-black uppercase tracking-widest px-1.5 sm:px-2.5 py-0.5 sm:py-1"
                       style={{ backgroundColor: edu.color + "15", color: edu.color }}>
-                      <Award size={10} /> CGPA: {edu.cgpa}
+                      <Award className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> CGPA: {edu.cgpa}
                     </div>
                   )}
-                  <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">{edu.description}</p>
+                  <p className="text-[9px] sm:text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium flex-1 line-clamp-3 sm:line-clamp-none">{edu.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -559,39 +559,39 @@ export default function AboutPage() {
               Certifi<span className="text-[#00d4ff]">cations</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6">
             {finalCertifications.map((cert: any, i: number) => (
               <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors overflow-hidden group">
                 <div className="h-1.5 w-full" style={{ backgroundColor: cert.color }} />
-                <div className="p-8">
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="px-3.5 py-1.5 text-xs font-black uppercase tracking-widest text-white" style={{ backgroundColor: cert.color }}>{cert.badge}</div>
-                    <span className="text-xs font-bold text-[#505050] dark:text-gray-400 uppercase tracking-widest">{cert.date}</span>
+                <div className="p-3 sm:p-8 flex flex-col h-full">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-5 gap-1.5 sm:gap-0">
+                    <div className="w-fit px-1.5 sm:px-3.5 py-0.5 sm:py-1.5 text-[8px] sm:text-xs font-black uppercase tracking-widest text-white" style={{ backgroundColor: cert.color }}>{cert.badge}</div>
+                    <span className="text-[8px] sm:text-xs font-bold text-[#505050] dark:text-gray-400 uppercase tracking-widest">{cert.date}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors leading-snug">{cert.title}</h3>
-                  <div className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: cert.color }}>{cert.issuer}</div>
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {cert.skills?.map((s: string) => (
-                      <span key={s} className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400">{s}</span>
+                  <h3 className="text-[11px] sm:text-lg font-bold text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors leading-snug line-clamp-2">{cert.title}</h3>
+                  <div className="text-[9px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-4 line-clamp-1" style={{ color: cert.color }}>{cert.issuer}</div>
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-5">
+                    {cert.skills?.slice(0, 2).map((s: string) => (
+                      <span key={s} className="text-[7px] sm:text-[10px] font-bold uppercase tracking-widest px-1.5 sm:px-2.5 py-0.5 sm:py-1 border border-gray-200 dark:border-gray-700 text-[#505050] dark:text-gray-400 line-clamp-1">{s}</span>
                     ))}
                   </div>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700 gap-4">
-                    <div className="flex items-center gap-2 shrink-0">
-                      <BadgeCheck size={15} style={{ color: cert.color }} />
-                      <span className="text-xs font-black uppercase tracking-widest" style={{ color: cert.color }}>Verified Certification</span>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700 gap-2 sm:gap-4 mt-auto">
+                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                      <BadgeCheck className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: cert.color }} />
+                      <span className="text-[8px] sm:text-xs font-black uppercase tracking-widest" style={{ color: cert.color }}>Verified</span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                       {cert.verifyUrl && (
                         <a 
                           href={cert.verifyUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                          className="text-[8px] sm:text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
                           style={{ color: cert.color }}
                         >
-                          Verify <ExternalLink size={14} />
+                          Verify <ExternalLink className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
                         </a>
                       )}
                       {cert.linkedinUrl && (
@@ -599,9 +599,9 @@ export default function AboutPage() {
                           href={cert.linkedinUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest text-[#0077B5]"
+                          className="text-[8px] sm:text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest text-[#0077B5]"
                         >
-                          LinkedIn <ExternalLink size={14} />
+                          LinkedIn <ExternalLink className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
                         </a>
                       )}
                       {cert.fileUrl && (
@@ -609,10 +609,10 @@ export default function AboutPage() {
                           href={cert.fileUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
+                          className="text-[8px] sm:text-xs font-bold flex items-center gap-1 hover:underline uppercase tracking-widest"
                           style={{ color: cert.color }}
                         >
-                          View PDF <ExternalLink size={14} />
+                          PDF <ExternalLink className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
                         </a>
                       )}
                     </div>
@@ -636,24 +636,24 @@ export default function AboutPage() {
               Language <span className="text-[#00d4ff]">Skills</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6">
             {finalLanguages.map((l: any, i: number) => (
               <motion.div key={l.lang} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-7 group">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="text-xl font-black text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors">{l.lang}</div>
+                className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-3 sm:p-7 group">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 sm:mb-5 gap-1 sm:gap-0">
+                  <div className="text-sm sm:text-xl font-black text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors line-clamp-1">{l.lang}</div>
                   {l.cefr ? (
-                    <span className="text-xs font-black px-2 py-0.5" style={{ backgroundColor: l.color + "18", color: l.color }}>{l.cefr}</span>
+                    <span className="text-[8px] sm:text-xs font-black px-1.5 sm:px-2 py-0.5 w-fit" style={{ backgroundColor: l.color + "18", color: l.color }}>{l.cefr}</span>
                   ) : (
-                    <span className="text-xs font-black px-2 py-0.5" style={{ backgroundColor: l.color + "18", color: l.color }}>Native</span>
+                    <span className="text-[8px] sm:text-xs font-black px-1.5 sm:px-2 py-0.5 w-fit" style={{ backgroundColor: l.color + "18", color: l.color }}>Native</span>
                   )}
                 </div>
                 <div className="mb-3 h-2 bg-gray-100 dark:bg-gray-800 overflow-hidden">
                   <motion.div initial={{ width: 0 }} whileInView={{ width: `${l.pct}%` }} viewport={{ once: true }}
                     transition={{ duration: 0.9, ease: "easeOut" }} className="h-full" style={{ backgroundColor: l.color }} />
                 </div>
-                <div className="text-[10px] font-black uppercase tracking-widest" style={{ color: l.color }}>{l.level}</div>
+                <div className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest" style={{ color: l.color }}>{l.level}</div>
               </motion.div>
             ))}
           </div>
@@ -672,22 +672,22 @@ export default function AboutPage() {
             </h2>
             <p className="text-sm text-[#505050] dark:text-gray-400 font-medium">Faculty from Baba Guru Nanak University available as professional references.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {finalRecommendations.map((rec: any, i: number) => (
               <motion.div key={rec.name} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-6 flex flex-col gap-4 group">
-                <div className="w-14 h-14 flex items-center justify-center text-white text-lg font-black" style={{ backgroundColor: rec.color }}>
+                className="bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors p-3 sm:p-6 flex flex-col gap-2 sm:gap-4 group">
+                <div className="w-8 h-8 sm:w-14 sm:h-14 flex items-center justify-center text-white text-[10px] sm:text-lg font-black" style={{ backgroundColor: rec.color }}>
                   {rec.initials}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm font-bold text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors leading-snug mb-1">{rec.name}</h3>
-                  <div className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: rec.color }}>{rec.role}</div>
-                  <div className="text-[10px] text-[#505050] dark:text-gray-400 font-medium">Baba Guru Nanak University</div>
+                  <h3 className="text-[10px] sm:text-sm font-bold text-[#242424] dark:text-white group-hover:text-[#00d4ff] transition-colors leading-snug mb-0.5 sm:mb-1 line-clamp-1">{rec.name}</h3>
+                  <div className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest mb-0.5 line-clamp-1" style={{ color: rec.color }}>{rec.role}</div>
+                  <div className="text-[8px] sm:text-[10px] text-[#505050] dark:text-gray-400 font-medium line-clamp-1">Baba Guru Nanak University</div>
                 </div>
                 <a href={`tel:${rec.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-2 text-xs font-bold text-[#505050] dark:text-gray-400 hover:text-[#00d4ff] transition-colors border-t border-gray-200 dark:border-gray-700 pt-4">
-                  <Phone size={12} /> {rec.phone}
+                  className="flex items-center gap-1 sm:gap-2 text-[9px] sm:text-xs font-bold text-[#505050] dark:text-gray-400 hover:text-[#00d4ff] transition-colors border-t border-gray-200 dark:border-gray-700 pt-2 sm:pt-4 mt-auto">
+                  <Phone className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> {rec.phone}
                 </a>
               </motion.div>
             ))}
