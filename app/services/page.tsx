@@ -222,7 +222,7 @@ export default function ServicesPage() {
           3. SERVICE CARDS (Grid view for all services)
           ══════════════════════════════════════════ */}
       <div id="services" className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-20 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-6">
           {services.map((service, index) => {
             const IconComponent = (LucideIcons as any)[service.icon || "Globe"] || LucideIcons.Globe;
             const accentColor = "#e10098";
@@ -237,7 +237,7 @@ export default function ServicesPage() {
                 className="flex flex-col group bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-all overflow-hidden h-full"
               >
                 {/* Image */}
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative aspect-[4/3] sm:h-44 overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -248,10 +248,10 @@ export default function ServicesPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <div
-                      className="w-10 h-10 flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-lg"
+                      className="w-6 h-6 sm:w-10 sm:h-10 flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-lg"
                       style={{ backgroundColor: accentColor }}
                     >
-                      <IconComponent size={20} />
+                      <IconComponent className="w-3 h-3 sm:w-5 sm:h-5" />
                     </div>
                   </div>
                   {/* Top accent line */}
@@ -259,17 +259,17 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-base font-bold mb-2 text-[#242424] dark:text-white leading-snug group-hover:text-[#00d4ff] transition-colors uppercase tracking-tight">
+                <div className="p-3 sm:p-6 flex flex-col flex-1">
+                  <h3 className="text-[10px] sm:text-base font-bold mb-1.5 sm:mb-2 text-[#242424] dark:text-white leading-snug group-hover:text-[#00d4ff] transition-colors uppercase tracking-tight line-clamp-2">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-[#505050] dark:text-gray-400 mb-5 leading-relaxed font-medium flex-1">
+                  <p className="text-[9px] sm:text-xs text-[#505050] dark:text-gray-400 mb-3 sm:mb-5 leading-relaxed font-medium flex-1 line-clamp-3 sm:line-clamp-none">
                     {service.description}
                   </p>
-                  <div className="space-y-2 pt-4 border-t border-gray-100 dark:border-gray-800 mt-auto">
+                  <div className="space-y-1 sm:space-y-2 pt-3 sm:pt-4 border-t border-gray-100 dark:border-gray-800 mt-auto">
                     {service.features?.slice(0, 3).map((feature: string) => (
-                      <div key={feature} className="flex items-center gap-2 text-[10px] font-black text-[#505050] dark:text-gray-400 uppercase tracking-widest">
-                        <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: accentColor }} />
+                      <div key={feature} className="flex items-center gap-1.5 sm:gap-2 text-[8px] sm:text-[10px] font-black text-[#505050] dark:text-gray-400 uppercase tracking-widest line-clamp-1">
+                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0" style={{ backgroundColor: accentColor }} />
                         {feature}
                       </div>
                     ))}
@@ -295,7 +295,7 @@ export default function ServicesPage() {
               A structured, transparent process from first contact to final delivery.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {dbProcessSteps.map((step: any, i: number) => (
               <motion.div
                 key={step.step}
@@ -303,18 +303,18 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-8 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group"
+                className="relative bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 p-4 sm:p-8 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group"
               >
-                <div className="absolute top-4 right-5 text-6xl font-black text-gray-100 dark:text-gray-800 select-none leading-none">
+                <div className="absolute top-2 sm:top-4 right-3 sm:right-5 text-3xl sm:text-6xl font-black text-gray-100 dark:text-gray-800 select-none leading-none">
                   {step.step}
                 </div>
-                <div className="w-10 h-10 mb-5 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] flex items-center justify-center text-white text-sm font-black">
+                <div className="w-6 h-6 sm:w-10 sm:h-10 mb-3 sm:mb-5 bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] flex items-center justify-center text-white text-[10px] sm:text-sm font-black">
                   {step.step}
                 </div>
-                <h3 className="text-base font-black uppercase tracking-tight text-[#242424] dark:text-white mb-2 group-hover:text-[#00d4ff] transition-colors">
+                <h3 className="text-[10px] sm:text-base font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1.5 sm:mb-2 group-hover:text-[#00d4ff] transition-colors line-clamp-1">
                   {step.title}
                 </h3>
-                <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
+                <p className="text-[8px] sm:text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium line-clamp-3 sm:line-clamp-none">
                   {step.desc}
                 </p>
               </motion.div>
@@ -334,7 +334,7 @@ export default function ServicesPage() {
               Why Choose <span className="text-[#00d4ff]">Me?</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {dbWhyCards.map((card: any, i: number) => {
               const IconComp = (LucideIcons as any)[card.icon || "Star"] || LucideIcons.Star;
               return (
@@ -344,16 +344,16 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                className="flex items-start gap-5 p-6 bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group"
+                className="flex flex-col sm:flex-row items-start gap-3 sm:gap-5 p-3 sm:p-6 bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 hover:border-[#00d4ff] dark:hover:border-[#00d4ff] transition-colors group"
               >
-                <div className="w-11 h-11 shrink-0 bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#00d4ff] group-hover:bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] group-hover:text-white transition-colors">
-                  <IconComp size={20} />
+                <div className="w-8 h-8 sm:w-11 sm:h-11 shrink-0 bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#00d4ff] group-hover:bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] group-hover:text-white transition-colors">
+                  <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors">
+                  <h3 className="text-[10px] sm:text-sm font-black uppercase tracking-tight text-[#242424] dark:text-white mb-1 group-hover:text-[#00d4ff] transition-colors line-clamp-2">
                     {card.title}
                   </h3>
-                  <p className="text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium">
+                  <p className="text-[9px] sm:text-xs text-[#505050] dark:text-gray-400 leading-relaxed font-medium line-clamp-3 sm:line-clamp-none">
                     {card.desc}
                   </p>
                 </div>
@@ -377,7 +377,7 @@ export default function ServicesPage() {
               Clear, upfront pricing with no hidden costs. All plans include free consultation.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8">
             {dbPricingPlans.map((plan: any, index: number) => (
               <motion.div
                 key={plan.name}
@@ -393,25 +393,25 @@ export default function ServicesPage() {
                 )}
               >
                 {plan.recommended && (
-                  <div className="bg-[#ffb900] text-black text-[9px] font-black uppercase tracking-widest text-center py-1.5">
+                  <div className="bg-[#ffb900] text-black text-[7px] sm:text-[9px] font-black uppercase tracking-widest text-center py-1 sm:py-1.5">
                     ★ Most Popular
                   </div>
                 )}
-                <div className="p-8 md:p-10 flex flex-col flex-1">
-                  <h3 className="text-xl font-black uppercase tracking-tight mb-1">{plan.name}</h3>
-                  <div className="flex items-baseline gap-1 mt-4 mb-6 pb-6 border-b border-current/10">
-                    <span className="text-5xl font-black">{getDisplayPrice(plan.price)}</span>
-                    <span className={cn("text-[10px] font-black uppercase tracking-widest", plan.recommended ? "text-pink-100" : "text-gray-400")}>
+                <div className="p-4 sm:p-8 md:p-10 flex flex-col flex-1">
+                  <h3 className="text-sm sm:text-xl font-black uppercase tracking-tight mb-1">{plan.name}</h3>
+                  <div className="flex items-baseline gap-1 mt-2 sm:mt-4 mb-3 sm:mb-6 pb-3 sm:pb-6 border-b border-current/10">
+                    <span className="text-xl sm:text-5xl font-black leading-none">{getDisplayPrice(plan.price)}</span>
+                    <span className={cn("text-[7px] sm:text-[10px] font-black uppercase tracking-widest", plan.recommended ? "text-pink-100" : "text-gray-400")}>
                       / project
                     </span>
                   </div>
-                  <p className={cn("text-sm font-medium leading-relaxed mb-8", plan.recommended ? "text-pink-50" : "text-[#505050] dark:text-gray-400")}>
+                  <p className={cn("text-[8px] sm:text-sm font-medium leading-relaxed mb-4 sm:mb-8 line-clamp-3 sm:line-clamp-none", plan.recommended ? "text-pink-50" : "text-[#505050] dark:text-gray-400")}>
                     {plan.description}
                   </p>
-                  <div className="space-y-3 mb-10 flex-1">
+                  <div className="space-y-1.5 sm:space-y-3 mb-5 sm:mb-10 flex-1">
                     {plan.features?.map((f: string) => (
-                      <div key={f} className="flex items-center gap-3 text-xs font-bold uppercase tracking-tight">
-                        <Check size={13} className={plan.recommended ? "text-white shrink-0" : "text-[#00d4ff] shrink-0"} />
+                      <div key={f} className="flex items-center gap-1.5 sm:gap-3 text-[7px] sm:text-xs font-bold uppercase tracking-tight line-clamp-1">
+                        <Check className={cn("w-2.5 h-2.5 sm:w-[13px] sm:h-[13px] shrink-0", plan.recommended ? "text-white" : "text-[#00d4ff]")} />
                         {f}
                       </div>
                     ))}
@@ -419,13 +419,13 @@ export default function ServicesPage() {
                   <Link
                     href={`/checkout?plan=${encodeURIComponent(plan.name)}&price=${encodeURIComponent(plan.price)}`}
                     className={cn(
-                      "w-full mt-auto flex items-center justify-center gap-2 py-3.5 font-black uppercase tracking-widest text-xs transition-colors",
+                      "w-full mt-auto flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3.5 font-black uppercase tracking-widest text-[8px] sm:text-xs transition-colors text-center",
                       plan.recommended
                         ? "bg-white text-[#00d4ff] hover:bg-gray-100"
                         : "bg-gradient-to-r from-[#e10098] via-[#5c2d91] to-[#00d4ff] text-white hover:bg-gradient-to-r from-[#c00082] via-[#4a2474] to-[#00b8cc]"
                     )}
                   >
-                    {plan.cta} <ChevronRight size={14} />
+                    {plan.cta} <ChevronRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
                   </Link>
                 </div>
               </motion.div>
