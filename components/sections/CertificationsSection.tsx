@@ -100,6 +100,24 @@ const certs = [
     verifyUrl: "https://www.coursera.org/account/accomplishments/records/88ZV5QBVG293",
     linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
   },
+  {
+    title: "CCNA: Networking Basics, Switching, Addressing, and Routing",
+    issuer: "Logical Operations",
+    date: "Jul 2026",
+    skills: [
+      "Networking Basics",
+      "Switching",
+      "Addressing",
+      "Routing",
+      "CCNA",
+    ],
+    note: "Credential ID: 2DNS3GR1EVNT",
+    color: "#00d4ff",
+    logo: "LOGICAL OPS",
+    fileUrl: "/CCNA.pdf",
+    verifyUrl: "https://www.coursera.org/account/accomplishments/records/2DNS3GR1EVNT",
+    linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
+  },
 ];
 
 export function CertificationsSection() {
