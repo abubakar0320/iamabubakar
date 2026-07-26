@@ -4,7 +4,20 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BadgeCheck, ExternalLink } from "lucide-react";
 
-const certs = [
+interface Cert {
+  title: string;
+  issuer: string;
+  date: string;
+  skills: string[];
+  color: string;
+  logo: string;
+  note?: string;
+  fileUrl?: string;
+  verifyUrl?: string;
+  linkedinUrl?: string;
+}
+
+const certs: Cert[] = [
   {
     title: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
@@ -205,9 +218,9 @@ export function CertificationsSection() {
                     </span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 sm:gap-4">
-                    {(cert as any).verifyUrl && (
+                    {cert.verifyUrl && (
                       <a 
-                        href={(cert as any).verifyUrl} 
+                        href={cert.verifyUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-[8px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1 hover:underline uppercase tracking-widest"
@@ -216,9 +229,9 @@ export function CertificationsSection() {
                         Verify <ExternalLink className="w-2.5 h-2.5 sm:w-[14px] sm:h-[14px]" />
                       </a>
                     )}
-                    {(cert as any).linkedinUrl && (
+                    {cert.linkedinUrl && (
                       <a 
-                        href={(cert as any).linkedinUrl} 
+                        href={cert.linkedinUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-[8px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1 hover:underline uppercase tracking-widest text-[#0077B5]"
@@ -226,9 +239,9 @@ export function CertificationsSection() {
                         LinkedIn <ExternalLink className="w-2.5 h-2.5 sm:w-[14px] sm:h-[14px]" />
                       </a>
                     )}
-                    {(cert as any).fileUrl && (
+                    {cert.fileUrl && (
                       <a 
-                        href={(cert as any).fileUrl} 
+                        href={cert.fileUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-[8px] sm:text-xs font-bold flex items-center gap-0.5 sm:gap-1 hover:underline uppercase tracking-widest"
