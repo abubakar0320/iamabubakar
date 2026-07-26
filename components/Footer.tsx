@@ -31,7 +31,7 @@ export function Footer() {
       .catch(err => console.error(err));
   }, []);
 
-  if (!settings) return null;
+  if (!settings || !settings.contact) return null;
 
   return (
     <footer className="bg-[#0d0d0d] text-gray-400 font-sans border-t border-[#1a1a1a]">
