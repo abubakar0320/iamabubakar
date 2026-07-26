@@ -82,6 +82,24 @@ const certs = [
     verifyUrl: "https://coursera.org/share/c045313717c2896b8ccb68bae6287553",
     linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
   },
+  {
+    title: "Oracle Java Foundations",
+    issuer: "Oracle",
+    date: "Jul 2026",
+    skills: [
+      "Java",
+      "Object-Oriented Programming",
+      "Software Development",
+      "Problem Solving",
+      "Data Structures",
+    ],
+    note: "Credential ID: 88ZV5QBVG293",
+    color: "#f80000",
+    logo: "ORACLE",
+    fileUrl: "/Oracle Java Foundations.pdf",
+    verifyUrl: "https://www.coursera.org/account/accomplishments/records/88ZV5QBVG293",
+    linkedinUrl: "https://www.linkedin.com/in/abubakar0320/"
+  },
 ];
 
 export function CertificationsSection() {
