@@ -31,7 +31,17 @@ export function Footer() {
       .catch(err => console.error(err));
   }, []);
 
-  if (!settings || !settings.contact) return null;
+  const contact = settings?.contact || {
+    email: "abubakar0320@gmail.com",
+    phone: "+92 322 8419616",
+    location: "Lahore, Pakistan",
+    socialLinks: {
+      github: "https://github.com/abubakar0320",
+      linkedin: "https://www.linkedin.com/in/abubakar0320/",
+      twitter: "https://twitter.com/abubakar0320",
+      whatsapp: "https://wa.me/923228419616",
+    }
+  };
 
   return (
     <footer className="bg-[#0d0d0d] text-gray-400 font-sans border-t border-[#1a1a1a]">
@@ -71,10 +81,10 @@ export function Footer() {
               Detail-oriented Information Technology student and Full-Stack Web Developer. Engineering high-fidelity digital assets with architectural precision. Based in Lahore, deploying globally.
             </p>
             <div className="flex gap-4">
-               <a href={settings.contact.socialLinks.github} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Github size={16} /></a>
-               <a href={settings.contact.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Linkedin size={16} /></a>
-               <a href={settings.contact.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Twitter size={16} /></a>
-               <a href={settings.contact.socialLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#107c10] hover:text-[#107c10] hover:bg-[#107c10]/5 transition-all"><MessageSquare size={16} /></a>
+               <a href={contact.socialLinks.github} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Github size={16} /></a>
+               <a href={contact.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Linkedin size={16} /></a>
+               <a href={contact.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#00d4ff] hover:text-[#00d4ff] hover:bg-[#00d4ff]/5 transition-all"><Twitter size={16} /></a>
+               <a href={contact.socialLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-[#333] flex items-center justify-center text-gray-400 hover:border-[#107c10] hover:text-[#107c10] hover:bg-[#107c10]/5 transition-all"><MessageSquare size={16} /></a>
             </div>
           </div>
 
@@ -110,20 +120,20 @@ export function Footer() {
             </h3>
             <ul className="space-y-4">
                <li>
-                 <a href={`mailto:${settings.contact.email}`} className="flex items-start gap-3 group">
+                 <a href={`mailto:${contact.email}`} className="flex items-start gap-3 group">
                    <Mail size={16} className="text-gray-500 group-hover:text-[#00d4ff] shrink-0 mt-0.5 transition-colors" />
                    <div>
                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-0.5">Email</p>
-                     <p className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">{settings.contact.email}</p>
+                     <p className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">{contact.email}</p>
                    </div>
                  </a>
                </li>
                <li>
-                 <a href={`tel:${settings.contact.phone.replace(/\s/g, "")}`} className="flex items-start gap-3 group">
+                 <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="flex items-start gap-3 group">
                    <Phone size={16} className="text-gray-500 group-hover:text-[#00d15e] shrink-0 mt-0.5 transition-colors" />
                    <div>
                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-0.5">Phone / WhatsApp</p>
-                     <p className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">{settings.contact.phone}</p>
+                     <p className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">{contact.phone}</p>
                    </div>
                  </a>
                </li>
@@ -132,7 +142,7 @@ export function Footer() {
                    <MapPin size={16} className="text-gray-500 group-hover:text-[#e10098] shrink-0 mt-0.5 transition-colors" />
                    <div>
                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-0.5">Location</p>
-                     <p className="text-xs font-medium text-gray-300">{settings.contact.location}</p>
+                     <p className="text-xs font-medium text-gray-300">{contact.location}</p>
                    </div>
                  </div>
                </li>
